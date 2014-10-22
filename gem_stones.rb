@@ -6,13 +6,9 @@ gem_stones = test_cases.shift.split(//).uniq
 not_gem_stones = []
 test_cases.each do |test_case|
   gem_stones.each do |curr_gem|
-    if test_case.include?(curr_gem)
-    else
-      not_gem_stones << curr_gem
-    end
-    gem_stones = gem_stones - not_gem_stones
-    not_gem_stones = []
+    not_gem_stones << curr_gem unless test_case.include?(curr_gem)
   end
 end
 
+gem_stones = gem_stones - not_gem_stones
 puts gem_stones.length
