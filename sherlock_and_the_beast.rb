@@ -1,17 +1,9 @@
-def create_possible_solutions(solution_length)
-  possible_solutions = []
-  for i in 0..solution_length do 
-    possible_solutions << "5" * i + "3" * (solution_length - i)
+def solve(solution_length)
+  for x in 0..solution_length
+    possible_solution = "5" * (solution_length - x) + "3" * (x)
+    return possible_solution if is_valid?(possible_solution)
   end
-  return possible_solutions
-end
-
-def test_possible_solutions(possible_solutions)
-  solutions = []
-  possible_solutions.each do |curr_solution|
-    solutions << curr_solution if is_valid?(curr_solution)
-  end
-  return solutions
+  return "-1"
 end
 
 def is_valid?(curr_solution)
@@ -26,18 +18,8 @@ def divisible_by(num, divisor)
   false
 end
 
-def print_solution(solutions)
-  if solutions.empty?
-    puts "-1"
-  else
-    puts solutions.max
-  end
-end
-
 t = gets.to_i
 t.times{
     solution_length = gets.to_i
-    possible_solutions = create_possible_solutions(solution_length)
-    solutions = test_possible_solutions(possible_solutions)
-    print_solution(solutions)
+    puts solve(solution_length)
 }
