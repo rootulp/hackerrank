@@ -1,5 +1,5 @@
 fib_nums = [0, 1]
-while fib_nums[-1] < 10**5
+while fib_nums[-1] < 10**10
     fib_nums << fib_nums[-1] + fib_nums[-2]
 end
 n = gets.chomp.to_i
