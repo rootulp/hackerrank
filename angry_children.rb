@@ -1,15 +1,17 @@
-n = gets.to_i
-k = gets.to_i
-candy = Array.new(n)
-for i in 0..n-1
-      candy[i] = gets.to_i
+num_packets = gets.to_i
+kids = gets.to_i
+packets = []
+num_packets.times do
+  packets << gets.to_i
 end
 
-candy.sort_by! { |i| i }
-ans = candy[-1]
+packets.sort_by! { |i| i }
+ans = packets[-1]
 
-candy.each_cons(k) do |x|
-  unfairness = x[-1] - x[0]
+for i in 0..(num_packets - kids) do
+  min = packets[i]
+  max = packets[(i + kids - 1)]
+  unfairness = max - min
   ans = unfairness if unfairness < ans
 end
 
