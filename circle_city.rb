@@ -1,10 +1,10 @@
 def possible?(radius_squared, stations)
-    cities_needed = 0
-    radius = radius_squared **0.5.ceil
-    for x in -radius..radius
-        for y in -radius..radius
+    cities_needed = 4
+    radius = (radius_squared **0.5).to_i
+    for x in 1..(radius-1)
+        for y in 1..(radius-1)
             if x**2 + y**2 == radius_squared
-                cities_needed += 1
+                cities_needed += 4
             end
         end
     end
