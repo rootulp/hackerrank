@@ -1,11 +1,9 @@
 def solve(flavors, money)
-    flavors.each_with_index do |flavor, index|    
-        if flavors.include?(money - flavor)
-            a = index + 1
-            b = flavors.index(money - flavor) + 1
-            if b == a
-                b = flavors.rindex(money - flavor) + 1
-            end
+    pairs = flavors.combination(2)
+    pairs.each do |pair|
+        if pair[0] + pair[1] == money
+            a = flavors.index(pair[0]) + 1
+            b = flavors.rindex(pair[1]) + 1
             return a.to_s + " " + b.to_s
         end
     end
