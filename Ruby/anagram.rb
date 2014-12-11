@@ -1,4 +1,3 @@
-# Enter your code here. Read input from STDIN. Print output to STDOUT
 def anagram_solver(word)
     return "-1" if word.length % 2 == 1
     middle = word.length / 2
