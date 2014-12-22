@@ -2,21 +2,18 @@ def  insertionSort(ar)
     ar.reverse!
     v = ar[0]
     
-    if v >= ar[1]
-        puts ar.reverse.join(" ")
-        return
-    end
+    # Check if already sorted
+    return ar.reverse.join(" ") if v >= ar[1] 
         
+    # Itterate over reversed ar, reverse again before returning and printing
     ar.each_with_index do |x ,index|
-        if index == ar.length-1
+
+        # Check if you found the correct spot or reached end of ar
+        if  v > ar[index+1] || index == ar.length-1
             ar[index] = v
-            puts ar.reverse.join(" ")
-            return
-        elsif v > ar[index+1]
-            ar[index] = v
-            puts ar.reverse.join(" ")
-            return
+            return ar.reverse.join(" ")
         else
+            # Replace current element with next element
             ar[index] = ar[index+1]
             puts ar.reverse.join(" ")
         end
@@ -26,4 +23,4 @@ end
 count = gets.to_i
 ar = gets.strip.split.map {|i| i.to_i}
 
-insertionSort(ar)
+puts insertionSort(ar)
