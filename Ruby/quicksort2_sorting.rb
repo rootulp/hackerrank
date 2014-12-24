@@ -1,21 +1,25 @@
-def  partition(ar) 
+def  quickSort(ar) 
+
     if ar.length <= 1
         return ar
     end
-    p = ar.shift
-    a = []
-    b = []
+    
+    pivot = ar.shift
+    pivot_ar = [pivot] # Used later to concat arrays
+    left = []
+    right = []
+
     ar.each do |val|
-        a << val if val < p
-        b << val if val >= p
+        left << val if val < pivot
+        right << val if val > pivot
     end
-    return partition(a) << p << partition(b)
+
+    partial = quickSort(left) + pivot_ar + quickSort(right)
+    puts partial.join(" ")
+    return partial
+
 end
 
-def quickSort(ar) 
-     puts partition(ar).join(" ")
-end
-
-cnt = gets.to_i;
+count = gets.to_i;
 ar = gets.chomp.split.map{|x| x.to_i};
 quickSort(ar);
