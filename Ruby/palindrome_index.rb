@@ -6,45 +6,25 @@ class PalindromeIndex
   end
 
   def index_to_remove
-    return -1 if palindrome?(str)
     arr.each_index do |i|
       j = arr.size - 1 - i
-      if arr[i] != arr[j]
-        return i_or_j(i, j)
-        # return i if palindrome?(remove_at(i))
-        # return j if palindrome?(remove_at(i))
-      end
+      return i_or_j(i, j) if arr[i] != arr[j]
     end
+    return -1
   end
+
+  private
 
   def i_or_j(i, j)
-    if str[i+1] == str[j] && str[i] == str[j-1]
-      if str[i+1] == str[j-2]
-        return j
-      elsif str[i+2] == str[j-1]
-        return i
-      end
-    else 
-      if str[i+1] == str[j]
-        return i
-      elsif str[i] == str[j-1]
-        return j
-      end
+    if str[i+1] == str[j] && str[i] == str[j-1] && str[i+2] == str[j-1]
+      return i
+    elsif str[i+1] == str[j] && str[i] == str[j-1] && str[i+1] == str[j-2]
+      return j
+    elsif str[i+1] == str[j]
+      return i
+    elsif str[i] == str[j-1]
+      return j
     end
-  end
-
-  def remove_at(index)
-    if index == 0
-      str[1..-1]
-    elsif index == str.length
-      str[0..str.length-1]
-    else
-      str[0..index-1] + str[index+1..-1]
-    end
-  end
-
-  def palindrome?(str)
-    str == str.reverse
   end
 
 end
