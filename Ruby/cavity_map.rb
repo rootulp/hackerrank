@@ -1,7 +1,7 @@
 class CavityMap
-  attr_accessor :n, :grid
-  def initialize(n)
-    @n = n
+  attr_accessor :dimensions, :grid
+  def initialize(dimensions)
+    @dimensions = dimensions
     @grid = []
   end
 
@@ -29,7 +29,11 @@ class CavityMap
   end
 
   def edge?(row, col)
-    row == 0 || row == n-1 || col == 0 || col == n-1 ? true : false
+    if row == 0 || row == dimensions-1 || col == 0 || col == dimensions-1
+      true
+    else
+      false
+    end
   end
 
   def neighbors(row, col)
@@ -47,4 +51,3 @@ n.times do
   test_case.grid << gets.chomp.split(//).map{|x| x.to_i}
 end
 puts test_case.cavity_map
-#p test_case.cavity?(0, 1)
