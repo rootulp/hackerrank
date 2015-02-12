@@ -9,9 +9,10 @@ class SherlockAndArray
   end
 
   def valid_mid?
+    return true if arr.size == 1
+    
     left = 0
     right = arr.reduce(:+)
-
     arr.each_index do |i|
       right -= arr[i]
       next if i == 0
