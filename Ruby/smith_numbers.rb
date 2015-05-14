@@ -7,25 +7,15 @@ class SmithNumber
   end
 
   def self.sum_of_factors(num)
-    total = 0
-    factors = Prime.prime_division(num)
-    factors.each do |factor|
-      if factor[0].to_s.length > 1
-        total += sum_of_digits(factor[0])
-      else
-        total += factor[0] * factor[1]
-      end
-    end
-    total
+    Prime.prime_division(num).map do |factor|
+      sum_of_digits(factor.first) * factor.last
+    end.reduce(:+)
   end
 
   def self.sum_of_digits(num)
-    total = 0
-    num.to_s.chars.each do |digit|
-      total += digit.to_i
-    end
-    total
+    num.to_s.chars.map(&:to_i).reduce(:+)
   end
+
 end
 
 puts SmithNumber.valid?(gets.to_i)
