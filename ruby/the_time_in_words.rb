@@ -33,33 +33,37 @@ class TheTime
     1  => "one"
   }
 
-  def self.in_words(hour, min)
-    case min
-    when 0
-      "#{convert(hour)} o' clock"
-    when 1..30
-      "#{convert(min)} #{minutes_for(min)}past #{convert(hour)}"
-    when 31..59
-      "#{convert(60 - min)} #{minutes_for(min)}to #{convert(hour + 1)}"
+  class << self
+    def in_words(hr, min)
+      if min == 0
+        "#{hours(hr, min)} o' clock"
+      elsif [15, 30, 45].include?(min)
+        "#{mins(min)} #{action(min)} #{hours(hr, min)}"
+      else
+        "#{mins(min)} #{plural(min)} #{action(min)} #{hours(hr, min)}"
+      end
     end
 
-  end
+    def action(min)
+      min <= 30 ? 'past' : 'to'
+    end
 
-  def self.minutes_for(min)
-    case min
-    when 15, 30, 45
-      ""
-    when 1
-      "minute "
-    else
-      "minutes "
+    def plural(min)
+      min == 1 ? 'minute' : 'minutes'
+    end
+
+    def hours(hr, min)
+      min <= 30 ? convert(hr) : convert(hr + 1)
+    end
+
+    def mins(min)
+      min <= 30 ? convert(min) : convert(60 - min)
+    end
+
+    def convert(unit)
+      "#{NUMS_TO_WORDS[unit]}"
     end
   end
-
-  def self.convert(unit)
-    "#{NUMS_TO_WORDS[unit]}"
-  end
-
 end
 
 puts TheTime.in_words(gets.to_i, gets.to_i)
