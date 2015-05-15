@@ -1,6 +1,6 @@
 def last_stone(stones, a, b)
     results = []
-    for i in 0..stones do 
+    for i in 0..stones do
         results << (i*a) + ((stones-i)*b)
         results << (i*b) + ((stones-i)*a)
     end

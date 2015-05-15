@@ -23,7 +23,7 @@ end
 
 num_cases = gets.to_i
 num_cases.times do
-  n = gets.to_i
+  _ = gets.to_i
   test_case = SherlockAndPairs.new(gets)
   puts test_case.pairs
 end

@@ -1,10 +1,10 @@
-def  lonelyinteger(test_case) 
+def  lonelyinteger(test_case)
     test_case.each do |num|
         if test_case.count(num) == 1
             return num
         end
     end
 end
-a = gets.strip.to_i
+_ = gets.strip.to_i
 test_case = gets.strip.split(" ").map! {|i| i.to_i}
 print lonelyinteger(test_case)

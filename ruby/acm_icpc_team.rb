@@ -3,7 +3,7 @@
 people = []
 team_topics = []
 
-num_people.times do 
+num_people.times do
   people << gets.chomp
 end
 

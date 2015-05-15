@@ -5,7 +5,7 @@ def solve(characters)
       count += 1 if character == characters[index+1]
     end
   end
-  
+
   return count
 end
 

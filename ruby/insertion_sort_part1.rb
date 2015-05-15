@@ -1,10 +1,10 @@
 def  insertionSort(ar)
     ar.reverse!
     v = ar[0]
-    
+
     # Check if already sorted
-    return ar.reverse.join(" ") if v >= ar[1] 
-        
+    return ar.reverse.join(" ") if v >= ar[1]
+
     # Itterate over reversed ar, reverse again before returning and printing
     ar.each_with_index do |x ,index|
 
@@ -17,10 +17,10 @@ def  insertionSort(ar)
             ar[index] = ar[index+1]
             puts ar.reverse.join(" ")
         end
-    end     
+    end
 end
 
-count = gets.to_i
+_ = gets.to_i
 ar = gets.strip.split.map {|i| i.to_i}
 
 puts insertionSort(ar)

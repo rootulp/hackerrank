@@ -8,7 +8,7 @@ def anagram_solver(word)
 
     if left == right
       return "0"
-    else 
+    else
       left.each do |char|
         index = right.index(char)
         right.delete_at(index) unless index.nil?
@@ -16,11 +16,11 @@ def anagram_solver(word)
 
       return right.length
     end
-    
+
 end
 
 t = gets.to_i
 
-t.times do 
+t.times do
     puts anagram_solver(gets.chomp)
 end

@@ -15,7 +15,7 @@ uniq_chars.each do |curr_char|
 end
 
 if odds <= 1
-    puts "YES"
+  puts "YES"
 else
-    puts "NO"
+  puts "NO"
 end

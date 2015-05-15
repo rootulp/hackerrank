@@ -1,4 +1,5 @@
 class FindTheMedian
+
   attr_accessor :arr
   def initialize(elements)
     @arr = elements.split(" ").map{|x| x.to_i};
@@ -13,7 +14,7 @@ class FindTheMedian
     # Declare index var's for easier ref
     insert_i = first_i
     pivot_i = last_i + 1
-    
+
     # Partition
     (first_i..last_i).each do |i|
       if arr[i] < arr[pivot_i]
@@ -24,7 +25,7 @@ class FindTheMedian
     end
     # Move pivot inbetween left(smaller elements) & right(larger elements)
     swap(pivot_i, insert_i)
-    
+
     if insert_i == median_i
       return arr[insert_i]
     elsif insert_i > median_i
@@ -39,7 +40,8 @@ class FindTheMedian
   def swap(a, b)
     arr[a], arr[b] = arr[b], arr[a]
   end
+
 end
 
-n = gets.to_i
+_ = gets.to_i
 puts FindTheMedian.new(gets).find_median

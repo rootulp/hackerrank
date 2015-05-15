@@ -40,7 +40,7 @@ class CavityMap
     [grid[row][col+1],
      grid[row][col-1],
      grid[row+1][col],
-     grid[row-1][col]] 
+     grid[row-1][col]]
   end
 
 end

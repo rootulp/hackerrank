@@ -10,7 +10,7 @@ class SherlockAndArray
 
   def valid_mid?
     return true if arr.size == 1
-    
+
     left = 0
     right = arr.reduce(:+)
     arr.each_index do |i|
@@ -27,6 +27,6 @@ end
 
 num_cases = gets.to_i
 num_cases.times do
-  num_elements = gets.to_i
+  _ = gets.to_i
   puts SherlockAndArray.new(gets).solve
 end

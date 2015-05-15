@@ -11,7 +11,7 @@ class QuickSort
     # Declare index var's for easier ref
     insert_i = first_i
     pivot_i = last_i + 1
-    
+
     # Partition
     (first_i..last_i).each do |i|
       if arr[i] < arr[pivot_i]
@@ -40,5 +40,5 @@ class QuickSort
   end
 end
 
-n = gets.to_i;
+_ = gets.to_i;
 QuickSort.new(gets).sort

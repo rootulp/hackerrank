@@ -25,18 +25,18 @@ class QuickSort
     @swaps = 0
   end
 
-def sort(first_i=0, pivot_i=arr.size-1)
+  def sort(first_i=0, pivot_i=arr.size-1)
     last_i = pivot_i - 1
     insert_i = first_i
     return if first_i > last_i
-    
+
     (first_i..last_i).each do |i|
       if arr[i] < arr[pivot_i]
         swap(i, insert_i)
         insert_i += 1
       end
     end
-    
+
     swap(pivot_i, insert_i)
     sort(first_i, insert_i-1)
     sort(insert_i+1, pivot_i)
@@ -49,7 +49,7 @@ def sort(first_i=0, pivot_i=arr.size-1)
 
 end
 
-n = gets.to_i;
+_ = gets.to_i;
 arr1 = gets.chomp.split(" ").map{|x| x.to_i}
 arr2 = arr1.dup
 

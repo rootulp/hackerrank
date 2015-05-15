@@ -15,6 +15,6 @@ class InsertionSort
   end
 end
 
-arr_size = gets.to_i
+_ = gets.to_i
 test_case = InsertionSort.new(gets)
 test_case.sort

@@ -7,7 +7,7 @@ def maxXor(l, r)
         curr_xor = x[0] ^ x[1]
         max = curr_xor if curr_xor > max
     end
-    
+
     return max
 end
 

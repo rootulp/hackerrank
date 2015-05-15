@@ -12,14 +12,14 @@ class Sudoku
 
     return false unless valid?
     return @board if solved?
-    
+
     next_0 = @board.index("0")
-    
+
     (1..9).each do |attempt|
       @board[next_0] = attempt
       return solution if Sudoku.new(@board).solve
     end
-    
+
     return false
   end
 
@@ -28,7 +28,7 @@ class Sudoku
   def valid?
     !duplicates?(@rows) && !duplicates?(@cols) && !duplicates?(@boxes)
   end
-  
+
   def solved?
     @board.count("0") == 0
   end

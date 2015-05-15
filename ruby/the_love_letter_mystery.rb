@@ -1,6 +1,5 @@
 n = gets.to_i
 test_cases = []
-results = []
 n.times {|x| test_cases.push(gets.chomp)}
 
 def analyze(test_arr, num_reductions)
@@ -16,7 +15,7 @@ end
 
 def num_reductions_for_pair(x, y, counter)
     comparison = x <=> y
-    if  comparison == 1 
+    if  comparison == 1
         return num_reductions_for_pair((x.ord - 1).chr, y, counter + 1)
     elsif comparison == -1
         return num_reductions_for_pair(x, (y.ord - 1).chr, counter + 1)

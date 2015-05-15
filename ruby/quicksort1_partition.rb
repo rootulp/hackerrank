@@ -1,4 +1,4 @@
-def  partition(ar) 
+def  partition(ar)
     p = ar.shift
     a = []
     b = []
@@ -10,6 +10,6 @@ def  partition(ar)
     return result.join(" ")
 end
 
-cnt = gets.to_i;
+_ = gets.to_i;
 ar = gets.chomp.split.map{|x| x.to_i};
 puts partition(ar);

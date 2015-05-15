@@ -12,7 +12,7 @@ end
 t = gets.to_i
 t.times {
     money = gets.to_i
-    num_flavors = gets.to_i
+    _ = gets.to_i
     flavors = gets.split.map{|x| x.to_i}
     puts solve(flavors, money)
 }

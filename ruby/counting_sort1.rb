@@ -18,6 +18,6 @@ class CountingSort
   end
 end
 
-arr_size = gets.to_i
+_ = gets.to_i
 test_case = CountingSort.new(gets.chomp)
 test_case.print_counts

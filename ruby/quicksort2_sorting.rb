@@ -1,9 +1,9 @@
-def  quickSort(ar) 
+def  quickSort(ar)
 
     if ar.length <= 1
         return ar
     end
-    
+
     pivot = ar.shift
     pivot_ar = [pivot] # Used later to concat arrays
     left = []
@@ -20,6 +20,6 @@ def  quickSort(ar)
 
 end
 
-count = gets.to_i;
+_ = gets.to_i;
 ar = gets.chomp.split.map{|x| x.to_i};
 quickSort(ar);
