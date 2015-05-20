@@ -1,47 +1,41 @@
 class BiggerIsGreater
 
-  attr_reader :str
-  def initialize(str)
-    @str = str
+  def self.next_lexicographically(str)
+    return 'no answer' unless find_k(str)
+    k = find_k(str)
+    i = find_i(str, k)
+    reverse_after(swap(str, k, i), k)
   end
 
-  def solve
-    return 'no answer' unless find_k
-    k = find_k
-    i = find_i(k)
-    swap(k, i)
-    reverse_after(k)
-    str
-  end
-
-  private
-
-  def find_k
+  def self.find_k(str)
     (str.size-2).downto(0) do |x|
       return x if str[x] < str[x+1]
     end
     false
   end
 
-  def find_i(k)
+  def self.find_i(str, k)
     (str.size-1).downto(k+1) do |x|
       return x if str[k] < str[x]
     end
   end
 
-  def swap(k, i)
-    @str[k], @str[i] = @str[i], @str[k]
+  def self.swap(str, k, i)
+    str[k], str[i] = str[i], str[k]
+    str
   end
 
-  def reverse_after(k)
-    @str = @str[0..k] + @str[k+1..-1].reverse
+  def self.reverse_after(str, k)
+    str[0..k] + str[k+1..-1].reverse
   end
+
+  private_class_method :find_k, :find_i, :swap, :reverse_after
 
 end
 
 t = gets.to_i
 t.times do
-  puts BiggerIsGreater.new(gets.chomp).solve
+  puts BiggerIsGreater.next_lexicographically(gets.chomp)
 end
 
 # The algorithm implemented here is used to generate the next string in lexographic order.
