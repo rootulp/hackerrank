@@ -6,17 +6,12 @@ class AlmostSorted
   end
 
   def solve
-    left = find_left
-    right = find_right
-    if left && right
-      if ascending?(swap(arr.clone, left, right))
-        return "yes\nswap #{left+1} #{right+1}"
-      elsif ascending?(reverse(arr.clone, left, right))
-        return "yes\nreverse #{left+1} #{right+1}"
-      else
-        return 'no'
-      end
-    end
+    l = find_left
+    r = find_right
+    return "no" unless l && r
+    return "yes\nswap #{l+1} #{r+1}" if sorted?(swap(arr.clone, l, r))
+    return "yes\nreverse #{l+1} #{r+1}" if sorted?(reverse(arr.clone, l, r))
+    return "no"
   end
 
   private
@@ -35,7 +30,7 @@ class AlmostSorted
     false
   end
 
-  def ascending?(arr)
+  def sorted?(arr)
     arr.each_cons(2).all?{ |i, j| i <= j }
   end
 
