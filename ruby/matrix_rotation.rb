@@ -5,21 +5,40 @@ class MatrixRotation
     @matrix = []
   end
 
-  # def rotate(num_rotations)
-  #   num_rotations.times { rotate }
-  # end
+  def pretty_print
+    puts matrix.map { |row| row.join(' ') }
+  end
 
-  def rotate
+  def rotate(rotations)
+    layers.each do |layer|
+      (rotations % elements_in_layer(layer)).times { rotate_layer(*layer) }
+    end
+  end
+
+  private
+
+  def layers
+    layers = []
+
     top = 0
     left = 0
     bot = matrix.size - 1
     right = matrix[0].size - 1
-    rotate_layer(top, bot, left, right)
+
+    while (top < bot && left < right)
+      layers << [top, bot, left, right]
+      top += 1; left += 1; bot -= 1; right -= 1;
+    end
+
+    layers
+  end
+
+  def elements_in_layer(layer)
+    top, bot, left, right = layer
+    (2 * (bot - top)) + (2 * (right - left))
   end
 
   def rotate_layer(top, bot, left, right)
-    p "top: #{top} bot: #{bot} left: #{left} right: #{right}"
-
     y1 = top
     x1 = left
     y2 = top
@@ -45,9 +64,7 @@ class MatrixRotation
       elsif (x2 == left)
         y2 -= 1
       end
-      p "x2: #{x2} y2: #{y2}"
     end
-
   end
 
   def swap(x1, y1, x2, y2)
@@ -56,15 +73,8 @@ class MatrixRotation
 
 end
 
-test = MatrixRotation.new
-
-m, _, r = gets.split(" ").map(&:to_i)
-m.times do
-  test.matrix << (gets.split(" ").map(&:to_i))
-end
-
-p test.matrix
-test.rotate
-p test.matrix
-# test.rotate(r)
-
+test_case = MatrixRotation.new
+m, _, rotations = gets.split(" ").map(&:to_i)
+m.times { test_case.matrix << (gets.split(" ").map(&:to_i)) }
+test_case.rotate(rotations)
+test_case.pretty_print
