@@ -1,10 +1,11 @@
 class QuickSort
+
   attr_accessor :arr
   def initialize(elements)
-    @arr = elements.split(" ").map{|x| x.to_i};
+    @arr = elements.split(" ").map{ |x| x.to_i };
   end
 
-  def sort(first_i=0, last_i=arr.size-2)
+  def sort(first_i = 0, last_i = arr.size - 2)
     # Stop if already sorted
     return if first_i > last_i
 
@@ -20,13 +21,14 @@ class QuickSort
         insert_i += 1
       end
     end
+
     # Move pivot inbetween left(smaller elements) & right(larger elements)
     swap(pivot_i, insert_i)
     print_arr
 
     # Recursively sort left and ride sides
-    sort(first_i, insert_i-2)
-    sort(insert_i+1, last_i)
+    sort(first_i, insert_i - 2)
+    sort(insert_i + 1, last_i)
   end
 
   private
