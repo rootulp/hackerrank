@@ -1,0 +1,25 @@
+class JimAndTheOrders
+
+  def initialize
+    @orders = []
+  end
+
+  def add_order(customer_num, input_time, process_time)
+    @orders << [input_time + process_time, customer_num]
+  end
+
+  def output_order
+    @orders.sort { |o1, o2| o1.first <=> o2.first }.map { |o| o.last }.join(' ')
+  end
+
+end
+
+burger_joint = JimAndTheOrders.new()
+
+total_customers = gets.to_i
+total_customers.times do |customer_num|
+  input_time, process_time = gets.split(' ').map { |x| x.to_i }
+  burger_joint.add_order(customer_num + 1, input_time, process_time)
+end
+
+puts burger_joint.output_order
