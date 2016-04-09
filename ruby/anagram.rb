@@ -1,26 +1,26 @@
-def anagram_solver(word)
+# Anagram
+class Anagram
+  attr_reader :word, :left, :right
+  def initialize(word)
+    @word = word
+    @left = word.chars[0..(word.length / 2 - 1)].sort
+    @right = word.chars[(word.length / 2)..-1].sort
+  end
 
-    return "-1" if word.length % 2 == 1
+  def solve
+    return '-1' if word.length.odd?
+    return '0' if left == right
+    num_changes
+  end
 
-    middle = word.length / 2
-    left = word[0..(middle - 1)].split(//).sort
-    right = word[middle..-1].split(//).sort
-
-    if left == right
-      return "0"
-    else
-      left.each do |char|
-        index = right.index(char)
-        right.delete_at(index) unless index.nil?
-      end
-
-      return right.length
+  def num_changes
+    left.each do |char|
+      index = right.index(char)
+      right.delete_at(index) unless index.nil?
     end
-
+    right.length
+  end
 end
 
-t = gets.to_i
-
-t.times do
-    puts anagram_solver(gets.chomp)
-end
+t = gets.chomp.to_i
+t.times { puts Anagram.new(gets.chomp).solve }

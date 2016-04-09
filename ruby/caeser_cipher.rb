@@ -1,12 +1,12 @@
+# Caesar Cipher
 class CaesarCipher
-
   def self.encrypt(word, k)
-    word.chars.map {|char| encrypt_char(char, k) }.join
+    word.chars.map { |char| encrypt_char(char, k) }.join
   end
 
   def self.encrypt_char(char, k)
-    return encrypt_lower(char, k) if /[a-z]/.match(char)
-    return encrypt_upper(char, k) if /[A-Z]/.match(char)
+    return encrypt_lower(char, k) if /[a-z]/ =~ char
+    return encrypt_upper(char, k) if /[A-Z]/ =~ char
     char
   end
 
@@ -19,11 +19,9 @@ class CaesarCipher
   end
 
   private_class_method :encrypt_char, :encrypt_upper, :encrypt_lower
-
 end
 
 _ = gets
 word = gets.chomp
 k = gets.to_i
-
 puts CaesarCipher.encrypt(word, k)

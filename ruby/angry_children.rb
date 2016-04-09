@@ -1,14 +1,11 @@
 num_packets = gets.to_i
 kids = gets.to_i
 packets = []
-num_packets.times do
-  packets << gets.to_i
-end
-
-packets.sort_by! { |i| i }
+num_packets.times { packets << gets.to_i }
+packets.sort!
 ans = packets[-1]
 
-for i in 0..(num_packets - kids) do
+(0..(num_packets - kids)).each do |i|
   min = packets[i]
   max = packets[(i + kids - 1)]
   unfairness = max - min
