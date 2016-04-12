@@ -1,5 +1,5 @@
+# Count Luck
 class CountLuck
-
   attr_accessor :matrix
   def initialize
     @matrix = []
@@ -14,7 +14,7 @@ class CountLuck
   private
 
   def dfs(visited, wand_waves, y, x)
-    @num_wand_waves = wand_waves if is_star?(y, x)
+    @num_wand_waves = wand_waves if star?(y, x)
     valid_moves = valid_moves(y, x, visited)
     wand_waves += 1 if valid_moves.size > 1
 
@@ -25,7 +25,7 @@ class CountLuck
   end
 
   def valid_moves(y, x, visited)
-    (neighbors(y, x) - visited).select { |neighbor| is_valid?(*neighbor) }
+    (neighbors(y, x) - visited).select { |neighbor| valid?(*neighbor) }
   end
 
   def neighbors(y, x)
@@ -37,15 +37,15 @@ class CountLuck
     neighbors
   end
 
-  def is_valid?(y, x)
-    is_path?(y, x) || is_star?(y, x)
+  def valid?(y, x)
+    path?(y, x) || star?(y, x)
   end
 
-  def is_path?(y, x)
+  def path?(y, x)
     matrix[y][x] == '.'
   end
 
-  def is_star?(y, x)
+  def star?(y, x)
     matrix[y][x] == '*'
   end
 
@@ -56,14 +56,13 @@ class CountLuck
       end
     end
   end
-
 end
 
 t = gets.to_i
 t.times do
-  countLuck = CountLuck.new
+  count_luck = CountLuck.new
   n, _ = gets.split(' ').map(&:to_i)
-  n.times { countLuck.matrix << gets.split(//) }
+  n.times { count_luck.matrix << gets.split(//) }
   k = gets.to_i
-  puts countLuck.impressed?(k)
+  puts count_luck.impressed?(k)
 end
