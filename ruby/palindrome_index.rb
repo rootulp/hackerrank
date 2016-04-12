@@ -1,32 +1,42 @@
+# Palindrome Index
 class PalindromeIndex
-  attr_reader :str, :arr
+  attr_reader :str, :chars
   def initialize(str)
     @str = str
-    @arr = str.split(//)
+    @chars = str.chars
   end
 
   def index_to_remove
-    arr.each_index do |i|
-      j = arr.size - 1 - i
-      return i_or_j(i, j) if arr[i] != arr[j]
+    chars.each_index do |i|
+      j = chars.size - 1 - i
+      return i_or_j(i, j) if chars[i] != chars[j]
     end
-    return -1
+    -1
   end
 
   private
 
   def i_or_j(i, j)
-    if str[i+1] == str[j] && str[i] == str[j-1] && str[i+2] == str[j-1]
-      return i
-    elsif str[i+1] == str[j] && str[i] == str[j-1] && str[i+1] == str[j-2]
-      return j
-    elsif str[i+1] == str[j]
-      return i
-    elsif str[i] == str[j-1]
-      return j
+    if i_next_to_j(i, j) && str[i + 2] == str[j - 1]
+      i
+    elsif i_next_to_j(i, j) && str[i + 1] == str[j - 2]
+      j
+    else
+      i_or_j_helper(i, j)
     end
   end
 
+  def i_next_to_j(i, j)
+    str[i + 1] == str[j] && str[i] == str[j - 1]
+  end
+
+  def i_or_j_helper(i, j)
+    if str[i + 1] == str[j]
+      i
+    elsif str[i] == str[j - 1]
+      j
+    end
+  end
 end
 
 num_cases = gets.to_i
