@@ -1,12 +1,12 @@
+# Diagonal Difference
 class DiagonalDifference
-
   attr_accessor :matrix
   def initialize
     @matrix = []
   end
 
   def add_row(row)
-    matrix << row.split(" ").map(&:to_i)
+    matrix << row.split(' ').map(&:to_i)
   end
 
   def diagonal_difference
@@ -26,12 +26,9 @@ class DiagonalDifference
       elements << matrix[x][matrix.size - 1 - x]
     end
   end
-
 end
 
 test_case = DiagonalDifference.new
-
 n = gets.to_i
 n.times { test_case.add_row(gets.chomp) }
-
 puts test_case.diagonal_difference
