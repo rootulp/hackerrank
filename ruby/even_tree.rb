@@ -1,16 +1,15 @@
-require "set"
+require 'set'
 
+# Node
 class Node
-
   attr_accessor :adjacents
   def initialize
     @adjacents = Set.new
   end
-
 end
 
+# Graph
 class Graph
-
   attr_accessor :nodes, :edges
   def initialize
     @nodes = []
@@ -42,7 +41,6 @@ class Graph
   def self.subtree(node, from_node)
     queue = [node]
     visited = [node]
-
     while queue.any?
       curr_node = queue.shift
       curr_node.adjacents.each do |adjacent_node|
@@ -51,19 +49,15 @@ class Graph
         visited << adjacent_node
       end
     end
-
     visited
   end
-
 end
 
 graph = Graph.new
-
-n, m = gets.split(" ").map(&:to_i)
+n, m = gets.split(' ').map(&:to_i)
 n.times { graph.add_node }
 m.times do
-  a, b = gets.split(" ").map(&:to_i)
+  a, b = gets.split(' ').map(&:to_i)
   graph.add_edge(graph.nodes[a - 1], graph.nodes[b - 1])
 end
-
 puts graph.edges.count { |edge| Graph.even_edge?(edge) }
