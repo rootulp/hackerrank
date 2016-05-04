@@ -1,21 +1,8 @@
+chars = gets.chomp.chars.sort
 odds = 0
-chars = gets.chomp.split(//).sort
-uniq_chars = chars.uniq
 
-def is_odd?(num)
-  return true if num % 2 == 1
-  false
+chars.uniq.each do |curr_char|
+  odds += 1 if chars.count(curr_char).odd?
 end
 
-uniq_chars.each do |curr_char|
-  char_occurences = chars.count(curr_char).to_i
-  if is_odd?(char_occurences)
-    odds += 1
-  end
-end
-
-if odds <= 1
-  puts "YES"
-else
-  puts "NO"
-end
+puts odds <= 1 ? 'YES' : 'NO'
