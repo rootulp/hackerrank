@@ -1,5 +1,5 @@
+# Funny String
 class FunnyString
-
   attr_reader :str, :rev
   def initialize(str)
     @str = str
@@ -19,7 +19,6 @@ class FunnyString
       memo << (arr.first.ord - arr.last.ord).abs
     end
   end
-
 end
 
 gets.to_i.times { puts FunnyString.new(gets.chomp).answer }
