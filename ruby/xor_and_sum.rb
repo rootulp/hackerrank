@@ -1,5 +1,6 @@
+# Xor and Sum
 class XorAndSum
-  UPPER_BOUND = 314159
+  UPPER_BOUND = 314_159
   MODULO_VAL = (10**9) + 7
 
   def self.calculate(a, b)
@@ -7,7 +8,6 @@ class XorAndSum
     (0..UPPER_BOUND).each { |i| sum += (a ^ (b << i)) }
     sum % MODULO_VAL
   end
-
 end
 
 a = gets.to_i(2)
