@@ -1,37 +1,37 @@
+# The Time
 class TheTime
-
   NUMS_TO_WORDS = {
-    30 => "half", #bug
-    29 => "twenty nine",
-    28 => "twenty eight",
-    27 => "twenty seven",
-    26 => "twenty six",
-    25 => "twenty five",
-    24 => "twenty four",
-    23 => "twenty three",
-    22 => "twenty two",
-    21 => "twenty one",
-    20 => "twenty",
-    19 => "nineteen",
-    18 => "eighteen",
-    17 => "seventeen",
-    16 => "sixteen",
-    15 => "quarter", #bug
-    14 => "fourteen",
-    13 => "thirteen",
-    12 => "twelve",
-    11 => "eleven",
-    10 => "ten",
-    9  => "nine",
-    8  => "eight",
-    7  => "seven",
-    6  => "six",
-    5  => "five",
-    4  => "four",
-    3  => "three",
-    2  => "two",
-    1  => "one"
-  }
+    30 => 'half', # bug
+    29 => 'twenty nine',
+    28 => 'twenty eight',
+    27 => 'twenty seven',
+    26 => 'twenty six',
+    25 => 'twenty five',
+    24 => 'twenty four',
+    23 => 'twenty three',
+    22 => 'twenty two',
+    21 => 'twenty one',
+    20 => 'twenty',
+    19 => 'nineteen',
+    18 => 'eighteen',
+    17 => 'seventeen',
+    16 => 'sixteen',
+    15 => 'quarter', # bug
+    14 => 'fourteen',
+    13 => 'thirteen',
+    12 => 'twelve',
+    11 => 'eleven',
+    10 => 'ten',
+    9  => 'nine',
+    8  => 'eight',
+    7  => 'seven',
+    6  => 'six',
+    5  => 'five',
+    4  => 'four',
+    3  => 'three',
+    2  => 'two',
+    1  => 'one'
+  }.freeze
 
   class << self
     def in_words(hr, min)
@@ -61,7 +61,7 @@ class TheTime
     end
 
     def convert(unit)
-      "#{NUMS_TO_WORDS[unit]}"
+      NUMS_TO_WORDS[unit]
     end
   end
 end
