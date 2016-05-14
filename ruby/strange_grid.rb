@@ -1,7 +1,8 @@
+# Strange Grid
 class StrangeGrid
   def self.val_at(row, col)
     suffix = col * 2 - 1
-    suffix -= 1 if row % 2 == 1
+    suffix -= 1 if row.odd?
     prefix = (row - 1) / 2
     "#{prefix}#{suffix}".to_i
   end
