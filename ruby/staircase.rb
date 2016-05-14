@@ -1,5 +1,5 @@
+# Staircase
 class Staircase
-
   def self.draw(height)
     (1..height).each do |line_num|
       draw_line(line_num, height)
@@ -12,7 +12,6 @@ class Staircase
     print("\n")
   end
   private_class_method :draw_line
-
 end
 
 n = gets.chomp.to_i
