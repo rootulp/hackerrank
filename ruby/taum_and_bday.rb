@@ -1,5 +1,5 @@
+# Taum
 class Taum
-
   attr_reader :black_num, :white_num, :black_p, :white_p, :convert_p
   def initialize(black_num, white_num, black_p, white_p, convert_p)
     @black_num = black_num
@@ -20,7 +20,6 @@ class Taum
   def white_price
     white_p > black_p + convert_p ? black_p + convert_p : white_p
   end
-
 end
 
 t = gets.to_i
