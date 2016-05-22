@@ -1,5 +1,5 @@
+# Sherlock Anagrams
 class SherlockAnagrams
-
   attr_reader :str
   def initialize(str)
     @str = str
@@ -20,8 +20,8 @@ class SherlockAnagrams
   end
 
   def sorted_substrings
-    (1..str.size-1).each_with_object([]) do |i, substrings|
-      (str.chars).each_cons(i) do |substring|
+    (1..str.size - 1).each_with_object([]) do |i, substrings|
+      str.chars.each_cons(i) do |substring|
         substrings << substring.sort.join
       end
     end
@@ -32,9 +32,8 @@ class SherlockAnagrams
   end
 
   def n_choose_r(n, r)
-    factorial(n) / (factorial(r) * factorial(n-r))
+    factorial(n) / (factorial(r) * factorial(n - r))
   end
-
 end
 
 t = gets.to_i
