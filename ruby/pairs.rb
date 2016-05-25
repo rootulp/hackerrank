@@ -1,5 +1,5 @@
+# Pairs
 class Pairs
-
   attr_reader :num_pairs
   def initialize(k, arr)
     @num_pairs = calculate_num_pairs(k, arr.sort)
@@ -23,9 +23,8 @@ class Pairs
       end
     end
   end
-
 end
 
-_, k = gets.split(' ').map { |x| x.to_i }
-arr = gets.split(' ').map { |x| x.to_i }
+_, k = gets.split(' ').map(&:to_i)
+arr = gets.split(' ').map(&:to_i)
 puts Pairs.new(k, arr).num_pairs
