@@ -1,11 +1,11 @@
 test_string = gets.chomp.downcase
-alphabet = ("a".."z").to_a
+alphabet = ('a'..'z').to_a
 test_string.split(//).each do |char|
   alphabet.delete(char)
 end
 
 if alphabet.empty?
-  puts "pangram"
+  puts 'pangram'
 else
-  puts "not pangram"
+  puts 'not pangram'
 end
