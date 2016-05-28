@@ -1,3 +1,4 @@
+# Make It Anagram
 class MakeItAnagram
   attr_reader :str1, :str2
   def initialize(str1, str2)
@@ -13,16 +14,15 @@ class MakeItAnagram
 
   def find_counts(str)
     counts = Hash.new(0)
-    str.each_char {|char| counts[char] += 1 }
+    str.each_char { |char| counts[char] += 1 }
     counts
   end
 
   def diff_chars(counts1, counts2)
     total = 0
-    ('a'..'z').each {|char| total += (counts1[char] - counts2[char]).abs}
+    ('a'..'z').each { |char| total += (counts1[char] - counts2[char]).abs }
     total
   end
-
 end
 
 str1 = gets.chomp
