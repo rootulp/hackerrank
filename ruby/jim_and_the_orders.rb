@@ -1,5 +1,5 @@
+# Jim and the Orders
 class JimAndTheOrders
-
   def initialize
     @orders = []
   end
@@ -9,16 +9,15 @@ class JimAndTheOrders
   end
 
   def output_order
-    @orders.sort { |o1, o2| o1.first <=> o2.first }.map { |o| o.last }.join(' ')
+    @orders.sort { |o1, o2| o1.first <=> o2.first }.map(:last).join(' ')
   end
-
 end
 
-burger_joint = JimAndTheOrders.new()
+burger_joint = JimAndTheOrders.new
 
 total_customers = gets.to_i
 total_customers.times do |customer_num|
-  input_time, process_time = gets.split(' ').map { |x| x.to_i }
+  input_time, process_time = gets.split(' ').map(:to_i)
   burger_joint.add_order(customer_num + 1, input_time, process_time)
 end
 
