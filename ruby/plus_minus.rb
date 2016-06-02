@@ -1,5 +1,5 @@
+# Plus Minus
 class PlusMinus
-
   attr_reader :nums
   def initialize(nums)
     @nums = nums
@@ -24,11 +24,8 @@ class PlusMinus
   def count_zero
     nums.count(0)
   end
-
 end
 
 _ = gets.chomp.to_i
-nums = gets.chomp.split(" ").map(&:to_i)
+nums = gets.chomp.split(' ').map(&:to_i)
 PlusMinus.new(nums).print_ratios
-
-
