@@ -6,12 +6,14 @@ class PlusMinus
   end
 
   def print_ratios
-    puts count_positive / nums.size.to_f
-    puts count_negative / nums.size.to_f
-    puts count_zero     / nums.size.to_f
+    puts ratio(count_positive), ratio(count_negative), ratio(count_zero)
   end
 
   private
+
+  def ratio(numerator)
+    numerator / nums.size.to_f
+  end
 
   def count_positive
     nums.count { |num| num > 0 }
