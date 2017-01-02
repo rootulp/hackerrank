@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.hackerrank.com/rootulp">
-    <img src="https://hackinout.co/static/inout/images/SponsorLogos/logo_hackerrank.svg"
+    <img src="https://hrcdn.net/hackerrank/assets/styleguide/logo_wordmark-vertical-4b862ef874af13bb7733ddf578fa9323.svg"
          alt="Hackerrank Logo"
          height="150" width="300">
   </a>
