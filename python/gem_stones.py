@@ -6,7 +6,7 @@ for i in range(int(num_test_cases)):
 
 gem_stones = []
 gem_stones.extend(test_cases.pop())
-gem_stones = list(set(gem_stones)) # delete duplicates
+gem_stones = list(set(gem_stones))  # delete duplicates
 
 not_gem_stones = []
 

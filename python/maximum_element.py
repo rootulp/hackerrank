@@ -17,7 +17,7 @@ class StackWithMax:
 
 stackWithMax = StackWithMax()
 n = int(input().strip())
-for _ in range (n):
+for _ in range(n):
     command = tuple(map(int, input().strip().split(' ')))
     if command[0] == 1:
         stackWithMax.push(command[1])

@@ -1,4 +1,4 @@
 (_, d) = tuple(map(int, input().strip().split(' ')))
 arr = list(map(int, input().strip().split(' ')))
-
-print(*(arr[d:] + arr[:d]))
+new_arr = arr[d:] + arr[:d]
+print(' '.join(map(str, new_arr)))
