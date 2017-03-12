@@ -3,9 +3,15 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/rootulp/hackerrank.svg)](https://codeclimate.com/github/rootulp/hackerrank)
 [![License](https://img.shields.io/:license-mit-blue.svg)](https://rootulp.mit-license.org)
 
-# About
+> My [hackerrank](https://www.hackerrank.com) solutions
 
-Here are my [hackerrank](https://www.hackerrank.com) solutions. I'd appreciate any feedback.
+## Contribute
+
+I'd appreciate any feedback via [issues](https://github.com/rootulp/hackerrank/issues/new).
+
+## Getting Started
+
+If you are new to hackerrank, you can get started at [hackerrank.com](https://www.hackerrank.com).
 
 ## License
 
