@@ -15,11 +15,14 @@ class Queue:
         self.move_stacks()
         return (self.stack_least_recent_on_top[-1])
 
-    # We only need to move elements from most_recent_on_top to least_recent_on_top if least_recent_on_top is empty
+    # We only need to move elements from most_recent_on_top to
+    # least_recent_on_top if least_recent_on_top is empty
     def move_stacks(self):
         if not self.stack_least_recent_on_top:
             while self.stack_most_recent_on_top:
-                self.stack_least_recent_on_top.append(self.stack_most_recent_on_top.pop())
+                self.stack_least_recent_on_top.append(
+                    self.stack_most_recent_on_top.pop()
+                )
 
 queue = Queue()
 q = int(input().strip())
