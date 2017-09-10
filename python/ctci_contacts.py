@@ -2,42 +2,39 @@ from collections import deque
 
 class Node:
 
-    def __init__(self, data):
-        self.data = data
-        self.children = set()
+    def __init__(self, terminal = False):
+        self.children = dict()
+        self.terminal = terminal
 
-    def add_child(self, child):
-        self.children.add(child)
-        
-    def get_child(self, data):
-        for child in self.children:
-            if child.data == data:
-                return child
-
-    def __str__(self):
-        return "Data: (" + self.data + "), Children: (" + self.children_str() + ")"
-    
-    def children_str(self):
-        return ', '.join([str(child) for child in self.children])
+    def __repr__(self):
+        return "Children: (" + str(self.children) + ") and Terminal: (" + str(self.terminal)  + ")"
 
 
 class Trie:
     
     def __init__(self):
-        self.root = Node('ROOT')
+        self.root = Node()
         
+
     def add(self, chars, node):
-        # print(node)
-        # print(chars)
         if chars:
-            current_char = chars.popleft()
-            child = node.get_child(current_char)
-            if child:
-                self.add(chars, child)
-            else:
-                new_child = Node(current_char)
-                node.add_child(new_child)
-                self.add(chars, new_child)
+            self.add_char(chars, node)
+        else:
+            node.terminal = True
+    
+    def add_char(self, chars, node):
+        current_char = chars.popleft()
+        child = node.children.get(current_char)
+        if child:
+            self.add(chars, child)
+        else:
+            new_child = Node()
+            node.children[current_char] = new_child
+            self.add(chars, new_child)
+
+
+    def find(self, chars):
+        return False
 
 
 class Contacts:
@@ -58,8 +55,9 @@ class Contacts:
         
         
     def find(self, contact):
-        self.trie.find(contact)
-    
+        chars = deque(list(contact))
+        self.trie.find(chars)
+
 
 num_operations = int(input().strip())
 contacts = Contacts()
@@ -67,4 +65,4 @@ contacts = Contacts()
 for _ in range(num_operations):
     operation, contact = input().strip().split(' ')
     contacts.perform(operation, contact)
-    # print(contacts.trie.root)
+    print(contacts.trie.root)
