@@ -1,24 +1,26 @@
-from collections import deque
+""" Tries: Contacts """
 
 class Node(object):
+    """ Trie Node """
 
     # Hacky optimization necessary to pass test case # 12
     __slots__ = ['children', 'word_count']
 
-    def __init__(self, terminal = False):
+    def __init__(self):
         self.children = dict()
         self.word_count = 0
 
 
     def __repr__(self):
-        return "Children: (" + str(self.children) + ") and Word Count: (" + str(self.word_count)  + ")"
+        return "Word Count: " + str(self.word_count) + " Children: " + str(self.children)
 
 
-class Trie:
-    
+class Trie(object):
+    """ Trie Node """
+
     def __init__(self):
         self.root = Node()
-        
+
     def add_key(self, key):
         node = self.root
 
@@ -37,38 +39,40 @@ class Trie:
 
         return node
 
+
     def create_child_if_absent(self, char, node):
         if char not in node.children:
             self.create_child(char, node)
         return node.children.get(char)
-    
-    def create_child(self, char, node):
+
+
+    @staticmethod
+    def create_child(char, node):
         node.children[char] = Node()
 
 
-class Contacts:
-    
+class Contacts(object):
+
+
     def __init__(self):
         self.trie = Trie()
-    
+
+
     def perform(self, operation, contact):
         if operation == 'add':
             self.trie.add_key(contact)
         elif operation == 'find':
             print(self.find(contact))
-        
+
+
     def find(self, contact):
-        found_contact = self.trie.find_key(contact)
-
-        if (found_contact):
-            return found_contact.word_count
-        else:
-            return 0
+        found = self.trie.find_key(contact)
+        return found.word_count if found else 0
 
 
-num_operations = int(input().strip())
-contacts = Contacts()
+NUM_OPERATIONS = int(input().strip())
+CONTACTS = Contacts()
 
-for _ in range(num_operations):
-    operation, contact = input().strip().split(' ')
-    contacts.perform(operation, contact)
+for _ in range(NUM_OPERATIONS):
+    op, name = input().strip().split(' ')
+    CONTACTS.perform(op, name)
