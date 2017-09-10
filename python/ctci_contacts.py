@@ -15,23 +15,21 @@ class Trie:
     def __init__(self):
         self.root = Node()
         
+    def add_key(self, key):
+        node = self.root
 
-    def add(self, chars, node):
-        if chars:
-            self.add_char(chars, node)
-        else:
-            node.terminal = True
+        for char in key:
+            node = self.create_child_if_absent(char, node)
+
+        node.terminal = True
+
+    def create_child_if_absent(self, char, node):
+        if char not in node.children:
+            self.create_child(char, node)
+        return node.children.get(char)
     
-    def add_char(self, chars, node):
-        current_char = chars.popleft()
-        child = node.children.get(current_char)
-        if child:
-            self.add(chars, child)
-        else:
-            new_child = Node()
-            node.children[current_char] = new_child
-            self.add(chars, new_child)
-
+    def create_child(self, char, node):
+        node.children[char] = Node()
 
     def find(self, chars, node):
         if chars:
@@ -63,21 +61,20 @@ class Contacts:
         if operation == 'add':
             self.add(contact)
         elif operation == 'find':
-            self.find(contact)
+            print(self.find(contact))
 
 
     def add(self, contact):
-        chars = deque(list(contact))
-        self.trie.add(chars, self.trie.root)
+        self.trie.add_key(contact)
         
         
     def find(self, contact):
         chars = deque(list(contact))
         found_contact = self.trie.find(chars, self.trie.root)
         if (found_contact):
-            print(self.trie.count_terminals(found_contact))
+            return self.trie.count_terminals(found_contact)
         else:
-            print(0)
+            return 0
 
 
 num_operations = int(input().strip())
@@ -86,4 +83,3 @@ contacts = Contacts()
 for _ in range(num_operations):
     operation, contact = input().strip().split(' ')
     contacts.perform(operation, contact)
-    # print(contacts.trie.root)
