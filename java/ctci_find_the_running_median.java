@@ -15,9 +15,7 @@ class MedianHeap {
     }
 
     public void add(int num) {
-        if (isEmpty()) {
-            this.minHeap.add(num);
-        } else if (num >= median()) {
+        if (isEmpty() || num > median()) {
             this.minHeap.add(num);
         } else {
             this.maxHeap.add(num);
@@ -61,11 +59,8 @@ public class Solution {
         for(int i = 0; i < capacity; i++){
             list[i] = in.nextInt();
             medianHeap.add(list[i]);
-            //System.out.println("minHeap: " + medianHeap.minHeap.toString());
-            //System.out.println("maxHeap: " + medianHeap.maxHeap.toString());
             System.out.printf("%.1f\n", medianHeap.median());
         }
     }
 }
-
 
