@@ -1,13 +1,17 @@
 from collections import deque
 
-class Node:
+class Node(object):
+
+    # Hacky optimization necessary to pass test case # 12
+    __slots__ = ['children', 'word_count']
 
     def __init__(self, terminal = False):
         self.children = dict()
-        self.terminal = terminal
+        self.word_count = 0
+
 
     def __repr__(self):
-        return "Children: (" + str(self.children) + ") and Terminal: (" + str(self.terminal)  + ")"
+        return "Children: (" + str(self.children) + ") and Word Count: (" + str(self.word_count)  + ")"
 
 
 class Trie:
@@ -20,8 +24,18 @@ class Trie:
 
         for char in key:
             node = self.create_child_if_absent(char, node)
+            node.word_count += 1
 
-        node.terminal = True
+    def find_key(self, key):
+        node = self.root
+
+        for char in key:
+            if char in node.children:
+                node = node.children.get(char)
+            else:
+                return False
+
+        return node
 
     def create_child_if_absent(self, char, node):
         if char not in node.children:
@@ -31,26 +45,6 @@ class Trie:
     def create_child(self, char, node):
         node.children[char] = Node()
 
-    def find(self, chars, node):
-        if chars:
-            current_char = chars.popleft()
-            child = node.children.get(current_char)
-            if child:
-                return self.find(chars, child)
-            else:
-                return False
-        else:
-            return node
-
-
-    def count_terminals(self, node):
-        count = 0
-        if node.terminal:
-            count += 1
-        for child in node.children.values():
-            count += self.count_terminals(child)
-        return count
-
 
 class Contacts:
     
@@ -59,20 +53,15 @@ class Contacts:
     
     def perform(self, operation, contact):
         if operation == 'add':
-            self.add(contact)
+            self.trie.add_key(contact)
         elif operation == 'find':
             print(self.find(contact))
-
-
-    def add(self, contact):
-        self.trie.add_key(contact)
-        
         
     def find(self, contact):
-        chars = deque(list(contact))
-        found_contact = self.trie.find(chars, self.trie.root)
+        found_contact = self.trie.find_key(contact)
+
         if (found_contact):
-            return self.trie.count_terminals(found_contact)
+            return found_contact.word_count
         else:
             return 0
 
