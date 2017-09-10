@@ -33,8 +33,25 @@ class Trie:
             self.add(chars, new_child)
 
 
-    def find(self, chars):
-        return False
+    def find(self, chars, node):
+        if chars:
+            current_char = chars.popleft()
+            child = node.children.get(current_char)
+            if child:
+                return self.find(chars, child)
+            else:
+                return False
+        else:
+            return node
+
+
+    def count_terminals(self, node):
+        count = 0
+        if node.terminal:
+            count += 1
+        for child in node.children.values():
+            count += self.count_terminals(child)
+        return count
 
 
 class Contacts:
@@ -46,7 +63,7 @@ class Contacts:
         if operation == 'add':
             self.add(contact)
         elif operation == 'find':
-            print(self.find(contact))
+            self.find(contact)
 
 
     def add(self, contact):
@@ -56,7 +73,11 @@ class Contacts:
         
     def find(self, contact):
         chars = deque(list(contact))
-        self.trie.find(chars)
+        found_contact = self.trie.find(chars, self.trie.root)
+        if (found_contact):
+            print(self.trie.count_terminals(found_contact))
+        else:
+            print(0)
 
 
 num_operations = int(input().strip())
@@ -65,4 +86,4 @@ contacts = Contacts()
 for _ in range(num_operations):
     operation, contact = input().strip().split(' ')
     contacts.perform(operation, contact)
-    print(contacts.trie.root)
+    # print(contacts.trie.root)
