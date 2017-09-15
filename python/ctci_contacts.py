@@ -1,5 +1,6 @@
 """ Tries: Contacts """
 
+
 class Node(object):
     """ Trie Node """
 
@@ -10,9 +11,9 @@ class Node(object):
         self.children = dict()
         self.word_count = 0
 
-
     def __repr__(self):
-        return "Word Count: " + str(self.word_count) + " Children: " + str(self.children)
+        return ("Word Count: " + str(self.word_count) +
+                " Children: " + str(self.children))
 
 
 class Trie(object):
@@ -39,12 +40,10 @@ class Trie(object):
 
         return node
 
-
     def create_child_if_absent(self, char, node):
         if char not in node.children:
             self.create_child(char, node)
         return node.children.get(char)
-
 
     @staticmethod
     def create_child(char, node):
@@ -53,17 +52,14 @@ class Trie(object):
 
 class Contacts(object):
 
-
     def __init__(self):
         self.trie = Trie()
-
 
     def perform(self, operation, contact):
         if operation == 'add':
             self.trie.add_key(contact)
         elif operation == 'find':
             print(self.find(contact))
-
 
     def find(self, contact):
         found = self.trie.find_key(contact)

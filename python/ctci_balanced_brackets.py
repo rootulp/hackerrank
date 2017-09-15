@@ -1,11 +1,11 @@
 class BalancedBrackets(object):
-    
+
     BRACKETS = {
         "{": "}",
         "[": "]",
         "(": ")"
     }
-    
+
     @classmethod
     def is_balanced(cls, expression):
         stack = []

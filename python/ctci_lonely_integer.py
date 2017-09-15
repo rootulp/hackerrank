@@ -1,6 +1,6 @@
 #!/bin/python3
-
 import sys
+
 
 def lonely_integer(a):
     result = 0
