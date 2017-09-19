@@ -1,5 +1,5 @@
 class QuickSort(object):
-    "In-place Quick Sort"
+    "In Place Quick Sort"
 
     def __init__(self, arr):
         self.arr = arr
@@ -7,7 +7,11 @@ class QuickSort(object):
     def sort(self, left_i, right_i):
         if right_i - left_i < 1:
             return
+        pivot_i = self.partition(left_i, right_i)
+        self.sort(left_i, pivot_i - 1)
+        self.sort(pivot_i + 1, right_i)
 
+    def partition(self, left_i, right_i):
         pivot_i = right_i
         lesser_i = left_i
         for i in range(left_i, right_i):
@@ -16,8 +20,7 @@ class QuickSort(object):
                 lesser_i += 1
         self.swap(pivot_i, lesser_i)
         self.print_arr()
-        self.sort(left_i, lesser_i - 1)
-        self.sort(lesser_i + 1, right_i)
+        return lesser_i
     
     def swap(self, index_1, index_2):
         arr[index_1], arr[index_2] = arr[index_2], arr[index_1]
