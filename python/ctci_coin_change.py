@@ -6,16 +6,21 @@ from collections import Counter
 from collections import defaultdict
 from functools import reduce
 
+
 def prod(iterable):
     return reduce(operator.mul, iterable, 1)
+
 
 class HashableDict(dict):
     def __key(self):
         return tuple((k, self[k]) for k in sorted(self))
+
     def __hash__(self):
         return hash(self.__key())
+
     def __eq__(self, other):
         return self.__key() == other.__key()
+
 
 class CoinChange(object):
 
@@ -24,11 +29,12 @@ class CoinChange(object):
         self.n = n
         self.solutions = defaultdict(lambda: set())
 
-    def make_change(self, dollars, coins_used = Counter()):
+    def make_change(self, dollars, coins_used=Counter()):
         current = sum(list(map(prod, dict(coins_used).items())))
         if current >= dollars:
-            return;
-        elif current != 0 and HashableDict(coins_used) not in self.solutions[current]:
+            return
+        elif (current != 0 and
+              HashableDict(coins_used) not in self.solutions[current]):
             self.solutions[current].add(HashableDict(coins_used))
             return coins_used
         else:
@@ -40,7 +46,7 @@ class CoinChange(object):
 
 
 n, m = map(int, input().strip().split(' '))
-available_coins = [int(coins_temp) for coins_temp in input().strip().split(' ')]
-coin_change = CoinChange(available_coins, n)
+available = [int(coins_temp) for coins_temp in input().strip().split(' ')]
+coin_change = CoinChange(available, n)
 coin_change.make_change(n)
 print(coin_change.solutions)
