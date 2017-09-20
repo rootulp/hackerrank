@@ -7,7 +7,6 @@ public class Solution {
     private int edges;
     private LinkedList<Integer>[] adjacency_lists;
 
-
     public Solution(int nodes, int edges) {
         this.nodes = nodes;
         this.edges = edges;
@@ -18,8 +17,12 @@ public class Solution {
     }
 
     public void add_edge(int node_a, int node_b) {
-        this.adjacency_lists[node_a].add(node_b);
-        this.adjacency_lists[node_b].add(node_a);
+        if (!this.adjacency_lists[node_a].contains(node_b)) {
+            this.adjacency_lists[node_a].add(node_b);
+        }
+        if (!this.adjacency_lists[node_b].contains(node_a)) {
+            this.adjacency_lists[node_b].add(node_a);
+        }
     }
 
     public String distances_from(int start_node) {
@@ -47,7 +50,7 @@ public class Solution {
     }
 
     private Map<Integer, Integer> breadth_first_search(int startNode) {
-        Map<Integer, Integer> visited = new HashMap();
+        Map<Integer, Integer> visited = new HashMap<Integer, Integer>();
         Queue<Integer> nodesToVisit = new LinkedList<Integer>();
         Queue<Integer> nodesToVisitDepth = new LinkedList<Integer>();
 
@@ -89,4 +92,3 @@ public class Solution {
         }
     }
 }
-
