@@ -32,7 +32,7 @@ public class Solution {
             if (i == startNode) {
                 continue;
             } else if (visited.containsKey(i)) {
-                distancesFrom.add(visited.get(i) * 6);
+                distancesFrom.add(visited.get(i));
             } else {
                 distancesFrom.add(-1);
             }
@@ -62,7 +62,7 @@ public class Solution {
             for (int neighbor : this.adjacencyLists[currentNode]){
                 if (!visited.containsKey(neighbor)) {
                     nodesToVisit.add(neighbor);
-                    nodesToVisitDepth.add(currentDepth + 1);
+                    nodesToVisitDepth.add(currentDepth + 6);
                 }
             }
             if (!visited.containsKey(currentNode) || visited.get(currentNode) > currentDepth) {
