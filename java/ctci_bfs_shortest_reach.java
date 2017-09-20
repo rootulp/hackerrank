@@ -29,12 +29,8 @@ public class Solution {
         Map<Integer, Integer> visited = breadthFirstSearch(startNode);
         List<Integer> distancesFrom = new ArrayList<Integer>();
         for (int i = 0; i < this.nodes; i++) {
-            if (i == startNode) {
-                continue;
-            } else if (visited.containsKey(i)) {
-                distancesFrom.add(visited.get(i));
-            } else {
-                distancesFrom.add(-1);
+            if (i != startNode) {
+                distancesFrom.add(visited.getOrDefault(i, -1));
             }
         }
         return spaceDelimit(distancesFrom);
