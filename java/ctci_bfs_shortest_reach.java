@@ -46,27 +46,29 @@ public class Solution {
         return joiner.toString();
     }
 
-    private Map<Integer, Integer> breadth_first_search(int start_node) {
+    private Map<Integer, Integer> breadth_first_search(int startNode) {
         Map<Integer, Integer> visited = new HashMap();
-        TreeMap<Integer, Integer> queue = new TreeMap<Integer, Integer>();
+        Queue<Integer> nodesToVisit = new LinkedList<Integer>();
+        Queue<Integer> nodesToVisitDepth = new LinkedList<Integer>();
 
-        visited.put(start_node, 0);
-        queue.put(0, start_node);
-    
-        while (queue.size() != 0) {
-            Map.Entry<Integer, Integer> current = queue.pollFirstEntry();
-            int current_depth = current.getKey();
-            int current_node = current.getValue();
-            for (int neighbor : this.adjacency_lists[current_node]){
+        nodesToVisit.add(startNode);
+        nodesToVisitDepth.add(0);
+
+        while (nodesToVisit.size() != 0) {
+            int currentNode = nodesToVisit.poll();
+            int currentDepth = nodesToVisitDepth.poll();
+            for (int neighbor : this.adjacency_lists[currentNode]){
                 if (!visited.containsKey(neighbor)) {
-                    visited.put(neighbor, current_depth + 1);
-                    queue.put(current_depth + 1, neighbor);
-                } else if (visited.get(neighbor) > current_depth + 1) {
-                    visited.put(neighbor, current_depth + 1);
+                    nodesToVisit.add(neighbor);
+                    nodesToVisitDepth.add(currentDepth + 1);
                 }
             }
+            if (!visited.containsKey(currentNode) || visited.get(currentNode) > currentDepth) {
+                //System.out.println("Putting: " + Integer.toString(currentNode) + " Depth: " + Integer.toString(currentDepth));
+                visited.put(currentNode, currentDepth);
+            }
         }
-
+        //System.out.println(visited);
         return visited;
     }
 
@@ -87,3 +89,4 @@ public class Solution {
         }
     }
 }
+
