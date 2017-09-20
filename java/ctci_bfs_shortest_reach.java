@@ -5,24 +5,20 @@ public class Solution {
 
     private int nodes;
     private int edges;
-    private LinkedList<Integer>[] adjacencyLists;
+    private List<Set<Integer>> adjacencyLists;
 
     public Solution(int nodes, int edges) {
         this.nodes = nodes;
         this.edges = edges;
-        this.adjacencyLists = new LinkedList[nodes];
+        this.adjacencyLists = new ArrayList<Set<Integer>>();
         for (int i = 0; i < nodes; i++) {
-            adjacencyLists[i] = new LinkedList<Integer>();
+            adjacencyLists.add(i, new HashSet<Integer>());
         }
     }
 
     public void addEdge(int nodeA, int nodeB) {
-        if (!this.adjacencyLists[nodeA].contains(nodeB)) {
-            this.adjacencyLists[nodeA].add(nodeB);
-        }
-        if (!this.adjacencyLists[nodeB].contains(nodeA)) {
-            this.adjacencyLists[nodeB].add(nodeA);
-        }
+        this.adjacencyLists.get(nodeA).add(nodeB);
+        this.adjacencyLists.get(nodeB).add(nodeA);
     }
 
     public String distancesFrom(int startNode) {
@@ -55,7 +51,7 @@ public class Solution {
         while (nodesToVisit.size() != 0) {
             int currentNode = nodesToVisit.poll();
             int currentDepth = nodesToVisitDepth.poll();
-            for (int neighbor : this.adjacencyLists[currentNode]){
+            for (int neighbor : this.adjacencyLists.get(currentNode)){
                 if (!visited.containsKey(neighbor)) {
                     nodesToVisit.add(neighbor);
                     nodesToVisitDepth.add(currentDepth + 6);
