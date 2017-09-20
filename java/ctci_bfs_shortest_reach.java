@@ -16,7 +16,7 @@ public class Solution {
         }
     }
 
-    public void add_edge(int nodeA, int nodeB) {
+    public void addEdge(int nodeA, int nodeB) {
         if (!this.adjacencyLists[nodeA].contains(nodeB)) {
             this.adjacencyLists[nodeA].add(nodeB);
         }
@@ -82,7 +82,7 @@ public class Solution {
             for (int edge = 0; edge < edges; edge++) {
                 int nodeA = in.nextInt();
                 int nodeB = in.nextInt();
-                graph.add_edge(nodeA - 1, nodeB - 1);
+                graph.addEdge(nodeA - 1, nodeB - 1);
             }
             int startNode = in.nextInt();
             System.out.println(graph.distancesFrom(startNode - 1));
