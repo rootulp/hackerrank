@@ -35,12 +35,6 @@ class Grid(object):
                            self.col_in_grid(cell[1]),
                            self.potential_neighbors(row, col)))
 
-    def row_in_grid(self, row):
-        return 0 <= row < self.rows
-
-    def col_in_grid(self, col):
-        return 0 <= col < self.cols
-
     def potential_neighbors(self, row, col):
         return [(row + row_delta, col + col_delta)
                 for row_delta in range(-1, 2)
@@ -48,6 +42,12 @@ class Grid(object):
 
     def filled_cell(self, row, col):
         return self.grid[row][col] == 1
+
+    def row_in_grid(self, row):
+        return 0 <= row < self.rows
+
+    def col_in_grid(self, col):
+        return 0 <= col < self.cols
 
 
 rows = int(input().strip())
