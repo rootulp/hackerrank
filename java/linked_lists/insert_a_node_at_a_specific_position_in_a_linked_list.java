@@ -16,7 +16,6 @@ Node InsertNth(Node head, int data, int position) {
     Node temp = new Node();
     temp.data = data;
 
-
     // Insert at head
     if (position == 0) {
       temp.next = head;
