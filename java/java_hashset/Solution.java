@@ -13,7 +13,7 @@ public class Solution {
 
     int n = Integer.parseInt(sc.nextLine()); // number of pairs
 
-    for (int i = 0; i < n; i ++) {
+    for (int i = 0; i < n; i++) {
       String pair = sc.nextLine();
       pairs.add(pair);
       System.out.println(pairs.size());

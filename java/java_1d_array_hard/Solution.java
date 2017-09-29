@@ -14,7 +14,7 @@ public class Solution {
       int jump = sc.nextInt();
       int[] arr = new int[size];
       for (int j = 0; j < size; j++) {
-          arr[j] = sc.nextInt();
+        arr[j] = sc.nextInt();
       }
 
       boolean[] visited = new boolean[size];
@@ -27,7 +27,7 @@ public class Solution {
     }
   }
 
-  public static boolean solve(int[] arr, boolean[] visited, int curr, int jump, int size)  {
+  public static boolean solve(int[] arr, boolean[] visited, int curr, int jump, int size) {
     if (curr >= size) {
       return true;
     } else {
@@ -46,13 +46,14 @@ public class Solution {
   }
 
   public static boolean validJump(int[] arr, boolean[] visited, int index, int size) {
-    if (index < 0) { return false; }
-    if (index < size) {
-     if ((arr[index] == 1) || visited[index]) {
+    if (index < 0) {
       return false;
-     }
+    }
+    if (index < size) {
+      if ((arr[index] == 1) || visited[index]) {
+        return false;
+      }
     }
     return true;
   }
 }
-

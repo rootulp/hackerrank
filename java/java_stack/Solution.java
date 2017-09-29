@@ -18,7 +18,7 @@ public class Solution {
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    while(sc.hasNext()){
+    while (sc.hasNext()) {
       String str = sc.next();
       System.out.println(valid(str));
     }
@@ -34,7 +34,9 @@ public class Solution {
         stack.push(c);
       } else if (validChars.containsValue(c) && !stack.empty()) { // closing paren
         char closingParen = validChars.get(stack.pop());
-        if (c != closingParen) { return false; }
+        if (c != closingParen) {
+          return false;
+        }
       } else { // invalid character
         return false;
       }
