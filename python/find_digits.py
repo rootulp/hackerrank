@@ -9,4 +9,4 @@ for y in range(test_cases):
         if int(num) % int(num[index]) == 0:
             count += 1
 
-    print count
+    print(count)

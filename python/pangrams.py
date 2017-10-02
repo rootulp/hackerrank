@@ -9,6 +9,6 @@ for i in range(len(test_arr)):
         alphabet.remove(test_arr[i])
 
 if alphabet == []:
-    print "pangram"
+    print("pangram")
 else:
-    print "not pangram"
+    print("not pangram")

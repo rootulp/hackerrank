@@ -16,4 +16,4 @@ for x in range(len(test_cases)):
             not_gem_stones.append(gem_stones[y])
 
 gem_stones = set(gem_stones) - set(not_gem_stones)
-print len(gem_stones)
+print(len(gem_stones))
