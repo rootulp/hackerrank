@@ -16,8 +16,8 @@ def anagram(str):
 
         return count
 
-test_cases = int(raw_input())
 
+test_cases = int(raw_input())
 for x in range(test_cases):
     str = raw_input()
-    print anagram(str)
+    print(anagram(str))
