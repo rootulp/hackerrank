@@ -24,13 +24,14 @@ class Queue:
                     self.stack_most_recent_on_top.pop()
                 )
 
+
 queue = Queue()
 q = int(input().strip())
 for _ in range(q):
-    query = list(map(int, input().strip().split(' ')))
-    if query[0] == 1:
-        queue.enqueue(query[1])
-    elif query[0] == 2:
+    query, *element = list(map(int, input().strip().split(' ')))
+    if query == 1:
+        queue.enqueue(*element)
+    elif query == 2:
         queue.dequeue()
-    elif query[0] == 3:
+    elif query == 3:
         print(queue.peek())
