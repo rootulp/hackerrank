@@ -15,13 +15,15 @@ class StackWithMax:
     def getMax(self):
         return self.stack[-1][1]
 
+
 stackWithMax = StackWithMax()
 n = int(input().strip())
 for _ in range(n):
-    command = tuple(map(int, input().strip().split(' ')))
-    if command[0] == 1:
-        stackWithMax.push(command[1])
-    elif command[0] == 2:
+    command, *element = tuple(map(int, input().strip().split(' ')))
+    if command == 1:
+        stackWithMax.push(*element)
+    elif command == 2:
         stackWithMax.pop()
-    elif command[0] == 3:
+    elif command == 3:
         print(stackWithMax.getMax())
+
