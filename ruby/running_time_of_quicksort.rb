@@ -7,7 +7,7 @@ class InsertionSort
 
   def sort
     arr.each_index do |index|
-      next if index == 0
+      next if index.zero?
       val = arr.delete_at(index)
       while index > 0 && val < arr[index - 1]
         index -= 1

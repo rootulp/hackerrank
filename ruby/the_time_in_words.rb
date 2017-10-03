@@ -35,7 +35,7 @@ class TheTime
 
   class << self
     def in_words(hr, min)
-      if min == 0
+      if min.zero?
         "#{hours(hr, min)} o' clock"
       elsif [15, 30, 45].include?(min)
         "#{mins(min)} #{action(min)} #{hours(hr, min)}"

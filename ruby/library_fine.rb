@@ -13,9 +13,11 @@ class LibraryFine
     return 0     if actual_date <= expected_date
     return 10_000 if actual_date.year != expected_date.year
 
-    actual_date.month != expected_date.month ?
-      500 * (actual_date.month - expected_date.month) :
+    if actual_date.month != expected_date.month
+      500 * (actual_date.month - expected_date.month)
+    else
       15 * (actual_date.day - expected_date.day)
+    end
   end
 
   private_class_method :parse_date, :calculate

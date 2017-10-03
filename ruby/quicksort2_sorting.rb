@@ -1,4 +1,4 @@
-def quickSort(ar)
+def quick_sort(ar)
   return ar if ar.length <= 1
 
   pivot = ar.shift
@@ -11,11 +11,11 @@ def quickSort(ar)
     right << val if val > pivot
   end
 
-  partial = quickSort(left) + pivot_ar + quickSort(right)
+  partial = quick_sort(left) + pivot_ar + quick_sort(right)
   puts partial.join(' ')
   partial
 end
 
 _ = gets.to_i
 ar = gets.chomp.split.map(&:to_i)
-quickSort(ar)
+quick_sort(ar)

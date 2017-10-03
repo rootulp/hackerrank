@@ -1,4 +1,4 @@
-def maxXor(l, r)
+def max_xor(l, r)
   max = 0
   lr = (l..r).to_a
   combinations = lr.combination(2).to_a
@@ -13,4 +13,4 @@ end
 
 l = gets.to_i
 r = gets.to_i
-print maxXor(l, r)
+print max_xor(l, r)

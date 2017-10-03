@@ -15,7 +15,7 @@ class SherlockAndArray
     right = arr.reduce(:+)
     arr.each_index do |i|
       right -= arr[i]
-      next if i == 0
+      next if i.zero?
       left += arr[i - 1]
       return true if left == right
     end

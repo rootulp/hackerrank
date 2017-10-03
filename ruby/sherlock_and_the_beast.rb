@@ -1,12 +1,12 @@
 def solve(solution_length)
-  for x in 0..solution_length
+  (0..solution_length).each do |x|
     possible_solution = '5' * (solution_length - x) + '3' * x
-    return possible_solution if is_valid?(possible_solution)
+    return possible_solution if valid?(possible_solution)
   end
   '-1'
 end
 
-def is_valid?(curr_solution)
+def valid?(curr_solution)
   num_3s = curr_solution.count('3')
   num_5s = curr_solution.count('5')
   return true if divisible_by(num_3s, 5) && divisible_by(num_5s, 3)
@@ -14,7 +14,7 @@ def is_valid?(curr_solution)
 end
 
 def divisible_by(num, divisor)
-  return true if num % divisor == 0
+  return true if (num % divisor).zero?
   false
 end
 
