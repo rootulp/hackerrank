@@ -4,15 +4,15 @@
  * 2. A 'perimeter' method that returns the sum of the Polygon's side lengths.
  */
 function add(a, b) {
-    return a + b;
+  return a + b;
 }
 
 class Polygon {
-    constructor(side_lengths) {
-        this.side_lengths = side_lengths
-    }
+  constructor(side_lengths) {
+    this.side_lengths = side_lengths;
+  }
 
-    perimeter() {
-        return this.side_lengths.reduce(add, 0);
-    }
+  perimeter() {
+    return this.side_lengths.reduce(add, 0);
+  }
 }
