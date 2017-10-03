@@ -16,6 +16,7 @@ class InsertionSort(object):
     def print_arr(self):
         print(" ".join(list(map(str, self.arr))))
 
+
 n = int(input().strip())
 arr = list(map(int, input().strip().split(" ")))
 InsertionSort(arr).sort()

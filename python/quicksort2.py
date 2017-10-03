@@ -1,6 +1,7 @@
 def print_arr(arr):
     print(" ".join(map(str, arr)))
 
+
 def quicksort(arr, pivot_i=0):
     if len(arr) <= 1:
         return arr
@@ -9,6 +10,7 @@ def quicksort(arr, pivot_i=0):
     sorted_arr = quicksort(left) + [pivot] + quicksort(right)
     print_arr(sorted_arr)
     return sorted_arr
+
 
 def divide(arr, pivot):
     left = []

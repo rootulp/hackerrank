@@ -26,4 +26,3 @@ for _ in range(n):
         stackWithMax.pop()
     elif command == 3:
         print(stackWithMax.getMax())
-

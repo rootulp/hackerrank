@@ -21,12 +21,13 @@ class QuickSort(object):
         self.swap(pivot_i, lesser_i)
         self.print_arr()
         return lesser_i
-    
+
     def swap(self, index_1, index_2):
         arr[index_1], arr[index_2] = arr[index_2], arr[index_1]
 
     def print_arr(self):
         print(" ".join(list(map(str, arr))))
+
 
 n = int(input().strip())
 arr = list(map(int, input().strip().split(" ")))
