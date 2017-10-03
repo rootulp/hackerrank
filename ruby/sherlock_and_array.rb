@@ -1,11 +1,11 @@
 class SherlockAndArray
   attr_reader :arr
   def initialize(elements)
-    @arr = elements.split(" ").map{|x| x.to_i}
+    @arr = elements.split(' ').map(&:to_i)
   end
 
   def solve
-    valid_mid? ? "YES" : "NO"
+    valid_mid? ? 'YES' : 'NO'
   end
 
   def valid_mid?
@@ -16,13 +16,12 @@ class SherlockAndArray
     arr.each_index do |i|
       right -= arr[i]
       next if i == 0
-      left += arr[i-1]
+      left += arr[i - 1]
       return true if left == right
     end
 
     false
   end
-
 end
 
 num_cases = gets.to_i

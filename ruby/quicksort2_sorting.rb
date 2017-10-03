@@ -1,25 +1,21 @@
-def  quickSort(ar)
+def quickSort(ar)
+  return ar if ar.length <= 1
 
-    if ar.length <= 1
-        return ar
-    end
+  pivot = ar.shift
+  pivot_ar = [pivot] # Used later to concat arrays
+  left = []
+  right = []
 
-    pivot = ar.shift
-    pivot_ar = [pivot] # Used later to concat arrays
-    left = []
-    right = []
+  ar.each do |val|
+    left << val if val < pivot
+    right << val if val > pivot
+  end
 
-    ar.each do |val|
-        left << val if val < pivot
-        right << val if val > pivot
-    end
-
-    partial = quickSort(left) + pivot_ar + quickSort(right)
-    puts partial.join(" ")
-    return partial
-
+  partial = quickSort(left) + pivot_ar + quickSort(right)
+  puts partial.join(' ')
+  partial
 end
 
-_ = gets.to_i;
-ar = gets.chomp.split.map{|x| x.to_i};
-quickSort(ar);
+_ = gets.to_i
+ar = gets.chomp.split.map(&:to_i)
+quickSort(ar)

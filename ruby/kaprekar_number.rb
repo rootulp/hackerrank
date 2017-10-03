@@ -2,7 +2,7 @@
 class KaprekarNumber
   def self.find_all(min, max)
     solutions = (min..max).select { |num| valid?(num) }
-    solutions.size == 0 ? 'INVALID RANGE' : solutions.join(' ')
+    solutions.empty? ? 'INVALID RANGE' : solutions.join(' ')
   end
 
   def self.valid?(num)

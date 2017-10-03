@@ -1,5 +1,4 @@
 class MatrixRotation
-
   attr_accessor :matrix
   def initialize
     @matrix = []
@@ -25,9 +24,9 @@ class MatrixRotation
     bot = matrix.size - 1
     right = matrix[0].size - 1
 
-    while (top < bot && left < right)
+    while top < bot && left < right
       layers << [top, bot, left, right]
-      top += 1; left += 1; bot -= 1; right -= 1;
+      top += 1; left += 1; bot -= 1; right -= 1
     end
 
     layers
@@ -44,37 +43,36 @@ class MatrixRotation
     y2 = top
     x2 = left + 1
 
-    until (y2 == top && x2 == left)
+    until y2 == top && x2 == left
       swap(x1, y1, x2, y2)
       x1 = x2
       y1 = y2
 
-      if (y2 == top && x2 == right)
+      if y2 == top && x2 == right
         y2 += 1
-      elsif (y2 == bot && x2 == right)
+      elsif y2 == bot && x2 == right
         x2 -= 1
-      elsif (y2 == bot && x2 == left)
+      elsif y2 == bot && x2 == left
         y2 -= 1
-      elsif (y2 == top)
+      elsif y2 == top
         x2 += 1
-      elsif (x2 == right)
+      elsif x2 == right
         y2 += 1
-      elsif (y2 == bot)
+      elsif y2 == bot
         x2 -= 1
-      elsif (x2 == left)
+      elsif x2 == left
         y2 -= 1
       end
     end
   end
 
   def swap(x1, y1, x2, y2)
-    matrix[y1][x1], matrix[y2][x2]= matrix[y2][x2], matrix[y1][x1]
+    matrix[y1][x1], matrix[y2][x2] = matrix[y2][x2], matrix[y1][x1]
   end
-
 end
 
 test_case = MatrixRotation.new
-m, _, rotations = gets.split(" ").map(&:to_i)
-m.times { test_case.matrix << (gets.split(" ").map(&:to_i)) }
+m, _, rotations = gets.split(' ').map(&:to_i)
+m.times { test_case.matrix << gets.split(' ').map(&:to_i) }
 test_case.rotate(rotations)
 test_case.pretty_print

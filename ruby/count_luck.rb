@@ -61,7 +61,7 @@ end
 t = gets.to_i
 t.times do
   count_luck = CountLuck.new
-  n, _ = gets.split(' ').map(&:to_i)
+  n, = gets.split(' ').map(&:to_i)
   n.times { count_luck.matrix << gets.split(//) }
   k = gets.to_i
   puts count_luck.impressed?(k)

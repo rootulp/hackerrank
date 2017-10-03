@@ -1,5 +1,4 @@
 class MorganString
-
   attr_reader :min_string
   def initialize(str1, str2)
     @str1 = str1
@@ -20,7 +19,6 @@ class MorganString
       stack2.shift + next_letter(stack1, stack2)
     end
   end
-
 end
 
 t = gets.to_i

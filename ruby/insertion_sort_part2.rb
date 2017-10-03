@@ -1,16 +1,16 @@
 class InsertionSort
   attr_reader :arr
   def initialize(str)
-    @arr = str.strip.split.map {|x| x.to_i}
+    @arr = str.strip.split.map(&:to_i)
   end
 
-  def  sort
+  def sort
     arr.each_index do |index|
       next if index == 0
       val = arr.delete_at(index)
-      index -= 1 while index > 0 && val < arr[index-1]
+      index -= 1 while index > 0 && val < arr[index - 1]
       arr.insert(index, val)
-      puts arr.join(" ")
+      puts arr.join(' ')
     end
   end
 end

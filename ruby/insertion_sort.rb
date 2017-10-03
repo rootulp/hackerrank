@@ -1,5 +1,4 @@
 class InsertionSort
-
   attr_accessor :nums, :num_moves
   def initialize(nums)
     @nums = nums
@@ -20,13 +19,11 @@ class InsertionSort
     nums[a], nums[b] = nums[b], nums[a]
     @num_moves += 1
   end
-
 end
 
 t = gets.to_i
 t.times do
   _ = gets
-  nums = gets.split(" ").map(&:to_i)
+  nums = gets.split(' ').map(&:to_i)
   puts InsertionSort.new(nums).num_moves
 end
-

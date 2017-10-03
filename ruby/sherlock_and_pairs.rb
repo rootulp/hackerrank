@@ -1,13 +1,13 @@
 class SherlockAndPairs
   attr_reader :arr, :counts
   def initialize(elements)
-    @arr = elements.split(" ").map{|x| x.to_i}
+    @arr = elements.split(' ').map(&:to_i)
     @counts = find_counts
   end
 
   def pairs
     total = 0
-    counts.each do |key, value|
+    counts.each do |_key, value|
       next if value == 1
       total += value * (value - 1)
     end
@@ -16,7 +16,7 @@ class SherlockAndPairs
 
   def find_counts
     counts = Hash.new 0
-    arr.each {|x|counts[x] += 1}
+    arr.each { |x| counts[x] += 1 }
     counts
   end
 end

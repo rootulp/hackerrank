@@ -1,7 +1,6 @@
-def  insertionSort(ar)
+def insertionSort(ar)
   shifts = 0
-  (1..ar.length-1).each do |i|
-
+  (1..ar.length - 1).each do |i|
     val = ar.delete_at(i)
     index = i
 
@@ -16,5 +15,5 @@ def  insertionSort(ar)
 end
 
 _ = gets.to_i
-ar = gets.strip.split.map {|i| i.to_i}
+ar = gets.strip.split.map(&:to_i)
 insertionSort(ar)

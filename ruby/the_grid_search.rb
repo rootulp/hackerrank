@@ -35,9 +35,9 @@ end
 t = gets.to_i
 t.times do
   g = GridSearch.new
-  r, _ = gets.split(' ').map(&:to_i)
+  r, = gets.split(' ').map(&:to_i)
   r.times { g.grid << gets.chomp.split(//) }
-  r, _ = gets.split(' ').map(&:to_i)
+  r, = gets.split(' ').map(&:to_i)
   r.times { g.pattern_grid << gets.chomp.split(//) }
   puts g.contains_pattern
 end

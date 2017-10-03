@@ -9,7 +9,7 @@ class JimAndTheOrders
   end
 
   def output_order
-    @orders.sort { |o1, o2| o1.first <=> o2.first }.map(:last).join(' ')
+    @orders.sort_by(&:first).map(:last).join(' ')
   end
 end
 

@@ -1,8 +1,7 @@
 class QuickSort
-
   attr_accessor :arr
   def initialize(elements)
-    @arr = elements.split(" ").map{ |x| x.to_i };
+    @arr = elements.split(' ').map(&:to_i)
   end
 
   def sort(first_i = 0, last_i = arr.size - 2)
@@ -15,11 +14,10 @@ class QuickSort
 
     # Partition
     (first_i..last_i).each do |i|
-      if arr[i] < arr[pivot_i]
-        # Move smaller elements to left
-        swap(i, insert_i)
-        insert_i += 1
-      end
+      next unless arr[i] < arr[pivot_i]
+      # Move smaller elements to left
+      swap(i, insert_i)
+      insert_i += 1
     end
 
     # Move pivot inbetween left(smaller elements) & right(larger elements)
@@ -38,9 +36,9 @@ class QuickSort
   end
 
   def print_arr
-    puts arr.join(" ")
+    puts arr.join(' ')
   end
 end
 
-_ = gets.to_i;
+_ = gets.to_i
 QuickSort.new(gets).sort

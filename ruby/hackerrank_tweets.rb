@@ -5,6 +5,6 @@ class HackerRankTweets
 end
 
 t = gets.to_i
-str = ""
+str = ''
 t.times { str << gets }
 puts HackerRankTweets.num_mentions(str)
