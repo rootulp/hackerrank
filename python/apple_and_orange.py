@@ -9,5 +9,12 @@ apple_tree, orange_tree = map(int, input().strip().split(' '))
 _, _ = map(int, input().strip().split(' '))
 apple_distances = map(int, input().strip().split(' '))
 orange_distances = map(int, input().strip().split(' '))
-print(len(list((filter(lambda apple_distance: apple_tree + apple_distance in house_location, apple_distances)))))
-print(len(list(filter(lambda orange_distance: orange_tree + orange_distance in house_location, orange_distances))))
+
+
+def fruit_that_hit_house(tree, distances):
+    return list(filter(lambda distance: tree + distance in house_location,
+                distances))
+
+
+print(len(fruit_that_hit_house(apple_tree, apple_distances)))
+print(len(fruit_that_hit_house(orange_tree, orange_distances)))
