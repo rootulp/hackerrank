@@ -24,11 +24,10 @@ def sliding_window(n, seq):
                for i, it in enumerate(itertools.tee(seq, n))))
 
 def birthday_chocolate(squares, day, month):
-    birthday_chocolates = 0
-    for piece in sliding_window(month, squares):
-        if sum(piece) == day:
-            birthday_chocolates += 1
-    return birthday_chocolates
+    consecutive_sums = map(lambda piece: sum(piece), sliding_window(month, squares))
+    birthday_bars = list(filter(lambda consecutive_sum: day == consecutive_sum,
+        consecutive_sums))
+    return len(birthday_bars)
 
 _ = int(input().strip())
 SQUARES = list(map(int, input().strip().split(' ')))
