@@ -1,4 +1,5 @@
 #!/bin/python3
+# Project Euler #1: Multiples of 3 and 5
 
 def sum_of_multiples_below(max_num):
     return sum(set(multiples_of(3, max_num) + multiples_of(5, max_num)))
