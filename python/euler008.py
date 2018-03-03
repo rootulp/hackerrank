@@ -3,6 +3,7 @@
 import sys
 from functools import reduce
 
+
 class LargestProduct:
 
     def __init__(self, num, num_consecutive_digits):
@@ -10,7 +11,13 @@ class LargestProduct:
         self.num_consecutive_digits = num_consecutive_digits
 
     def largest_product(self):
-        return max(map(LargestProduct.product, LargestProduct.slices(LargestProduct.digits(self.num), self.num_consecutive_digits)))
+        return max(self.product_of_consecutive_digits())
+
+    def product_of_consecutive_digits(self):
+        return map(LargestProduct.product, self.consecutive_digits())
+
+    def consecutive_digits(self):
+        return LargestProduct.slices(LargestProduct.digits(self.num), self.num_consecutive_digits)
 
     @staticmethod
     def slices(array, slice_length):
