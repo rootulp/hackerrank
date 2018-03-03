@@ -2,14 +2,17 @@
 
 import bisect
 
+
 def is_palindrome(n):
     return str(n) == str(n)[::-1]
+
 
 def generate_palindromes():
     return [i * j
             for i in range(100, 1000)
             for j in range(100, 1000)
             if is_palindrome(i * j)]
+
 
 def find_lt(a, x):
     'Find rightmost value less than x'
