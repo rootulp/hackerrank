@@ -6,8 +6,7 @@ from functools import reduce
 class LargestProduct(object):
 
     def __init__(self, num, num_consecutive_digits):
-        self.num = numimport sys
-
+        self.num = num
         self.num_consecutive_digits = num_consecutive_digits
 
     def largest_product(self):
