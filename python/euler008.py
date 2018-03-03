@@ -6,7 +6,8 @@ from functools import reduce
 class LargestProduct(object):
 
     def __init__(self, num, num_consecutive_digits):
-        self.num = num
+        self.num = numimport sys
+
         self.num_consecutive_digits = num_consecutive_digits
 
     def largest_product(self):
@@ -16,11 +17,13 @@ class LargestProduct(object):
         return map(LargestProduct.product, self.consecutive_digits())
 
     def consecutive_digits(self):
-        return LargestProduct.slices(LargestProduct.digits(self.num), self.num_consecutive_digits)
+        return LargestProduct.slices(LargestProduct.digits(self.num),
+                                     self.num_consecutive_digits)
 
     @staticmethod
     def slices(array, slice_length):
-        return [array[i:i + slice_length] for i in range(len(array) - slice_length)]
+        return [array[i:i + slice_length] for i in
+                range(len(array) - slice_length)]
 
     @staticmethod
     def digits(num):
@@ -35,4 +38,4 @@ for a0 in range(t):
     _, num_consecutive_digits = map(int, input().strip().split(' '))
     num = input().strip()
     lp = LargestProduct(num, num_consecutive_digits)
-    print (lp.largest_product())
+    print(lp.largest_product())
