@@ -21,6 +21,7 @@ def find_lt(a, x):
         return a[i-1]
     raise ValueError
 
+
 palindromes = sorted(generate_palindromes())
 test_cases = int(input().strip())
 for _ in range(test_cases):

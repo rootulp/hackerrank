@@ -9,6 +9,7 @@ def divide(arr):
             right.append(i)
         return left + [pivot] + right
 
+
 n = int(input().strip())
 arr = list(map(int, input().strip().split(" ")))
 print(" ".join(map(str, divide(arr))))

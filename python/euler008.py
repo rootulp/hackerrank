@@ -32,6 +32,7 @@ class LargestProduct(object):
     def product(array):
         return reduce((lambda x, y: x * y), array)
 
+
 t = int(input().strip())
 for a0 in range(t):
     _, num_consecutive_digits = map(int, input().strip().split(' '))

@@ -21,6 +21,7 @@ class TextEditor:
         else:
             return ''
 
+
 n = int(input().strip())
 text_editor = TextEditor()
 for _ in range(n):
