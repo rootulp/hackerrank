@@ -18,6 +18,7 @@ class BracketChecker:
                 (bracket_1 == '[' and bracket_2 == ']') or
                 (bracket_1 == '{' and bracket_2 == '}'))
 
+
 n = int(input().strip())
 for _ in range(n):
     string_of_brackets = input().strip()

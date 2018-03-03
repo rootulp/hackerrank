@@ -1,5 +1,6 @@
 #!/bin/python3
 
+
 arr = []
 for arr_i in range(6):
     arr_t = [int(arr_temp) for arr_temp in input().strip().split(' ')]
@@ -18,9 +19,10 @@ def calculate_hourglass_sum(x, y):
     botright = arr[x + 1][y + 1]
     return topleft + topmid + topright + mid + botleft + botmid + botright
 
+
 hourglass_sums = []
 for x in range(1, 5):
     for y in range(1, 5):
         hourglass_sums.append(calculate_hourglass_sum(x, y))
 
-print (max(hourglass_sums))
+print(max(hourglass_sums))

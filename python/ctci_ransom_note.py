@@ -10,6 +10,7 @@ def ransom_note(magazine_words, ransom_words):
 def contains(larger, smaller):
     return not smaller - larger
 
+
 m, n = map(int, input().strip().split(' '))
 magazine = input().strip().split(' ')
 ransom = input().strip().split(' ')
