@@ -3,6 +3,7 @@
 import itertools
 import collections
 
+
 def sliding_window(n, seq):
     """
     Copied from toolz
@@ -23,11 +24,14 @@ def sliding_window(n, seq):
     return zip(*(collections.deque(itertools.islice(it, i), 0) or it
                for i, it in enumerate(itertools.tee(seq, n))))
 
+
 def birthday_chocolate(squares, day, month):
-    consecutive_sums = map(lambda piece: sum(piece), sliding_window(month, squares))
+    consecutive_sums = map(lambda piece: sum(piece),
+                           sliding_window(month, squares))
     birthday_bars = list(filter(lambda consecutive_sum: day == consecutive_sum,
-        consecutive_sums))
+                                consecutive_sums))
     return len(birthday_bars)
+
 
 _ = int(input().strip())
 SQUARES = list(map(int, input().strip().split(' ')))
