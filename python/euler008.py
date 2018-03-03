@@ -1,10 +1,9 @@
 #!/bin/python3
 
-import sys
 from functools import reduce
 
 
-class LargestProduct:
+class LargestProduct(object):
 
     def __init__(self, num, num_consecutive_digits):
         self.num = num
@@ -25,7 +24,7 @@ class LargestProduct:
 
     @staticmethod
     def digits(num):
-        return [int(x) for x in str(num)]
+        return [int(i) for i in str(num)]
 
     @staticmethod
     def product(array):
