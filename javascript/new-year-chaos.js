@@ -23,9 +23,24 @@ function readLine() {
 }
 
 // Complete the minimumBribes function below.
-function minimumBribes(q) {
+function minimumBribes(initialState) {
+    if (invalid(initialState)) {
+        return "Too chaotic"
+    }
+    return calculateMinimumBribes(initialState)
+}
 
+function invalid(initialState) {
+    return initialState.some(didPersonBribeMoreThanTwoPeople)
+}
 
+function didPersonBribeMoreThanTwoPeople(person, index) {
+    // People are 1 indexed so need to subtract one
+    return index + 2 < person - 1
+}
+
+function calculateMinimumBribes(initialState) {
+    return 3;
 }
 
 function main() {
@@ -36,6 +51,6 @@ function main() {
 
         const q = readLine().split(' ').map(qTemp => parseInt(qTemp, 10));
 
-        minimumBribes(q);
+        console.log(minimumBribes(q));
     }
 }
