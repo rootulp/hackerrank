@@ -30,16 +30,24 @@ function countingValleys(numberOfSteps, steps) {
     let altitude = 0;
     let enteringValley = 0;
     steps.split("").forEach(step => {
+        if (isEnteringValley(step, altitude)) {
+            enteringValley += 1
+        }
         if (isDownhill(step)) {
-            if (altitude === 0) {
-                enteringValley += 1
-            }
             altitude -= 1
         } else if (isUphill(step)) {
             altitude += 1
         }
     })
     return enteringValley;
+}
+
+function isEnteringValley(step, altitude) {
+    return isDownhill(step) && isAtSeaLevel(altitude)
+}
+
+function isAtSeaLevel(altitude) {
+    return altitude === 0;
 }
 
 function isDownhill(step) {
@@ -49,6 +57,7 @@ function isDownhill(step) {
 function isUphill(step) {
     return step === "U"
 }
+
 
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
