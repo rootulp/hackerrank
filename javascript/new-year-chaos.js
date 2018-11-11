@@ -39,8 +39,39 @@ function didPersonBribeMoreThanTwoPeople(person, index) {
     return index + 2 < person - 1
 }
 
-function calculateMinimumBribes(initialState) {
-    return 3;
+function calculateMinimumBribes(line) {
+    const initialLine = calculateInitialLine(line)
+    let currentLine = line.slice()
+    let numberOfSwaps = 0;
+
+    while (currentLine.toString() !== initialLine.toString()) {
+        // console.log(`currentLine ${currentLine}, initialLine ${initialLine}`)
+        swapNextPerson(currentLine)
+        numberOfSwaps += 1
+    }
+    return numberOfSwaps;
+}
+
+function calculateInitialLine(line) {
+    // Clone line to avoid modifying original line
+    let initialLine = line.slice()
+    return initialLine.sort()
+}
+
+function swapNextPerson(currentLine) {
+    const indexToSwap = currentLine.findIndex(isPersonAheadOfNeighbor)
+    swapPersonAtIndex(currentLine, indexToSwap);
+}
+
+// WARNING: modifies line in place
+function swapPersonAtIndex(currentLine, index) {
+    var personToSwap = currentLine[index]
+    currentLine[index] = currentLine[index + 1]
+    currentLine[index + 1] = personToSwap
+}
+
+function isPersonAheadOfNeighbor(person, index, line) {
+    return person > line[index + 1]
 }
 
 function main() {
