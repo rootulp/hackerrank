@@ -26,18 +26,18 @@ function readLine() {
 }
 
 // Complete the countingValleys function below.
-function countingValleys(n, s) {
+function countingValleys(numberOfSteps, steps) {
 
 }
 
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
-    const n = parseInt(readLine(), 10);
+    const numberOfSteps = parseInt(readLine(), 10);
 
-    const s = readLine();
+    const path = readLine();
 
-    let result = countingValleys(n, s);
+    let result = countingValleys(numberOfSteps, path);
 
     ws.write(result + "\n");
 
