@@ -30,16 +30,24 @@ function countingValleys(numberOfSteps, steps) {
     let altitude = 0;
     let enteringValley = 0;
     steps.split("").forEach(step => {
-        if (step === "D") {
+        if (isDownhill(step)) {
             if (altitude === 0) {
                 enteringValley += 1
             }
             altitude -= 1
-        } else if (step === "U") {
+        } else if (isUphill(step)) {
             altitude += 1
         }
     })
     return enteringValley;
+}
+
+function isDownhill(step) {
+    return step === "D"
+}
+
+function isUphill(step) {
+    return step === "U"
 }
 
 function main() {
