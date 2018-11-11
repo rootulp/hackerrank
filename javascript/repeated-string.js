@@ -27,17 +27,17 @@ function readLine() {
 // Complete the repeatedString function below.
 function repeatedString(string, numberOfCharactersToConsider) {
     if (string.length > numberOfCharactersToConsider) {
-        return countOccurencesOfA(string.substring(0, numberOfCharactersToConsider));
+        return countOccurences(string.substring(0, numberOfCharactersToConsider));
     } else {
-        const occurencesOfAInString = countOccurencesOfA(string);
+        const occurencesInString = countOccurences(string);
         const numTimesToRepeatString =  timesToRepeatString(string.length, numberOfCharactersToConsider)
         const remainderLength = remainder(string.length, numberOfCharactersToConsider)
-        const occurencesOfAInRemainder = countOccurencesOfA(string.substring(0, remainderLength))
-        return (occurencesOfAInString * numTimesToRepeatString) + occurencesOfAInRemainder;
+        const occurencesInRemainder = countOccurences(string.substring(0, remainderLength))
+        return (occurencesInString * numTimesToRepeatString) + occurencesInRemainder;
     }
 }
 
-function countOccurencesOfA(string) {
+function countOccurences(string) {
     return (string.match(/a/g) || []).length;
 }
 
