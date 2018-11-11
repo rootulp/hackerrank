@@ -27,7 +27,19 @@ function readLine() {
 
 // Complete the countingValleys function below.
 function countingValleys(numberOfSteps, steps) {
-
+    let altitude = 0;
+    let enteringValley = 0;
+    steps.split("").forEach(step => {
+        if (step === "D") {
+            if (altitude === 0) {
+                enteringValley += 1
+            }
+            altitude -= 1
+        } else if (step === "U") {
+            altitude += 1
+        }
+    })
+    return enteringValley;
 }
 
 function main() {
