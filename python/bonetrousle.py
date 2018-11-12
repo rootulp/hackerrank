@@ -10,7 +10,7 @@ def bonetrousle(n, k, b):
     if (minimumValue(k, b) <= n <= maximumValue(k, b)):
         return boxesToBuy(n, k, b)
     else:
-        return -1
+        return [-1]
 
 # The minimum number of sticks that may be purchased
 # Equivalant to: 1 + 2 + 3 ... b
@@ -26,7 +26,14 @@ def maximumValue(k, b):
 
 # One possible solution of boxes that sum to n
 def boxesToBuy(n, k, b):
-    return [0]
+    boxes = list(range(1, b + 1))
+    (quotient, remainder) = divmod((n - int(minimumValue(k, b))),  b)
+    boxes = list(map(lambda box: box + quotient, boxes))
+    for i in range(len(boxes) - 1, len(boxes) - remainder - 1, -1):
+        boxes[i] += 1
+
+    return boxes
+
 
 
 if __name__ == '__main__':
