@@ -20,13 +20,18 @@ def didBribeMoreThanTwoPeople(person, index):
 
 def bubbleSort(line):
     swaps = 0
-    numberOfPeople = len(line)
+    swappedInCurrentPass = False
 
-    for person in range(numberOfPeople):
-        for i in range(0, numberOfPeople - person - 1):
+    for person in range(len(line)):
+        for i in range(0, len(line) - 1):
             if line[i] > line[i + 1]:
                 line[i], line[i + 1] = line[i + 1], line[i]
                 swaps += 1
+                swappedInCurrentPass = True
+        if swappedInCurrentPass:
+            swappedInCurrentPass = False
+        else:
+            break
 
     return swaps
 
