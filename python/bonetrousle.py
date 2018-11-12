@@ -13,12 +13,16 @@ def bonetrousle(n, k, b):
         return -1
 
 # The minimum number of sticks that may be purchased
+# Equivalant to: 1 + 2 + 3 ... b
+# See: https://en.wikipedia.org/wiki/Arithmetic_progression#Sum
 def minimumValue(k, b):
-    return 0
+    return b * (1 + b) / 2
 
 # The maximum number of sticks that may be purchased
+# Equivalant to: (k - b + 1) ... (k - 2) + (k -1) + k
+# See: https://en.wikipedia.org/wiki/Arithmetic_progression#Sum
 def maximumValue(k, b):
-    return 100
+    return b * ((k - b + 1) + k) / 2
 
 # One possible solution of boxes that sum to n
 def boxesToBuy(n, k, b):
