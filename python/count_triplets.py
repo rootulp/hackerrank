@@ -5,9 +5,25 @@ import os
 import random
 import re
 import sys
+from collections import Counter
 
-# Complete the countTriplets function below.
 def countTriplets(arr, r):
+    potential_triplets_with_middle = Counter()
+    potential_triplets_with_end = Counter()
+    total_triplets = 0
+    for num in arr:
+        # num completed potential_triplets_with_end[num] triplets
+        if potential_triplets_with_end[num]:
+            total_triplets += potential_triplets_with_end[num]
+
+        # num can be the middle number in potential_triplets_with_middle[num] triplets
+        if potential_triplets_with_middle[num]:
+            potential_triplets_with_end[num * r] += potential_triplets_with_middle[num]
+
+        # num can be the begining of a triplet
+        potential_triplets_with_middle[num * r] += 1
+        print("num", num, " middle", potential_triplets_with_middle, " end", potential_triplets_with_end, " total", total_triplets)
+    return total_triplets
 
 
 if __name__ == '__main__':
