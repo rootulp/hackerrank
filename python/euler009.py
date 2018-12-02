@@ -2,6 +2,7 @@
 
 import sys
 
+
 class PythagoreanTriplet(object):
 
     def __init__(self, n):
@@ -29,7 +30,8 @@ class PythagoreanTriplet(object):
         return (self.n - 2 * m ** 2) / (2 * m)
 
     def product_of_abc(self, m, n):
-        return self.compute_a(m, n) * self.compute_b(m, n) * self.compute_c(m, n)
+        return self.compute_a(m, n) * self.compute_b(m,
+                                                     n) * self.compute_c(m, n)
 
     def compute_a(self, m, n):
         return m ** 2 - n ** 2
