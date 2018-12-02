@@ -10,6 +10,7 @@ from collections import Counter
 # Complete the freqQuery function below.
 def freqQuery(queries):
   output = []
+  array = []
   occurences = Counter()
   frequencies = Counter()
 
@@ -20,9 +21,10 @@ def freqQuery(queries):
       frequencies[occurences[value]] += 1
 
     elif (operation == 2):
-      frequencies[occurences[value]] -= 1
-      occurences[value] -= 1
-      frequencies[occurences[value]] += 1
+      if (occurences[value] > 0):
+        frequencies[occurences[value]] -= 1
+        occurences[value] -= 1
+        frequencies[occurences[value]] += 1
 
     elif (operation == 3):
       if frequencies[value] > 0:
@@ -30,8 +32,8 @@ def freqQuery(queries):
       else:
         output.append(0)
 
-    print(occurences)
-    print(frequencies)
+    # print(occurences)
+    # print(frequencies)
 
 
   return output
