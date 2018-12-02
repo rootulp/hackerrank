@@ -17,7 +17,7 @@ If you are new to hackerrank, you can get started at [hackerrank.com](https://ww
 | language     | code style & linter                                                                                                | command                            |
 |--------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------|
 | ruby         | [![Code Style](https://img.shields.io/badge/code_style-rubocop-red.svg)](https://github.com/bbatsov/rubocop)       | `rubocop .`                        |
-| python       | [![Code Style](https://img.shields.io/badge/code_style-pep8-blue.svg)](https://www.python.org/dev/peps/pep-0008/)  | `pep8 .`                           |
+| python       | [![Code Style](https://img.shields.io/badge/code_style-pep8-blue.svg)](https://www.python.org/dev/peps/pep-0008/)  | `pycodestyle .`                           |
 | javascript   | [![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier) | `prettier <file>`     |
 
 ## License
