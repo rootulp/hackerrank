@@ -7,6 +7,7 @@ import re
 import sys
 from collections import Counter
 
+
 def countTriplets(arr, r):
     potential_triplets_with_middle = Counter()
     potential_triplets_with_end = Counter()
@@ -16,13 +17,14 @@ def countTriplets(arr, r):
         if potential_triplets_with_end[num]:
             total_triplets += potential_triplets_with_end[num]
 
-        # num can be the middle number in potential_triplets_with_middle[num] triplets
+        # num can be the middle number in
+        # potential_triplets_with_middle[num] triplets
         if potential_triplets_with_middle[num]:
-            potential_triplets_with_end[num * r] += potential_triplets_with_middle[num]
+            potential_triplets_with_end[num * r] += \
+            potential_triplets_with_middle[num]
 
         # num can be the begining of a triplet
         potential_triplets_with_middle[num * r] += 1
-        print("num", num, " middle", potential_triplets_with_middle, " end", potential_triplets_with_end, " total", total_triplets)
     return total_triplets
 
 
