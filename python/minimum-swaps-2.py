@@ -6,22 +6,21 @@ import random
 import re
 import sys
 
-# Complete the minimumSwaps function below.
 def minimumSwaps(arr):
-    return sortInPlace(arr)
-
-def sortInPlace(arr):
     swaps = 0
     index = 0
     while index < len(arr):
         element = arr[index]
-        if (element - 1 == index):
+        if (index == element - 1):
+            # This element is in the correct sorted position.
             index += 1
         else:
-            print("swapping: {} and {}".format(arr[element - 1], arr[index]))
+            # Move the element to the correct sorted position.
+            # Do not increment index as an unsorted element could have been
+            # swapped to the current index, therefore re-run this body.
             arr[element - 1], arr[index] = arr[index], arr[element - 1]
             swaps += 1
-    print(arr)
+
     return swaps
 
 if __name__ == '__main__':
