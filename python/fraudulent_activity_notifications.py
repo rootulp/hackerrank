@@ -7,6 +7,12 @@ import re
 import sys
 from statistics import median
 
+"""
+This solution hits timeout exceptions on test cases.
+I think it's because computing the median of the trailing days can be done
+faster than using Python's median function. Instead consider using heaps.
+"""
+
 def getTrailingExpenditures(dayNumber, dailyExpenditures, trailingDays):
     return dailyExpenditures[dayNumber - trailingDays : dayNumber]
 
@@ -33,10 +39,8 @@ def activityNotifications(dailyExpenditures, trailingDays):
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
-    nd = input().split()
-    n = int(nd[0])
-    d = int(nd[1])
-    expenditure = list(map(int, input().rstrip().split()))
-    result = activityNotifications(expenditure, d)
+    n, trailingDays = map(int, input().split())
+    dailyExpenditures = list(map(int, input().rstrip().split()))
+    result = activityNotifications(dailyExpenditures, trailingDays)
     fptr.write(str(result) + '\n')
     fptr.close()
