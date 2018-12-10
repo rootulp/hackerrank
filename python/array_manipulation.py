@@ -8,6 +8,19 @@ import sys
 
 
 def arrayManipulation(n, queries):
+    diffs = getArrayOfDiffs(n, queries)
+    return maxFromDiffs(diffs)
+
+def maxFromDiffs(diffs):
+    sumSoFar = 0
+    maxSoFar = 0
+    for diff in diffs:
+        sumSoFar += diff
+        if sumSoFar > maxSoFar:
+            maxSoFar = sumSoFar
+    return maxSoFar
+
+def getArrayOfDiffs(n, queries):
     # An array used to capture the difference of an element
     # compared to the previous element.
     # Therefore the value of diffs[n] after all array manipulations is
@@ -21,13 +34,7 @@ def arrayManipulation(n, queries):
             # Subtracts "k" from all subsequent elements in the array
             diffs[b] -= k
 
-    sumSoFar = 0
-    maxSoFar = 0
-    for diff in diffs:
-        sumSoFar += diff
-        if sumSoFar > maxSoFar:
-            maxSoFar = sumSoFar
-    return maxSoFar
+    return diffs
 
 
 if __name__ == '__main__':
