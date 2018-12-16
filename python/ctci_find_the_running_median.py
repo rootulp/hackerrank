@@ -51,7 +51,7 @@ class MaxHeap:
            If they are in the incorrect order, swap them and sift up with the new parent.
            If they are in the correct order then stop sifting up.
         """
-        parent = self.get_parent_idx(idx)
+        parent = self.get_parent(idx)
 
         if (self.heap[idx] > self.heap[parent]):
             self.swap(idx, parent)
@@ -63,7 +63,7 @@ class MaxHeap:
            If the child is larger than value, swap them.
            Repeat with swapped idx.
         """
-        larger_child = self.get_larger_child_idx(idx)
+        larger_child = self.get_larger_child(idx)
         if (larger_child is None):
             return
 
@@ -71,10 +71,10 @@ class MaxHeap:
             self.swap(idx, larger_child)
             return self.sift_down(larger_child)
 
-    def get_larger_child_idx(self, idx):
+    def get_larger_child(self, idx):
         """Get the index for the larger child of idx"""
-        left_child_idx = self.get_left_child_idx(idx)
-        right_child_idx = self.get_right_child_idx(idx)
+        left_child_idx = self.get_left_child(idx)
+        right_child_idx = self.get_right_child(idx)
 
         if(left_child_idx is None):
             return None
@@ -86,7 +86,7 @@ class MaxHeap:
             return left_child_idx if left_child > right_child else right_child_idx
 
 
-    def get_left_child_idx(self, idx):
+    def get_left_child(self, idx):
         """Returns the left child index for value if it exists.
            Returns None if the value at idx does not have a left child.
         """
@@ -95,7 +95,7 @@ class MaxHeap:
             return None
         return left_child_idx
 
-    def get_right_child_idx(self, idx):
+    def get_right_child(self, idx):
         """Returns the right child index for value if it exists.
            Returns None if the value at idx does not have a right child.
         """
@@ -104,7 +104,7 @@ class MaxHeap:
             return None
         return right_child_idx
 
-    def get_parent_idx(self, idx):
+    def get_parent(self, idx):
         """Return the parent index for node at idx."""
         return idx // 2
 
@@ -113,7 +113,7 @@ class MaxHeap:
         self.heap[a], self.heap[b] = self.heap[b], self.heap[a]
 
     def peek(self):
-        """Returns the value at the top of the heap"""
+        """Returns the value at the top of the heap."""
         return self.heap[0]
 
     def __len__(self):
