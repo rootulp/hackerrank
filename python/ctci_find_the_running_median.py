@@ -46,15 +46,16 @@ class MaxHeap:
         return result
 
     def sift_up(self, idx):
-        """Compare the values at idx with its parent
+        """Recursively sift up the element at idx.
+           Compare the value at idx with its parent
            If they are in the incorrect order, swap them and sift up with the new parent.
            If they are in the correct order then stop sifting up.
         """
-        parent_idx = self.get_parent_idx(idx)
+        parent = self.get_parent_idx(idx)
 
-        if (self.heap[idx] > self.heap[parent_idx]):
-            self.swap(idx, parent_idx)
-            return self.sift_up(parent_idx)
+        if (self.heap[idx] > self.heap[parent]):
+            self.swap(idx, parent)
+            return self.sift_up(parent)
 
     def sift_down(self, idx):
         """Sift down the value at position idx.
@@ -62,16 +63,16 @@ class MaxHeap:
            If the child is larger than value, swap them.
            Repeat with swapped idx.
         """
-        larger_child_idx = self.get_larger_child_idx(idx)
-        if (larger_child_idx is None):
+        larger_child = self.get_larger_child_idx(idx)
+        if (larger_child is None):
             return
 
-        if(self.heap[idx] < self.heap[larger_child_idx]):
-            self.swap(idx, larger_child_idx)
-            return self.sift_down(larger_child_idx)
+        if(self.heap[idx] < self.heap[larger_child]):
+            self.swap(idx, larger_child)
+            return self.sift_down(larger_child)
 
     def get_larger_child_idx(self, idx):
-        """Gets the larger child for value at idx"""
+        """Get the index for the larger child of idx"""
         left_child_idx = self.get_left_child_idx(idx)
         right_child_idx = self.get_right_child_idx(idx)
 
@@ -107,9 +108,9 @@ class MaxHeap:
         """Return the parent index for node at idx."""
         return idx // 2
 
-    def swap(self, idx_1, idx_2):
-        """Swap the values at position idx_1 and idx_2."""
-        self.heap[idx_1], self.heap[idx_2] = self.heap[idx_2], self.heap[idx_1]
+    def swap(self, a, b):
+        """Swap the values at position a and b."""
+        self.heap[a], self.heap[b] = self.heap[b], self.heap[a]
 
     def peek(self):
         """Returns the value at the top of the heap"""
