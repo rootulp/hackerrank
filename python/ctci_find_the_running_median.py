@@ -20,6 +20,8 @@ class MinHeap:
         return heappop(self.heap)
 
     def peek(self):
+        if not self.heap:
+            return None
         return self.heap[0]
 
     def __len__(self):
@@ -27,6 +29,29 @@ class MinHeap:
 
     def __str__(self):
         return str(self.heap)
+
+# class MaxHeap:
+#     """A lightweight wrapper around Python's heap implementation."""
+
+#     def __init__(self):
+#         self.heap = []
+
+#     def push(self, value):
+#         heappush(self.heap, -value)
+
+#     def pop(self):
+#         return -1.0 * heappop(self.heap)
+
+#     def peek(self):
+#         if not self.heap:
+#             return None
+#         return -1.0 * self.heap[0]
+
+#     def __len__(self):
+#         return len(self.heap)
+
+#     def __str__(self):
+#         return str(self.heap)
 
 class MaxHeap:
 
@@ -52,6 +77,9 @@ class MaxHeap:
            If they are in the correct order then stop sifting up.
         """
         parent = self.get_parent(idx)
+
+        if (parent is None):
+            return
 
         if (self.heap[idx] > self.heap[parent]):
             self.swap(idx, parent)
@@ -106,7 +134,10 @@ class MaxHeap:
 
     def get_parent(self, idx):
         """Return the parent index for node at idx."""
-        return idx // 2
+        if(idx == 0):
+            # Root of tree does not have a parent
+            return None
+        return (idx - 1) // 2
 
     def swap(self, a, b):
         """Swap the values at position a and b."""
@@ -114,6 +145,8 @@ class MaxHeap:
 
     def peek(self):
         """Returns the value at the top of the heap."""
+        if not self.heap:
+            return None
         return self.heap[0]
 
     def __len__(self):
@@ -131,7 +164,6 @@ class RunningMedian:
         self.max_heap = MaxHeap()
 
     def push(self, value):
-        # Add value to max_heap
         self.min_heap.push(value)
         value = self.min_heap.pop()
         self.max_heap.push(value)
@@ -141,22 +173,6 @@ class RunningMedian:
             self.min_heap.push(value)
         else:
             self.max_heap.push(value)
-
-        # print("Heaps look like: ")
-        # print("MaxHeap: " + str(self.max_heap))
-        # print("MinHeap: " + str(self.min_heap))
-        # print("")
-
-    def balance_heaps(self):
-        if(len(self.min_heap) == len(self.max_heap)):
-            # heaps are balanced
-            return
-        elif(len(self.min_heap) > len(self.max_heap) + 1):
-            # min_heap has too many values
-            self.max_heap.push(self.min_heap.pop())
-        elif(len(self.max_heap) > len(self.min_heap) + 1):
-            # max_heap has too many values
-            self.min_heap.push(self.max_heap.pop())
 
 
     def get_median(self):
