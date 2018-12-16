@@ -8,15 +8,15 @@ import sys
 from heapq import heappush, heappop
 
 class MinHeap:
-    """A lightweight wrapper around Python's Min heap implementation."""
+    """A lightweight wrapper around Python's heap implementation."""
 
     def __init__(self):
         self.heap = []
 
-    def heap_push(self, value):
+    def push(self, value):
         heappush(self.heap, value)
 
-    def heap_pop(self):
+    def pop(self):
         return heappop(self.heap)
 
     def peek(self):
@@ -33,27 +33,28 @@ class MaxHeap:
     def __init__(self):
         self.heap = []
 
-    def heap_push(self, value):
+    def push(self, value):
         """Add value to the heap while maintaining the max heap property."""
         self.heap.append(value)
-        value_idx = len(self.heap) - 1
-        self.sift_up(self.get_parent_idx(value_idx), value_idx)
+        self.sift_up(len(self.heap) - 1)
 
-    def heap_pop(self):
+    def pop(self):
         """Pop the value off the top of the heap while maintaining the heap property."""
         self.swap(0, len(self.heap) - 1)
         result = self.heap.pop()
         self.sift_down(0)
         return result
 
-    def sift_up(self, parent_idx, child_idx):
-        """Compare the values at parent_idx and child_idx
+    def sift_up(self, idx):
+        """Compare the values at idx with its parent
            If they are in the incorrect order, swap them and sift up with the new parent.
            If they are in the correct order then stop sifting up.
         """
-        if (self.heap[child_idx] > self.heap[parent_idx]):
-            self.swap(child_idx, parent_idx)
-            return self.sift_up(self.get_parent_idx(parent_idx), parent_idx)
+        parent_idx = self.get_parent_idx(idx)
+
+        if (self.heap[idx] > self.heap[parent_idx]):
+            self.swap(idx, parent_idx)
+            return self.sift_up(parent_idx)
 
     def sift_down(self, idx):
         """Sift down the value at position idx.
@@ -130,15 +131,15 @@ class RunningMedian:
 
     def push(self, value):
         # Add value to max_heap
-        self.min_heap.heap_push(value)
-        value = self.min_heap.heap_pop()
-        self.max_heap.heap_push(value)
-        value = self.max_heap.heap_pop()
+        self.min_heap.push(value)
+        value = self.min_heap.pop()
+        self.max_heap.push(value)
+        value = self.max_heap.pop()
 
         if (len(self.min_heap) <= len(self.max_heap)):
-            self.min_heap.heap_push(value)
+            self.min_heap.push(value)
         else:
-            self.max_heap.heap_push(value)
+            self.max_heap.push(value)
 
         # print("Heaps look like: ")
         # print("MaxHeap: " + str(self.max_heap))
@@ -151,10 +152,10 @@ class RunningMedian:
             return
         elif(len(self.min_heap) > len(self.max_heap) + 1):
             # min_heap has too many values
-            self.max_heap.heap_push(self.min_heap.heap_pop())
+            self.max_heap.push(self.min_heap.pop())
         elif(len(self.max_heap) > len(self.min_heap) + 1):
             # max_heap has too many values
-            self.min_heap.heap_push(self.max_heap.heap_pop())
+            self.min_heap.push(self.max_heap.pop())
 
 
     def get_median(self):
