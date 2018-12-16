@@ -20,8 +20,9 @@ class MinHeap:
         return heappop(self.heap)
 
     def peek(self):
-        if not self.heap:
+        if not self.heap: # heap is empty
             return None
+
         return self.heap[0]
 
     def __len__(self):
@@ -30,38 +31,15 @@ class MinHeap:
     def __str__(self):
         return str(self.heap)
 
-# class MaxHeap:
-#     """A lightweight wrapper around Python's heap implementation."""
-
-#     def __init__(self):
-#         self.heap = []
-
-#     def push(self, value):
-#         heappush(self.heap, -value)
-
-#     def pop(self):
-#         return -1.0 * heappop(self.heap)
-
-#     def peek(self):
-#         if not self.heap:
-#             return None
-#         return -1.0 * self.heap[0]
-
-#     def __len__(self):
-#         return len(self.heap)
-
-#     def __str__(self):
-#         return str(self.heap)
-
 class MaxHeap:
 
     def __init__(self):
-        self.heap = []
+        self.heap = [] # Store the heap in a list
 
     def push(self, value):
-        """Add value to the heap while maintaining the max heap property."""
+        """Add value to heap while maintaining the max heap property."""
         self.heap.append(value)
-        self.sift_up(len(self.heap) - 1)
+        self.sift_up(len(self.heap) - 1) # Start sifting up with the just added value
 
     def pop(self):
         """Pop the value off the top of the heap while maintaining the heap property."""
@@ -71,25 +49,20 @@ class MaxHeap:
         return result
 
     def sift_up(self, idx):
-        """Recursively sift up the element at idx.
-           Compare the value at idx with its parent
-           If they are in the incorrect order, swap them and sift up with the new parent.
-           If they are in the correct order then stop sifting up.
+        """Recursively sift up the value at idx. Compare the value with its parent:
+           If the parent is smaller, swap them and continue sifting up with the new parent.
         """
         parent = self.get_parent(idx)
-
         if (parent is None):
-            return
+            return # Stop if we are at the root of the heap
 
         if (self.heap[idx] > self.heap[parent]):
             self.swap(idx, parent)
             return self.sift_up(parent)
 
     def sift_down(self, idx):
-        """Sift down the value at position idx.
-           Compare value with it's larger child.
-           If the child is larger than value, swap them.
-           Repeat with swapped idx.
+        """Recursively sift down the value at idx. Compare the value with its larger child:
+           If the child is larger, swap them and continue sifting down with the new child.
         """
         larger_child = self.get_larger_child(idx)
         if (larger_child is None):
@@ -100,7 +73,7 @@ class MaxHeap:
             return self.sift_down(larger_child)
 
     def get_larger_child(self, idx):
-        """Get the index for the larger child of idx"""
+        """Get the index for the larger child of idx."""
         left_child_idx = self.get_left_child(idx)
         right_child_idx = self.get_right_child(idx)
 
@@ -134,9 +107,8 @@ class MaxHeap:
 
     def get_parent(self, idx):
         """Return the parent index for node at idx."""
-        if(idx == 0):
-            # Root of tree does not have a parent
-            return None
+        if (idx == 0):
+            return None # Root of tree does not have a parent
         return (idx - 1) // 2
 
     def swap(self, a, b):
