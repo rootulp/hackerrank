@@ -6,14 +6,13 @@ import random
 import re
 import sys
 
-class Heap:
+class MaxHeap:
 
-    def __init__(self, min_heap=False):
+    def __init__(self):
         self.store = []
-        self.min_heap = min_heap
 
     def heap_push(self, value):
-        """Add value to the heap while maintaining the heap property."""
+        """Add value to the heap while maintaining the max heap property."""
         self.store.append(value)
         value_idx = len(self.store) - 1
         self.sift_up(self.get_parent_idx(value_idx), value_idx)
@@ -30,19 +29,18 @@ class Heap:
 
     def sift_up(self, parent_idx, child_idx):
         """Compare the values at parent_idx and child_idx
-           If they are in the incorrect oder, swap them and sift up with the new parent.
+           If they are in the incorrect order, swap them and sift up with the new parent.
            If they are in the correct order then stop sifting up.
         """
-        if (self.compare(self.store[child_idx], self.store[parent_idx])):
+        if (self.store[child_idx] > self.store[parent_idx]):
             print("Swapping {} and {}".format(child_idx, parent_idx))
             self.swap(child_idx, parent_idx)
             return self.sift_up(self.get_parent_idx(parent_idx), parent_idx)
 
     def sift_down(self, idx):
         """Sift down the value at position idx.
-           Compare value with both of it's children.
-           Swap it with the larger child (for Max heap)
-           Swap it with the smaller child (for Min heap)
+           Compare value with it's larger child.
+           If the child is larger than value, swap them.
            Repeat with swapped idx.
         """
         larger_child_idx = self.get_larger_child_idx(idx)
@@ -99,13 +97,6 @@ class Heap:
         """Returns the current heap size."""
         return len(self.store)
 
-    def compare(self, a, b):
-        """Compare values a and b based on whether this is a Min or Max heap."""
-        if (self.min_heap):
-            return a < b
-        else:
-            return a > b
-
     def peek(self):
         """Returns the value at the top of the heap"""
         return self.store[0]
@@ -114,8 +105,7 @@ class Heap:
 class RunningMedian:
 
     def __init__(self):
-        self.min_heap = Heap(True)
-        self.max_heap = Heap()
+        self.max_heap = MaxHeap()
 
     def push(self, value):
         return self.max_heap.heap_push(value)
