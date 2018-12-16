@@ -132,17 +132,30 @@ class RunningMedian:
     def push(self, value):
         if (len(self.min_heap) == 0 and len(self.max_heap) == 0):
             self.min_heap.heap_push(value)
+        else:
+            median = self.get_median()
+            if (value <= median):
+                self.max_heap.heap_push(value)
+            elif (value > median):
+                self.min_heap.heap_push(value)
 
-        median = self.get_median()
-        if (value <= median):
-            self.max_heap.heap_push(value)
-        elif (value > median):
-            self.min_heap.heap_push(value)
+        self.balance_heaps()
 
-        print("Heaps look like: ")
-        print("MaxHeap: " + str(self.max_heap))
-        print("MinHeap: " + str(self.max_heap))
-        print("")
+        # print("Heaps look like: ")
+        # print("MaxHeap: " + str(self.max_heap))
+        # print("MinHeap: " + str(self.min_heap))
+        # print("")
+
+    def balance_heaps(self):
+        if(len(self.min_heap) == len(self.max_heap)):
+            # heaps are balanced
+            return
+        elif(len(self.min_heap) > len(self.max_heap) + 1):
+            # min_heap has too many values
+            self.max_heap.heap_push(self.min_heap.heap_pop())
+        elif(len(self.max_heap) > len(self.min_heap) + 1):
+            # max_heap has too many values
+            self.min_heap.heap_push(self.max_heap.heap_pop())
 
 
     def get_median(self):
@@ -164,4 +177,4 @@ if __name__ == '__main__':
     for _ in range(n):
         running_median.push(int(input()))
         current_median = float(running_median.get_median())
-        print("Current median {:.1f}".format(current_median))
+        print("{:.1f}".format(current_median))
