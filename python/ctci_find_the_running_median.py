@@ -45,15 +45,18 @@ class MaxHeap:
         self.sift_up(len(self.heap) - 1)
 
     def pop(self):
-        """Pop the value off the top of the heap while maintaining the heap property."""
+        """Pop the value off the top of the heap while maintaining the max
+            heap property.
+        """
         self.swap(0, len(self.heap) - 1)
         result = self.heap.pop()
         self.sift_down(0)
         return result
 
     def sift_up(self, idx):
-        """Recursively sift up the value at idx. Compare the value with its parent:
-           If the parent is smaller, swap them and continue sifting up with the new parent.
+        """Recursively sift up the value at idx. Compare the value with
+           its parent: If the parent is smaller, swap them and continue
+           sifting up with the new parent.
         """
         parent = self.get_parent(idx)
         if (parent is None):
@@ -64,8 +67,9 @@ class MaxHeap:
             return self.sift_up(parent)
 
     def sift_down(self, idx):
-        """Recursively sift down the value at idx. Compare the value with its larger child:
-           If the child is larger, swap them and continue sifting down with the new child.
+        """Recursively sift down the value at idx. Compare the value with
+           its larger child: If the child is larger, swap them and continue
+           sifting down with the new child.
         """
         larger_child = self.get_larger_child(idx)
         if (larger_child is None):
@@ -87,7 +91,10 @@ class MaxHeap:
         else:
             left_child = self.heap[left_child_idx]
             right_child = self.heap[right_child_idx]
-            return left_child_idx if left_child > right_child else right_child_idx
+            if left_child > right_child:
+                return left_child_idx
+            else:
+                return right_child_idx
 
     def get_left_child(self, idx):
         """Returns the left child index for value if it exists.
