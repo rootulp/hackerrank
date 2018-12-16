@@ -7,6 +7,7 @@ import re
 import sys
 from heapq import heappush, heappop
 
+
 class MinHeap:
     """A lightweight wrapper around Python's heap implementation."""
 
@@ -20,7 +21,7 @@ class MinHeap:
         return heappop(self.heap)
 
     def peek(self):
-        if not self.heap: # heap is empty
+        if not self.heap:  # heap is empty
             return None
 
         return self.heap[0]
@@ -31,15 +32,17 @@ class MinHeap:
     def __str__(self):
         return str(self.heap)
 
+
 class MaxHeap:
 
     def __init__(self):
-        self.heap = [] # Store the heap in a list
+        self.heap = []  # Store the heap in a list
 
     def push(self, value):
         """Add value to heap while maintaining the max heap property."""
         self.heap.append(value)
-        self.sift_up(len(self.heap) - 1) # Start sifting up with the just added value
+        # Start sifting up with the just added value
+        self.sift_up(len(self.heap) - 1)
 
     def pop(self):
         """Pop the value off the top of the heap while maintaining the heap property."""
@@ -54,7 +57,7 @@ class MaxHeap:
         """
         parent = self.get_parent(idx)
         if (parent is None):
-            return # Stop if we are at the root of the heap
+            return  # Stop if we are at the root of the heap
 
         if (self.heap[idx] > self.heap[parent]):
             self.swap(idx, parent)
@@ -86,7 +89,6 @@ class MaxHeap:
             right_child = self.heap[right_child_idx]
             return left_child_idx if left_child > right_child else right_child_idx
 
-
     def get_left_child(self, idx):
         """Returns the left child index for value if it exists.
            Returns None if the value at idx does not have a left child.
@@ -108,7 +110,7 @@ class MaxHeap:
     def get_parent(self, idx):
         """Return the parent index for node at idx."""
         if (idx == 0):
-            return None # Root of tree does not have a parent
+            return None  # Root of tree does not have a parent
         return (idx - 1) // 2
 
     def swap(self, a, b):
@@ -146,7 +148,6 @@ class RunningMedian:
         else:
             self.max_heap.push(value)
 
-
     def get_median(self):
         """Returns the current median."""
         if (len(self.min_heap) == len(self.max_heap) == 0):
@@ -160,7 +161,7 @@ class RunningMedian:
 
 
 if __name__ == '__main__':
-    running_median = RunningMedian();
+    running_median = RunningMedian()
 
     n = int(input())
     for _ in range(n):
