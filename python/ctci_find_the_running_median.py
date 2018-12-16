@@ -89,7 +89,7 @@ class MaxHeap:
            Returns None if the value at idx does not have a left child.
         """
         left_child_idx = 2 * idx + 1
-        if(left_child_idx >= self.size()):
+        if(left_child_idx >= len(self.store)):
             return None
         return left_child_idx
 
@@ -98,7 +98,7 @@ class MaxHeap:
            Returns None if the value at idx does not have a right child.
         """
         right_child_idx = 2 * idx + 2
-        if(right_child_idx >= self.size()):
+        if(right_child_idx >= len(self.store)):
             return None
         return right_child_idx
 
