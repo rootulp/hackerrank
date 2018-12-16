@@ -8,7 +8,7 @@ import sys
 from heapq import heappush, heappop
 
 class MinHeap:
-    """A lightweight wrapper around Pythons Min heap implementation."""
+    """A lightweight wrapper around Python's Min heap implementation."""
 
     def __init__(self):
         self.store = []
@@ -17,10 +17,15 @@ class MinHeap:
         heappush(self.store, value)
         print("Store is now: " + str(self.store))
 
-
     def heap_pop(self):
         return heappop(self.store)
         print("Store is now: " + str(self.store))
+
+    def peek(self):
+        return self.store[0]
+
+    def __len__(self):
+        return len(self.store)
 
 class MaxHeap:
 
@@ -109,8 +114,8 @@ class MaxHeap:
         """Swap the values at position idx_1 and idx_2."""
         self.store[idx_1], self.store[idx_2] = self.store[idx_2], self.store[idx_1]
 
-    def size(self):
-        """Returns the current heap size."""
+    def __len__(self):
+        """Returns the current heap length."""
         return len(self.store)
 
     def peek(self):
@@ -125,11 +130,19 @@ class RunningMedian:
         self.max_heap = MaxHeap()
 
     def push(self, value):
-        return self.min_heap.heap_push(value)
+        if (len(self.min_heap) == 0 and len(self.max_heap) == 0):
+            self.min_heap.heap_push(value)
 
     def get_median(self):
         """Returns the current median."""
-        return 0
+        if (len(self.min_heap) == len(self.max_heap)):
+            return (self.min_heap.peek() + self.max_heap.peek()) / 2.0
+        elif (len(self.min_heap) > len(self.max_heap)):
+            return self.min_heap.peek()
+        elif (len(self.min_heap) < len(self.max_heap)):
+            return self.max_heap.peek()
+        else:
+            return 0
 
     def test_pops(self):
         while self.max_heap.size() > 0:
@@ -143,5 +156,5 @@ if __name__ == '__main__':
     n = int(input())
     for _ in range(n):
         running_median.push(int(input()))
-        # print(running_median.get_median())
-
+        current_median = float(running_median.get_median())
+        print("{:.1f}".format(current_median))
