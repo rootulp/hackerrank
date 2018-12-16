@@ -5,6 +5,22 @@ import os
 import random
 import re
 import sys
+from heapq import heappush, heappop
+
+class MinHeap:
+    """A lightweight wrapper around Pythons Min heap implementation."""
+
+    def __init__(self):
+        self.store = []
+
+    def heap_push(self, value):
+        heappush(self.store, value)
+        print("Store is now: " + str(self.store))
+
+
+    def heap_pop(self):
+        return heappop(self.store)
+        print("Store is now: " + str(self.store))
 
 class MaxHeap:
 
@@ -105,10 +121,11 @@ class MaxHeap:
 class RunningMedian:
 
     def __init__(self):
+        self.min_heap = MinHeap()
         self.max_heap = MaxHeap()
 
     def push(self, value):
-        return self.max_heap.heap_push(value)
+        return self.min_heap.heap_push(value)
 
     def get_median(self):
         """Returns the current median."""
@@ -127,5 +144,4 @@ if __name__ == '__main__':
     for _ in range(n):
         running_median.push(int(input()))
         # print(running_median.get_median())
-    running_median.test_pops()
 
