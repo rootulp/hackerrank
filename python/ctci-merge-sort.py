@@ -40,20 +40,9 @@ def merge(arrLeft, arrRight):
             rightIndex += 1
             COUNT_INVERSIONS += len(arrLeft) - leftIndex
 
-    # If there are any remaining elements in arrLeft
-    # Append them to mergedArray
-    while(leftIndex < len(arrLeft)):
-        mergedArray.append(arrLeft[leftIndex])
-        leftIndex += 1
-        # COUNT_INVERSIONS += 1
-
-    # If there are any remaining elements in arrLeft
-    # Append them to mergedArray
-    while(rightIndex < len(arrRight)):
-        mergedArray.append(arrRight[rightIndex])
-        rightIndex += 1
-
-    # print("Merged array: {}".format(mergedArray))
+    # Append any left over elements to merged array
+    mergedArray.extend(arrLeft[leftIndex:])
+    mergedArray.extend(arrRight[rightIndex:])
     return mergedArray
 
 
