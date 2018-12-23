@@ -6,6 +6,7 @@ import random
 import re
 import sys
 from collections import Counter
+import copy
 
 
 def isValid(s):
@@ -19,8 +20,9 @@ def containsOnlyOneDifferentCharacterCount(string):
     else:
         # Try to remove one occurence of every character
         for character in characterCounts:
-            characterCountWithOneRemovedCharacter = dict.copy(characterCounts)
+            characterCountWithOneRemovedCharacter = characterCounts.copy()
             characterCountWithOneRemovedCharacter[character] -= 1
+            characterCountWithOneRemovedCharacter += Counter() # remove zero and negative counts
             if allOccurencesAreEqual(characterCountWithOneRemovedCharacter):
                 return True
     return False
