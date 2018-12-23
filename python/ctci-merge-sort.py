@@ -7,6 +7,8 @@ import re
 import sys
 
 
+# This solution times out on Hackerrank with Python 3
+# However, it passes all test cases with Pypy 3
 
 def countInversions(arr):
     global COUNT_INVERSIONS
