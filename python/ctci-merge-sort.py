@@ -19,18 +19,19 @@ def mergeSort(arr):
     if (len(arr) <= 1):
         return arr
 
+    # Split the array in two
+    # Recursively sort both halves
     middle = len(arr) // 2
-    left = mergeSort(arr[:middle])
-    right = mergeSort(arr[middle:])
-    return merge(left, right)
+    arrLeft = mergeSort(arr[:middle])
+    arrRight = mergeSort(arr[middle:])
 
-
-def merge(arrLeft, arrRight):
+    # Merge the two halves
     mergedArray = []
     leftIndex = 0
     rightIndex = 0
     global COUNT_INVERSIONS
 
+    # Iterate through both lists and append the smaller element
     while(leftIndex < len(arrLeft) and rightIndex < len(arrRight)):
         if(arrLeft[leftIndex] <= arrRight[rightIndex]):
             mergedArray.append(arrLeft[leftIndex])
@@ -40,9 +41,10 @@ def merge(arrLeft, arrRight):
             rightIndex += 1
             COUNT_INVERSIONS += len(arrLeft) - leftIndex
 
-    # Append any left over elements to merged array
+    # Append any left over elements
     mergedArray.extend(arrLeft[leftIndex:])
     mergedArray.extend(arrRight[rightIndex:])
+
     return mergedArray
 
 
