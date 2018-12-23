@@ -15,20 +15,20 @@ def isValid(s):
 
 def containsOnlyOneDifferentCharacterCount(string):
     characterCounts = Counter(string)
-    if allOccurencesAreEqual(characterCounts):
+    if allCountsAreEqual(characterCounts):
         return True
     else:
-        # Try to remove one occurence of every character
+        # Try to remove one occurence for every character
         for character in characterCounts:
             characterCountWithOneRemovedCharacter = characterCounts.copy()
             characterCountWithOneRemovedCharacter[character] -= 1
             characterCountWithOneRemovedCharacter += Counter() # remove zero and negative counts
-            if allOccurencesAreEqual(characterCountWithOneRemovedCharacter):
+            if allCountsAreEqual(characterCountWithOneRemovedCharacter):
                 return True
     return False
 
 
-def allOccurencesAreEqual(dict):
+def allCountsAreEqual(dict):
     return len(set(dict.values())) == 1
 
 
