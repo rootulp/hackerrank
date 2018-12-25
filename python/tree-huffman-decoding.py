@@ -45,6 +45,9 @@ def dfs_hidden(obj, already):
     dfs_hidden(obj.right, already + "1")
     dfs_hidden(obj.left, already + "0")
 
+### Generated Code
+### Can not modify above this line
+
 """class Node:
     def __init__(self, freq,data):
         self.freq= freq
@@ -53,10 +56,30 @@ def dfs_hidden(obj, already):
         self.right = None
 """
 
-# Enter your code here. Read input from STDIN. Print output to STDOUT
-def decodeHuff(root, s):
-	#Enter Your Code Here
 
+def decodeHuff(root, encodedString):
+    decodedString = ""
+    currentNode = root
+
+    for char in encodedString:
+        if char == "0" and currentNode.left:
+            currentNode = currentNode.left
+        elif char == "1" and currentNode.right:
+            currentNode = currentNode.right
+
+        if isLeaf(currentNode):
+            decodedString += currentNode.data
+            currentNode = root
+
+    print(decodedString)
+    return decodedString
+
+def isLeaf(node):
+    return node.left == None and node.right == None
+
+
+### Generated Code
+### Can not modify below this line
 ip = input()
 freq = {}#maps each character to its frequency
 
