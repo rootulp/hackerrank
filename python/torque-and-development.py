@@ -7,7 +7,10 @@ import random
 import re
 import sys
 
-# Complete the roadsAndLibraries function below.
+# Note the name of the file is based on this URL:
+# https://www.hackerrank.com/challenges/torque-and-development/problem
+# The problem name is "Roads and Libraries"
+
 def roadsAndLibraries(n, c_lib, c_road, cities):
     print("n {}, c_lib {}, c_road {}, cities {}".format(n, c_lib, c_road, cities))
     return 0
