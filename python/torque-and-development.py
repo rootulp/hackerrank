@@ -13,10 +13,22 @@ import sys
 
 
 def roadsAndLibraries(num_cities, cost_lib, cost_road, obstructed_roads):
-    # It is cheaper to build a library in each city than it is to build a road
     if cost_lib <= cost_road:
+        # It is cheaper to build a library than it is to build a road.
+        # Therefore build a library in every city and do not build any roads.
         return cost_lib * num_cities
+    else:
+        return ((cost_lib * num_forests(num_cities, obstructed_roads)) +
+               (cost_road * num_roads_to_build(num_cities, obstructed_roads)))
+
+def num_forests(num_cities, obstructed_roads):
+    # Return the number of disjoint unions of trees in a graph
     return 0
+
+def num_roads_to_build(num_cities, obstructed_roads):
+    # Return the minimum number of roads to build to connect all trees in the graph
+    return 0
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
