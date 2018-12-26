@@ -23,6 +23,16 @@ class Graph:
         if source not in self.adjacencey_list[destination]:
             self.adjacencey_list[destination].append(source)
 
+
+    def num_forests(self):
+        # Return the number of disjoint unions of trees in graph
+        return 0
+
+    def edges_required_to_connect_trees(self):
+        # Return the minimum number of edges to connect all trees in graph
+        return 0
+
+
     def __str__(self):
         return "Graph num vertices: {}, with adjacencey list {}".format(self.num_vertices, self.adjacencey_list)
 
@@ -40,18 +50,8 @@ def roadsAndLibraries(num_cities, cost_lib, cost_road, obstructed_roads):
             graph.add_edge(obstructed_road[0] - 1, obstructed_road[1] - 1)
             print(graph)
 
-
-        return ((cost_lib * num_forests(num_cities, obstructed_roads)) +
-               (cost_road * num_roads_to_build(num_cities, obstructed_roads)))
-
-
-def num_forests(num_cities, obstructed_roads):
-    # Return the number of disjoint unions of trees in a graph
-    return 0
-
-def num_roads_to_build(num_cities, obstructed_roads):
-    # Return the minimum number of roads to build to connect all trees in the graph
-    return 0
+        return ((cost_lib * graph.num_forests()) +
+               (cost_road * graph.edges_required_to_connect_trees()))
 
 
 if __name__ == '__main__':
