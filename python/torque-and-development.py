@@ -6,6 +6,7 @@ import os
 import random
 import re
 import sys
+from collections import defaultdict
 
 # Note the name of the file is based on this URL:
 # https://www.hackerrank.com/challenges/torque-and-development/problem
@@ -15,13 +16,20 @@ class Graph:
 
     def __init__(self, num_vertices):
         self.num_vertices = num_vertices
-        self.adjacencey_list = [[] for i in range(num_vertices)]
+        self.adjacencey_list = defaultdict(list)
 
     def add_edge(self, source, destination):
         if destination not in self.adjacencey_list[source]:
             self.adjacencey_list[source].append(destination)
         if source not in self.adjacencey_list[destination]:
             self.adjacencey_list[destination].append(source)
+
+    # Otherwise, use DFS to get the number of nodes (ct) in each connected component.
+    # Put 1 library in each component, and the total per component cost is simply ct-1 (a road to connect to each node in the compomnent) * cost of a road + cost of one library.
+
+    def depth_first_search(self):
+        pass
+
 
 
     def num_forests(self):
