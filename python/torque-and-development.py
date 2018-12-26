@@ -11,8 +11,9 @@ import sys
 # https://www.hackerrank.com/challenges/torque-and-development/problem
 # The problem name is "Roads and Libraries"
 
-def roadsAndLibraries(n, c_lib, c_road, cities):
-    print("n {}, c_lib {}, c_road {}, cities {}".format(n, c_lib, c_road, cities))
+
+def roadsAndLibraries(num_cities, cost_lib, cost_road, roads):
+    print("num_cities {}, c_lib {}, c_road {}, cities {}".format(num_cities, cost_lib, cost_road, roads))
     return 0
 
 if __name__ == '__main__':
@@ -21,12 +22,12 @@ if __name__ == '__main__':
     num_queries = int(input())
 
     for _query in range(num_queries):
-        n, m, c_lib, c_road = list(map(int, input().split()))
-        cities = []
+        num_cities, num_roads, cost_lib, cost_road = list(map(int, input().split()))
+        roads = []
 
-        for _city in range(m):
-            cities.append(list(map(int, input().rstrip().split())))
+        for _road in range(num_roads):
+            roads.append(list(map(int, input().rstrip().split())))
 
-        result = roadsAndLibraries(n, c_lib, c_road, cities)
+        result = roadsAndLibraries(num_cities, cost_lib, cost_road, roads)
         fptr.write(str(result) + '\n')
     fptr.close()
