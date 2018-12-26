@@ -27,9 +27,25 @@ class Graph:
     # Otherwise, use DFS to get the number of nodes (ct) in each connected component.
     # Put 1 library in each component, and the total per component cost is simply ct-1 (a road to connect to each node in the compomnent) * cost of a road + cost of one library.
 
-    def depth_first_search(self):
-        pass
+    def depth_first_search(self, node):
+        # Mark all the vertices as unvisited
+        visited = [False] * self.num_vertices
 
+        print("Performing depth first search on node: {}".format(node))
+
+        # Call the recursive function dfs
+        self.dfs(node, visited)
+
+    def dfs(self, node, visited):
+        # Visit the current node
+        visited[node] = True
+        print("Visited node: {}".format(node))
+
+        # Recursively visit all the vertices adjacent to this vertex
+        for neighbor in self.adjacencey_list[node]:
+            print("Neighbor of node: {}, neighbor {}, visited {}".format(node, neighbor, visited))
+            if visited[neighbor] == False:
+                self.dfs(neighbor, visited)
 
 
     def num_forests(self):
@@ -56,7 +72,8 @@ def roadsAndLibraries(num_cities, cost_lib, cost_road, obstructed_roads):
         for obstructed_road in obstructed_roads:
             # Obstructed roads are one-indexed.
             graph.add_edge(obstructed_road[0] - 1, obstructed_road[1] - 1)
-            print(graph)
+            # print(graph)
+        graph.depth_first_search(0)
 
         return ((cost_lib * graph.num_forests()) +
                (cost_road * graph.edges_required_to_connect_trees()))
