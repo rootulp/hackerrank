@@ -11,6 +11,22 @@ import sys
 # https://www.hackerrank.com/challenges/torque-and-development/problem
 # The problem name is "Roads and Libraries"
 
+class Graph:
+
+    def __init__(self, num_vertices):
+        self.num_vertices = num_vertices
+        self.adjacencey_list = [[] for i in range(num_vertices)]
+
+    def add_edge(self, source, destination):
+        if destination not in self.adjacencey_list[source]:
+            self.adjacencey_list[source].append(destination)
+        if source not in self.adjacencey_list[destination]:
+            self.adjacencey_list[destination].append(source)
+
+    def __str__(self):
+        return "Graph num vertices: {}, with adjacencey list {}".format(self.num_vertices, self.adjacencey_list)
+
+
 
 def roadsAndLibraries(num_cities, cost_lib, cost_road, obstructed_roads):
     if cost_lib <= cost_road:
@@ -18,8 +34,16 @@ def roadsAndLibraries(num_cities, cost_lib, cost_road, obstructed_roads):
         # Therefore build a library in every city and do not build any roads.
         return cost_lib * num_cities
     else:
+        graph = Graph(num_cities)
+        for obstructed_road in obstructed_roads:
+            # Obstructed roads are one-indexed.
+            graph.add_edge(obstructed_road[0] - 1, obstructed_road[1] - 1)
+            print(graph)
+
+
         return ((cost_lib * num_forests(num_cities, obstructed_roads)) +
                (cost_road * num_roads_to_build(num_cities, obstructed_roads)))
+
 
 def num_forests(num_cities, obstructed_roads):
     # Return the number of disjoint unions of trees in a graph
