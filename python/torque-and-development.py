@@ -77,6 +77,7 @@ class Graph:
 
 
 def roadsAndLibraries(num_cities, cost_lib, cost_road, obstructed_roads):
+    print("num_cities {}, cost_lib {}, cost_road {}, obstructed_roads {}".format(num_cities, cost_lib, cost_road, obstructed_roads))
     if cost_lib <= cost_road:
         # It is cheaper to build a library than it is to build a road.
         # Therefore build a library in every city and do not build any roads.
@@ -89,14 +90,16 @@ def roadsAndLibraries(num_cities, cost_lib, cost_road, obstructed_roads):
             # print(graph)
 
         connected_components = graph.get_connected_components()
+        print("connected components {}".format(connected_components))
 
         # Put 1 library in each component, and the total per component cost is
         # simply ct-1 (a road to connect to each node in the compomnent) * cost of a
         # road + cost of one library.
         total_cost = 0
         for num_nodes_in_connected_component in connected_components:
-            cost_to_connect_all_nodes = cost_road * num_nodes_in_connected_component - 1
+            cost_to_connect_all_nodes = cost_road * (num_nodes_in_connected_component - 1)
             cost_for_component = cost_to_connect_all_nodes + cost_lib
+            print("cost_to_connect_all_nodes {}, cost_for_component {}".format(cost_to_connect_all_nodes, cost_for_component))
             total_cost += cost_for_component
 
         return total_cost
