@@ -24,17 +24,40 @@ class Graph:
         if source not in self.adjacencey_list[destination]:
             self.adjacencey_list[destination].append(source)
 
-    # Otherwise, use DFS to get the number of nodes (ct) in each connected component.
-    # Put 1 library in each component, and the total per component cost is simply ct-1 (a road to connect to each node in the compomnent) * cost of a road + cost of one library.
 
-    def depth_first_search(self, node):
+
+    def get_connected_components(self):
+        num_nodes_in_connected_components = []
+        visited = [False] * self.num_vertices
+
+        # Repeat until we have visited all nodes
+        while False in visited:
+            next_node_to_visit = visited.index(False)
+
+            component = self.get_connected_component(next_node_to_visit)
+            num_nodes_in_connected_component = component.count(True)
+            num_nodes_in_connected_components.append(num_nodes_in_connected_component)
+
+            for node, visitedInComponent in enumerate(component):
+                if not visited[node] and visitedInComponent:
+                    visited[node] = True
+
+        # print ("num_nodes_in_connected_components {}", num_nodes_in_connected_components)
+        return num_nodes_in_connected_components
+
+
+    def get_connected_component(self, node):
+        # Traverse all nodes connected to node.
+        # Return a list of the connected nodes.
+
         # Mark all the vertices as unvisited
         visited = [False] * self.num_vertices
 
-        print("Performing depth first search on node: {}".format(node))
-
-        # Call the recursive function dfs
+        # Call the recursive function dfs to traverse
         self.dfs(node, visited)
+
+        # Return the number of visited nodes
+        return visited
 
     def dfs(self, node, visited):
         # Visit the current node
@@ -73,10 +96,20 @@ def roadsAndLibraries(num_cities, cost_lib, cost_road, obstructed_roads):
             # Obstructed roads are one-indexed.
             graph.add_edge(obstructed_road[0] - 1, obstructed_road[1] - 1)
             # print(graph)
-        graph.depth_first_search(0)
 
-        return ((cost_lib * graph.num_forests()) +
-               (cost_road * graph.edges_required_to_connect_trees()))
+        connected_components = graph.get_connected_components()
+
+        # Put 1 library in each component, and the total per component cost is
+        # simply ct-1 (a road to connect to each node in the compomnent) * cost of a
+        # road + cost of one library.
+        total_cost = 0
+        for num_nodes_in_connected_component in connected_components:
+            cost_to_connect_all_nodes = cost_road * num_nodes_in_connected_component - 1
+            cost_for_component = cost_to_connect_all_nodes + cost_lib
+            total_cost += cost_for_component
+
+        return total_cost
+
 
 
 if __name__ == '__main__':
