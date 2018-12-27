@@ -12,6 +12,9 @@ from collections import defaultdict
 # https://www.hackerrank.com/challenges/torque-and-development/problem
 # The problem name is "Roads and Libraries"
 
+# Current solution fails test cases due to Runtime
+# I'm considering re-implementing with a disjoint set
+
 class Graph:
 
     def __init__(self, num_vertices):
