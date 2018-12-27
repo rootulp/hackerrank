@@ -71,15 +71,6 @@ class Graph:
                 self.dfs(neighbor, visited)
 
 
-    def num_forests(self):
-        # Return the number of disjoint unions of trees in graph
-        return 0
-
-    def edges_required_to_connect_trees(self):
-        # Return the minimum number of edges to connect all trees in graph
-        return 0
-
-
     def __str__(self):
         return "Graph num vertices: {}, with adjacencey list {}".format(self.num_vertices, self.adjacencey_list)
 
