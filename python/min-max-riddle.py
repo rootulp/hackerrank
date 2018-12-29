@@ -9,6 +9,9 @@ import sys
 def riddle(arr):
     return arr
 
+def windows(arr, window_length):
+    return [arr[i : i + window_length] for i in range(len(arr) - window_length + 1)]
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
