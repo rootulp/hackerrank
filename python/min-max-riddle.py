@@ -7,7 +7,14 @@ import re
 import sys
 
 def riddle(arr):
-    return arr
+    result = []
+    for window_size in range(1, len(arr) + 1):
+        window_minima = []
+        for window in windows(arr, window_size):
+            window_minima.append(min(window))
+        max_of_window_minima = max(window_minima)
+        result.append(max_of_window_minima)
+    return result
 
 def windows(arr, window_length):
     return [arr[i : i + window_length] for i in range(len(arr) - window_length + 1)]
