@@ -6,20 +6,17 @@ import random
 import re
 import sys
 
-# Complete the riddle function below.
 def riddle(arr):
-    # complete this function
+    return arr
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    n = int(input())
-
+    _num_elements = int(input())
     arr = list(map(int, input().rstrip().split()))
+    result = riddle(arr)
 
-    res = riddle(arr)
-
-    fptr.write(' '.join(map(str, res)))
+    fptr.write(' '.join(map(str, result)))
     fptr.write('\n')
-
     fptr.close()
