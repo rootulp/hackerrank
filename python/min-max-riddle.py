@@ -9,25 +9,43 @@ import sys
 # Referenced the following notes:
 # 1) O(N) solution is possible using stacks; avoid DP for this problem
 # 2) Think about how to identify the largest window a number is the minimum for (e.g. for the sequence 11 2 3 14 5 2 11 12 we would make a map of number -> window_size as max_window = {11: 2, 2: 8, 3: 3, 14: 1, 5: 2, 12: 1}) - this can be done using stacks in O(n)
-# 3) Invert the max_window hashmap breaking ties by taking the maximum value to store a mapping of windowsize -> maximum_value (continuing with example above inverted_windows = {1: 14, 8:2, 3:3, 2:11}
+# 3) Invert the max_window hashmap breaking ties by taking the maximum value to store a mapping of windowsize -> maximum_value (continuing with example above inverted_windows = {1: 14, 2:11, 3:3, 8:2}
 # 4) starting from w=len(arr) iterate down to a window size of 1, looking up the corresponding values in inverted_windows and fill missing values with the previous largest window value (continuing with the example result = [2, 2, 2, 2, 2, 3, 11, 14] )
 # 5) Return the result in reverse order (return [14, 11, 3, 2, 2, 2, 2, 2])
 
 def riddle(arr):
-    return inverted_max_window(arr)
+    return construct_results(arr)
+
+def construct_results(arr):
+    results = [None] * len(arr)
+    inverted_map = inverted_max_window(arr)
+    last_max = inverted_map[max(inverted_map.keys())]
+    print("inverted_map {}".format(inverted_map))
+
+    for w in range(len(results),  0,  -1):
+        print("last_max {}".format(last_max))
+        print("w {}".format(w))
+        if w in inverted_map:
+            results[w - 1] = inverted_map[w]
+            last_max = inverted_map[w]
+        else:
+            results[w - 1] = last_max
+
+    return results
+
 
 def inverted_max_window(arr):
-    inverted_max_window = dict()
+    inverted_windows = dict()
     max_window = largest_window_map(arr)
 
-    for number, window in max_window.items():
-        if window not in inverted_max_window:
-            inverted_max_window[window] = number
+    for max_value, window_size in max_window.items():
+        if window_size not in inverted_windows:
+            inverted_windows[window_size] = max_value
         else:
-            inverted_max_window[window] = max(inverted_max_window[window], number)
+            inverted_windows[window_size] = max(inverted_windows[window_size], max_value)
 
-    print("inverted_max_window {}".format(inverted_max_window))
-    return inverted_max_window
+    print("inverted_max_window {}".format(inverted_windows))
+    return inverted_windows
 
 
 def largest_window_map(arr):
