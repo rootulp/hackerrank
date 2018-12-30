@@ -13,10 +13,9 @@ import sys
 # 4) starting from w=len(arr) iterate down to a window size of 1, looking up the corresponding values in inverted_windows and fill missing values with the previous largest window value (continuing with the example result = [2, 2, 2, 2, 2, 3, 11, 14] )
 # 5) Return the result in reverse order (return [14, 11, 3, 2, 2, 2, 2, 2])
 
-def riddle(arr):
-    return construct_results(arr)
-
-def construct_results(arr):
+def max_of_minima_for_every_window_size(arr):
+    """Given an integer array of size, find the maximum of the minimum(s) of every window size in the array. The window size varies from 1 to n.
+    """
     results = [None] * len(arr)
     inverted_map = inverted_max_window(arr)
     last_max = inverted_map[max(inverted_map.keys())]
@@ -88,7 +87,7 @@ def largest_window_left(arr):
             num_elements_minimum[index] = index - index_of_last_min_element[-1]
 
         index_of_last_min_element.append(index)
-        # print("num_elements_minimum {}, index_of_last_min_element {}".format(num_elements_minimum, index_of_last_min_element))
+        print("num_elements_minimum {}, index_of_last_min_element {}".format(num_elements_minimum, index_of_last_min_element))
 
     return num_elements_minimum
 
@@ -101,7 +100,7 @@ if __name__ == '__main__':
 
     _num_elements = int(input())
     arr = list(map(int, input().rstrip().split()))
-    result = riddle(arr)
+    result = max_of_minima_for_every_window_size(arr)
 
     fptr.write(' '.join(map(str, result)))
     fptr.write('\n')
