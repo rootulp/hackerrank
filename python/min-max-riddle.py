@@ -14,21 +14,25 @@ import sys
 # 5) Return the result in reverse order (return [14, 11, 3, 2, 2, 2, 2, 2])
 
 def max_of_minima_for_every_window_size(arr):
-    """Given an integer array of size, find the maximum of the minimum(s) of every window size in the array. The window size varies from 1 to n.
+    """Returns an array to satisfy the min max riddle
+
+    Given an integer array of size n, find the maximum of the minimum(s) of every window size in the array.
+    The window size varies from 1 to n.
     """
+
     results = [None] * len(arr)
     inverted_map = inverted_max_window(arr)
-    last_max = inverted_map[max(inverted_map.keys())]
     print("inverted_map {}".format(inverted_map))
 
-    for w in range(len(results),  0,  -1):
+    last_max = inverted_map[max(inverted_map.keys())]
+    for window_size in range(len(results),  0,  -1):
         print("last_max {}".format(last_max))
-        print("w {}".format(w))
-        if w in inverted_map:
-            results[w - 1] = inverted_map[w]
-            last_max = inverted_map[w]
+        print("window_size {}".format(window_size))
+        if window_size in inverted_map:
+            results[window_size - 1] = inverted_map[window_size]
+            last_max = inverted_map[window_size]
         else:
-            results[w - 1] = last_max
+            results[window_size - 1] = last_max
 
     return results
 
