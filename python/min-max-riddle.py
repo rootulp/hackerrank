@@ -39,6 +39,8 @@ def max_of_minima_for_every_window_size(arr):
 
 
 def inverted_max_window(arr):
+    """Return a map from window_size -> maximum_value"""
+
     inverted_windows = dict()
     max_window = largest_window_map(arr)
 
