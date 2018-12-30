@@ -14,7 +14,21 @@ import sys
 # 5) Return the result in reverse order (return [14, 11, 3, 2, 2, 2, 2, 2])
 
 def riddle(arr):
-    return largest_window_map(arr)
+    return inverted_max_window(arr)
+
+def inverted_max_window(arr):
+    inverted_max_window = dict()
+    max_window = largest_window_map(arr)
+
+    for number, window in max_window.items():
+        if window not in inverted_max_window:
+            inverted_max_window[window] = number
+        else:
+            inverted_max_window[window] = max(inverted_max_window[window], number)
+
+    print("inverted_max_window {}".format(inverted_max_window))
+    return inverted_max_window
+
 
 def largest_window_map(arr):
     max_window = dict()
