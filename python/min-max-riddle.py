@@ -24,15 +24,16 @@ def max_of_minima_for_every_window_size(arr):
     inverted_map = inverted_max_window(arr)
     print("inverted_map {}".format(inverted_map))
 
-    last_max = inverted_map[max(inverted_map.keys())]
+    prev_largest_window_max = inverted_map[max(inverted_map.keys())]
+
     for window_size in range(len(results),  0,  -1):
-        print("last_max {}".format(last_max))
+        print("prev_largest_window_max {}".format(prev_largest_window_max))
         print("window_size {}".format(window_size))
         if window_size in inverted_map:
             results[window_size - 1] = inverted_map[window_size]
-            last_max = inverted_map[window_size]
+            prev_largest_window_max = inverted_map[window_size]
         else:
-            results[window_size - 1] = last_max
+            results[window_size - 1] = prev_largest_window_max
 
     return results
 
