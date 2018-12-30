@@ -14,7 +14,26 @@ import sys
 # 5) Return the result in reverse order (return [14, 11, 3, 2, 2, 2, 2, 2])
 
 def riddle(arr):
-    pass
+    return largest_window_left(arr)
+
+def largest_window_left(arr):
+    num_elements_minimum = [None] * len(arr) # Initialize a list to capture the number of elements to the left of the current value for which the current value is the minimum.
+    num_elements_minimum[0] = 1 # The first element always has a span of one because nothing comes before it.
+    index_of_last_min_element = [0] # Use a stack to store the index of the last element smaller than the current element.
+
+    for index in range(1, len(arr)):
+        while len(index_of_last_min_element) > 0 and arr[index] <= arr[index_of_last_min_element[-1]]:
+            index_of_last_min_element.pop()
+
+        if len(index_of_last_min_element) == 0:
+            num_elements_minimum[index] = index + 1
+        else:
+            num_elements_minimum[index] = index - index_of_last_min_element[-1]
+
+        index_of_last_min_element.append(index)
+        print("num_elements_minimum {}, index_of_last_min_element {}".format(num_elements_minimum, index_of_last_min_element))
+
+    return num_elements_minimum
 
 
 if __name__ == '__main__':
