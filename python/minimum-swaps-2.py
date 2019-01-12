@@ -6,6 +6,7 @@ import random
 import re
 import sys
 
+
 def minimumSwaps(arr):
     swaps = 0
     index = 0
@@ -22,6 +23,7 @@ def minimumSwaps(arr):
             swaps += 1
 
     return swaps
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')

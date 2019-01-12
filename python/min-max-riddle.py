@@ -13,6 +13,7 @@ import sys
 # 4) starting from w=len(arr) iterate down to a window size of 1, looking up the corresponding values in inverted_windows and fill missing values with the previous largest window value (continuing with the example result = [2, 2, 2, 2, 2, 3, 11, 14] )
 # 5) Return the result in reverse order (return [14, 11, 3, 2, 2, 2, 2, 2])
 
+
 def max_of_minima_for_every_window_size(arr):
     """Returns an array to satisfy the min max riddle
 
@@ -26,7 +27,7 @@ def max_of_minima_for_every_window_size(arr):
 
     prev_largest_window_max = inverted_map[max(inverted_map.keys())]
 
-    for window_size in range(len(results),  0,  -1):
+    for window_size in range(len(results), 0, -1):
         print("prev_largest_window_max {}".format(prev_largest_window_max))
         print("window_size {}".format(window_size))
         if window_size in inverted_map:
@@ -48,7 +49,8 @@ def inverted_max_window(arr):
         if window_size not in inverted_windows:
             inverted_windows[window_size] = max_value
         else:
-            inverted_windows[window_size] = max(inverted_windows[window_size], max_value)
+            inverted_windows[window_size] = max(
+                inverted_windows[window_size], max_value)
 
     print("inverted_max_window {}".format(inverted_windows))
     return inverted_windows
@@ -66,26 +68,35 @@ def largest_window_map(arr):
     print("max_window {}".format(max_window))
     return max_window
 
+
 def largest_minima_window(arr):
     left_window = largest_window_left(arr)
     right_window = largest_window_right(arr)
-    print ("left_window {}, right_window {}".format(left_window, right_window))
+    print("left_window {}, right_window {}".format(left_window, right_window))
     largest_minima_window = []
 
     for left, right in zip(left_window, right_window):
-        largest_minima_window.append(left + right - 1) # Subtract one to avoid double counting
+        # Subtract one to avoid double counting
+        largest_minima_window.append(left + right - 1)
 
-    print ("largest_minima_window: {}".format(largest_minima_window))
+    print("largest_minima_window: {}".format(largest_minima_window))
     return largest_minima_window
 
 
 def largest_window_left(arr):
-    num_elements_minimum = [None] * len(arr) # Initialize a list to capture the number of elements to the left of the current value for which the current value is the minimum.
-    num_elements_minimum[0] = 1 # The first element always has a span of one because nothing comes before it.
-    index_of_last_min_element = [0] # Use a stack to store the index of the last element smaller than the current element.
+    # Initialize a list to capture the number of elements to the left of the
+    # current value for which the current value is the minimum.
+    num_elements_minimum = [None] * len(arr)
+    # The first element always has a span of one because nothing comes before
+    # it.
+    num_elements_minimum[0] = 1
+    # Use a stack to store the index of the last element smaller than the
+    # current element.
+    index_of_last_min_element = [0]
 
     for index in range(1, len(arr)):
-        while len(index_of_last_min_element) > 0 and arr[index] <= arr[index_of_last_min_element[-1]]:
+        while len(
+                index_of_last_min_element) > 0 and arr[index] <= arr[index_of_last_min_element[-1]]:
             index_of_last_min_element.pop()
 
         if len(index_of_last_min_element) == 0:
@@ -94,9 +105,11 @@ def largest_window_left(arr):
             num_elements_minimum[index] = index - index_of_last_min_element[-1]
 
         index_of_last_min_element.append(index)
-        print("num_elements_minimum {}, index_of_last_min_element {}".format(num_elements_minimum, index_of_last_min_element))
+        print("num_elements_minimum {}, index_of_last_min_element {}".format(
+            num_elements_minimum, index_of_last_min_element))
 
     return num_elements_minimum
+
 
 def largest_window_right(arr):
     return list(reversed(largest_window_left(list(reversed(arr)))))

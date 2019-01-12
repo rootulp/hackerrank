@@ -22,7 +22,8 @@ def containsOnlyOneDifferentCharacterCount(string):
         for character in characterCounts:
             characterCountWithOneRemovedCharacter = characterCounts.copy()
             characterCountWithOneRemovedCharacter[character] -= 1
-            characterCountWithOneRemovedCharacter += Counter() # remove zero and negative counts
+            # remove zero and negative counts
+            characterCountWithOneRemovedCharacter += Counter()
             if allCountsAreEqual(characterCountWithOneRemovedCharacter):
                 return True
     return False

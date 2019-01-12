@@ -8,12 +8,13 @@ class Node:
     def __str__(self):
         return str(self.info)
 
+
 class BinarySearchTree:
     def __init__(self):
         self.root = None
 
     def create(self, val):
-        if self.root == None:
+        if self.root is None:
             self.root = Node(val)
         else:
             current = self.root
@@ -34,6 +35,7 @@ class BinarySearchTree:
                 else:
                     break
 
+
 # Enter your code here. Read input from STDIN. Print output to STDOUT
 '''
 class Node:
@@ -45,6 +47,7 @@ class Node:
 
        // this is a node of the tree , which contains info as data, left , right
 '''
+
 
 def lca(root, v1, v2):
     if (v1 <= root.info <= v2 or v2 <= root.info <= v1):

@@ -13,7 +13,7 @@ orange_distances = map(int, input().strip().split(' '))
 
 def fruit_that_hit_house(tree, distances):
     return list(filter(lambda distance: tree + distance in house_location,
-                distances))
+                       distances))
 
 
 print(len(fruit_that_hit_house(apple_tree, apple_distances)))

@@ -11,6 +11,7 @@ def arrayManipulation(n, queries):
     diffs = getArrayOfDiffs(n, queries)
     return maxFromDiffs(diffs)
 
+
 def maxFromDiffs(diffs):
     sumSoFar = 0
     maxSoFar = 0
@@ -19,6 +20,7 @@ def maxFromDiffs(diffs):
         if sumSoFar > maxSoFar:
             maxSoFar = sumSoFar
     return maxSoFar
+
 
 def getArrayOfDiffs(n, queries):
     # An array used to capture the difference of an element

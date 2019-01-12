@@ -22,7 +22,7 @@ def sliding_window(n, seq):
     [1.5, 2.5, 3.5]
     """
     return zip(*(collections.deque(itertools.islice(it, i), 0) or it
-               for i, it in enumerate(itertools.tee(seq, n))))
+                 for i, it in enumerate(itertools.tee(seq, n))))
 
 
 def birthday_chocolate(squares, day, month):

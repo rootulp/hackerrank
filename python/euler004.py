@@ -18,7 +18,7 @@ def find_lt(a, x):
     'Find rightmost value less than x'
     i = bisect.bisect_left(a, x)
     if i:
-        return a[i-1]
+        return a[i - 1]
     raise ValueError
 
 

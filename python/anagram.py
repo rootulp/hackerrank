@@ -4,8 +4,8 @@ def anagram(str):
     else:
         str_arr = []
         str_arr.extend(str)
-        a = str_arr[:len(str_arr)/2]
-        b = str_arr[(len(str_arr)/2):]
+        a = str_arr[:len(str_arr) / 2]
+        b = str_arr[(len(str_arr) / 2):]
 
         count = 0
         for index in range(len(a)):

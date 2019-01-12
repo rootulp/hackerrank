@@ -54,7 +54,8 @@ class DisjointSet:
         return self.subgroups - 1
 
     def __str__(self):
-        return "Set: {}\nRank: {}\Merges: {}\nSubgroups: {}".format(self.set, self.rank, self.merges, self.subgroups)
+        return r"Set: {}\nRank: {}\Merges: {}\nSubgroups: {}".format(
+            self.set, self.rank, self.merges, self.subgroups)
 
 
 def roadsAndLibraries(num_cities, cost_lib, cost_road, roads):
@@ -68,7 +69,8 @@ def roadsAndLibraries(num_cities, cost_lib, cost_road, roads):
         for source, destination in roads:
             distjoint_set.union(source, destination)
 
-        return (cost_road * distjoint_set.num_merges()) + (cost_lib * distjoint_set.num_subgroups())
+        return (cost_road * distjoint_set.num_merges()) + \
+            (cost_lib * distjoint_set.num_subgroups())
 
 
 if __name__ == '__main__':
@@ -76,7 +78,8 @@ if __name__ == '__main__':
 
     num_queries = int(input())
     for _query in range(num_queries):
-        num_cities, num_roads, cost_lib, cost_road = list(map(int, input().split()))
+        num_cities, num_roads, cost_lib, cost_road = list(
+            map(int, input().split()))
         roads = []
 
         for _road in range(num_roads):
