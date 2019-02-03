@@ -6,31 +6,25 @@ import random
 import re
 import sys
 
-# Complete the bfs function below.
-def bfs(n, m, edges, s):
+
+class Graph:
+    pass
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
     q = int(input())
-
-    for q_itr in range(q):
-        nm = input().split()
-
-        n = int(nm[0])
-
-        m = int(nm[1])
-
+    for _ in range(q):
+        num_nodes, num_edges = list(map(int, input().split()))
         edges = []
-
-        for _ in range(m):
+        for _ in range(num_edges):
             edges.append(list(map(int, input().rstrip().split())))
 
-        s = int(input())
+        starting_node = int(input())
 
-        result = bfs(n, m, edges, s)
+        graph = Graph(num_nodes, num_edges)
+        shortest_reach = graph.shortest_reach(starting_node)
 
-        fptr.write(' '.join(map(str, result)))
+        fptr.write(' '.join(map(str, shortest_reach)))
         fptr.write('\n')
 
     fptr.close()
