@@ -56,6 +56,7 @@ class Graph:
                 node = self.nodes[node_id]
                 if node.visited == False:
                     nodes_to_visit.append((node, depth + 1))
+                    node.visited = True
 
         del shortest_reach_to_nodes[starting_node - 1] # remove the starting node
         return shortest_reach_to_nodes
