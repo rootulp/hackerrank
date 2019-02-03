@@ -25,22 +25,10 @@ class Graph:
     def __init__(self, num_nodes, edges):
         self.num_nodes = num_nodes
         self.edges = edges
-
         self.nodes = []
 
-        for node_id in range(num_nodes):
-            self.add_node(node_id)
-
-        for edge in edges:
-            node_a, node_b = edge
-            self.add_edge(node_a - 1, node_b - 1)
-
-    def add_node(self, node_id):
-        self.nodes.append(Node(node_id))
-
-    def add_edge(self, node_a, node_b):
-        self.nodes[node_a].add_neighbor(node_b)
-        self.nodes[node_b].add_neighbor(node_a)
+        self.initialize_nodes()
+        self.initialize_edges()
 
     def shortest_reach(self, starting_node):
         self.mark_all_nodes_unvisited()
@@ -61,6 +49,21 @@ class Graph:
         del shortest_reach_to_nodes[starting_node - 1] # remove the starting node
         return shortest_reach_to_nodes
 
+    def initialize_nodes(self):
+        for node_id in range(self.num_nodes):
+            self.add_node(node_id)
+
+    def initialize_edges(self):
+        for edge in edges:
+            node_a, node_b = edge
+            self.add_edge(node_a - 1, node_b - 1)
+
+    def add_node(self, node_id):
+        self.nodes.append(Node(node_id))
+
+    def add_edge(self, node_a, node_b):
+        self.nodes[node_a].add_neighbor(node_b)
+        self.nodes[node_b].add_neighbor(node_a)
 
     def mark_all_nodes_unvisited(self):
         for node in self.nodes:
@@ -75,7 +78,6 @@ if __name__ == '__main__':
         edges = []
         for _ in range(num_edges):
             edges.append(list(map(int, input().rstrip().split())))
-
         starting_node = int(input())
 
         graph = Graph(num_nodes, edges)
