@@ -13,14 +13,14 @@ class Node:
     def __init__(self, node_id, color_id, neighbors):
         self.node_id = node_id
         self.color_id = color_id
-        self.neighbor_ids = neighbors
+        self.neighbors = neighbors
         self.marked_to_visit = False
 
-    def add_neighbor(self, neighbor_id):
-        self.neighbor_ids.append(neighbor_id)
+    def add_neighbor(self, neighbors):
+        self.neighbors.append(neighbors)
 
     def __repr__(self):
-        return "Node({}, {}, {})".format(self.node_id, self.color_id, self.neighbor_ids)
+        return "Node({}, {}, {})".format(self.node_id, self.color_id, self.neighbors)
 
 class Graph:
 
@@ -40,10 +40,12 @@ class Graph:
             self.nodes.append(Node(i, self.color_ids[i], []))
 
     def initialize_edges(self):
-        for edge in self.edges:
-            node_a, node_b = edge
-            self.nodes[node_a - 1].add_neighbor(node_b - 1)
-            self.nodes[node_b - 1].add_neighbor(node_a - 1)
+        for edge_a, edge_b in self.edges:
+            node_a = self.nodes[edge_a - 1]
+            node_b = self.nodes[edge_b - 1]
+
+            node_a.add_neighbor(node_b)
+            node_b.add_neighbor(node_a)
 
     def smallest_path_length(self, color_to_find):
         self.mark_all_nodes_unvisited()
@@ -57,8 +59,7 @@ class Graph:
             if current != initial_node and current.color_id == color_to_find:
                 return depth + 1
             else:
-                for node_id in current.neighbor_ids:
-                    neighbor = self.nodes[node_id]
+                for neighbor in current.neighbors:
                     if neighbor.marked_to_visit == False:
                         to_visit.append((neighbor, depth + 1))
                         neighbor.marked_to_visit = True
