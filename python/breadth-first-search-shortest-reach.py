@@ -7,20 +7,25 @@ import re
 import sys
 from collections import deque
 
+
 class Node:
 
     def __init__(self, node_id):
         self.node_id = node_id
         self.neighbors = []
-        self.visited = False
+        self.marked_to_visit = False
 
     def add_neighbor(self, neighbor_id):
         self.neighbors.append(neighbor_id)
 
     def __repr__(self):
-        return "Node ID: {}, Neighbors: {}, Visited: {}".format(self.node_id, self.neighbors, self.visited)
+        return "Node ID: {}, Neighbors: {}, Marked to visit: {}".format(
+            self.node_id, self.neighbors, self.marked_to_visit)
+
 
 class Graph:
+
+    EDGE_DISTANCE = 6
 
     def __init__(self, num_nodes, edges):
         self.num_nodes = num_nodes
@@ -36,17 +41,20 @@ class Graph:
 
         nodes_to_visit = deque()
         nodes_to_visit.append((self.nodes[starting_node - 1], 0))
+        self.nodes[starting_node - 1].marked_to_visit = True
+
         while nodes_to_visit:
             current_node, depth = nodes_to_visit.popleft()
-            current_node.visited = True
-            shortest_reach_to_nodes[current_node.node_id] = 6 * depth
+            shortest_reach_to_nodes[current_node.node_id] = depth * \
+                self.EDGE_DISTANCE
             for node_id in current_node.neighbors:
                 node = self.nodes[node_id]
-                if node.visited == False:
+                if not node.marked_to_visit:
                     nodes_to_visit.append((node, depth + 1))
-                    node.visited = True
+                    node.marked_to_visit = True
 
-        del shortest_reach_to_nodes[starting_node - 1] # remove the starting node
+        # remove the starting node
+        del shortest_reach_to_nodes[starting_node - 1]
         return shortest_reach_to_nodes
 
     def initialize_nodes(self):
@@ -67,7 +75,7 @@ class Graph:
 
     def mark_all_nodes_unvisited(self):
         for node in self.nodes:
-            node.visited = False
+            node.marked_to_visit = False
 
 
 if __name__ == '__main__':

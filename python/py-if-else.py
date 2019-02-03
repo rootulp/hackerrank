@@ -1,6 +1,7 @@
 def is_odd(n):
     return n % 2 == 1
 
+
 def is_weird(n):
     if is_odd(n):
         return True
@@ -12,6 +13,7 @@ def is_weird(n):
             return True
         elif 20 < n:
             return False
+
 
 n = int(input())
 
