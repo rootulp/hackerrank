@@ -20,7 +20,7 @@ class Node:
         self.neighbors.append(neighbors)
 
     def __repr__(self):
-        return "Node({}, {}, {})".format(self.node_id, self.color_id, self.neighbors)
+        return "Node({}, {})".format(self.node_id, self.color_id)
 
 class Graph:
 
@@ -48,15 +48,22 @@ class Graph:
             node_b.add_neighbor(node_a)
 
     def smallest_path_length(self, color_to_find):
+        nodes_with_color = list(filter(lambda node: node.color_id == color_to_find, self.nodes))
+        paths = list(map(lambda node: self.smallest_path_length_for_node(node), nodes_with_color))
+        if paths:
+            return min(paths)
+        return -1
+
+    def smallest_path_length_for_node(self, initial_node):
+        """Find the smallest path from initial_node to a node of the same color"""
         self.mark_all_nodes_unvisited()
         to_visit = deque()
-        initial_node = self.nodes[self.color_ids.index(color_to_find)]
         to_visit.append((initial_node, -1))
         initial_node.marked_to_visit = True
 
         while to_visit:
             current, depth = to_visit.popleft()
-            if current != initial_node and current.color_id == color_to_find:
+            if current != initial_node and current.color_id == initial_node.color_id:
                 return depth + 1
             else:
                 for neighbor in current.neighbors:
@@ -65,6 +72,7 @@ class Graph:
                         neighbor.marked_to_visit = True
 
         return -1
+
 
     def mark_all_nodes_unvisited(self):
         for node in self.nodes:
@@ -84,7 +92,7 @@ if __name__ == '__main__':
     color_to_find = int(input())
 
     graph = Graph(num_nodes, num_edges, edges, color_ids)
-    print(graph.nodes)
+    # print(graph.nodes)
     result = graph.smallest_path_length(color_to_find)
 
     fptr.write(str(result) + '\n')
