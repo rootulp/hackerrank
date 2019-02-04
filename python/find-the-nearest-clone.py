@@ -10,9 +10,9 @@ from collections import deque
 
 class Node:
 
-    def __init__(self, node_id, color_id, neighbors):
+    def __init__(self, node_id, color, neighbors):
         self.node_id = node_id
-        self.color_id = color_id
+        self.color = color
         self.neighbors = neighbors
         self.marked_to_visit = False
 
@@ -20,15 +20,15 @@ class Node:
         self.neighbors.append(neighbors)
 
     def __repr__(self):
-        return "Node({}, {})".format(self.node_id, self.color_id)
+        return "Node({}, {})".format(self.node_id, self.color)
 
 class Graph:
 
-    def __init__(self, num_nodes, num_edges, edges, color_ids):
+    def __init__(self, num_nodes, num_edges, edges, colors):
         self.num_nodes = num_nodes
         self.num_edges = num_edges
         self.edges = edges
-        self.color_ids = color_ids
+        self.colors = colors
 
         self.nodes = []
 
@@ -37,7 +37,7 @@ class Graph:
 
     def initialize_nodes(self):
         for i in range(self.num_nodes):
-            self.nodes.append(Node(i, self.color_ids[i], []))
+            self.nodes.append(Node(i, self.colors[i], []))
 
     def initialize_edges(self):
         for edge_a, edge_b in self.edges:
@@ -48,8 +48,9 @@ class Graph:
             node_b.add_neighbor(node_a)
 
     def smallest_path_length(self, color_to_find):
-        nodes_with_color = list(filter(lambda node: node.color_id == color_to_find, self.nodes))
+        nodes_with_color = list(filter(lambda node: node.color == color_to_find, self.nodes))
         paths = list(map(lambda node: self.smallest_path_length_for_node(node), nodes_with_color))
+
         if paths:
             return min(paths)
         return -1
@@ -63,7 +64,7 @@ class Graph:
 
         while to_visit:
             current, depth = to_visit.popleft()
-            if current != initial_node and current.color_id == initial_node.color_id:
+            if current != initial_node and current.color == initial_node.color:
                 return depth + 1
             else:
                 for neighbor in current.neighbors:
@@ -88,12 +89,11 @@ if __name__ == '__main__':
         edge = list(map(int, input().split()))
         edges.append(edge)
 
-    color_ids = list(map(int, input().rstrip().split()))
+    colors = list(map(int, input().rstrip().split()))
     color_to_find = int(input())
 
-    graph = Graph(num_nodes, num_edges, edges, color_ids)
-    # print(graph.nodes)
-    result = graph.smallest_path_length(color_to_find)
+    graph = Graph(num_nodes, num_edges, edges, colors)
+    smallest_path_for_color = graph.smallest_path_length(color_to_find)
 
-    fptr.write(str(result) + '\n')
+    fptr.write(str(smallest_path_for_color) + '\n')
     fptr.close()
