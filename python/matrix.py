@@ -6,8 +6,16 @@ import random
 import re
 import sys
 
-def min_time(roads, machines):
-    pass
+class Matrix:
+
+    def __init__(self, roads, machines):
+        self.roads = roads
+        self.machines = machines
+
+    # return an integer representing the minimum time required to disrupt the connections among all machines.
+    def min_time(self):
+        pass
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
@@ -21,7 +29,8 @@ if __name__ == '__main__':
     for _ in range(num_machines):
         machines.append(int(input()))
 
-    result = min_time(roads, machines)
+    matrix = Matrix(roads, machines)
+    result = matrix.min_time()
 
     fptr.write(str(result) + '\n')
     fptr.close()
