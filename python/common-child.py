@@ -8,15 +8,18 @@ import sys
 
 # See https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
 def commonChild(s1, s2):
-    if len(s1) == 0 or len(s2) == 0:
-        return 0
-    else:
-        if s1[-1] == s2[-1]:
-            return commonChild(s1[:-1], s2[:-1]) + 1
-        else:
-            temp1 = commonChild(s1[:-1], s2)
-            temp2 = commonChild(s1, s2[:-1])
-            return max(temp1, temp2)
+    matrix = [[0 for i in range(len(s2) + 1)] for j in range(len(s1)+ 1)]
+
+    for row_i in range(len(s1)):
+        for col_i in range(len(s2)):
+            if s1[row_i] == s2[col_i]:
+                matrix[row_i + 1][col_i + 1] = matrix[row_i][col_i] + 1
+            else:
+                matrix[row_i + 1][col_i + 1] = max(matrix[row_i+1][col_i], matrix[row_i][col_i + 1])
+
+    return matrix[len(s1)][len(s2)]
+
+
 
 
 if __name__ == '__main__':
