@@ -34,22 +34,23 @@ class Matrix:
         self.machines = machines
 
         self.sets = [set([city]) for city in range(num_cities)]
-        self.initialize_machines(machines)
+        self.set_member_lookup = {city: city for city in range(num_cities)}
 
-    def initialize_machines(self, machines):
+        self.mark_cities_with_machines(machines)
+
+    def mark_cities_with_machines(self, machines):
         for machine in machines:
             city_with_machine = self.find_set(machine)
             city_with_machine.add(self.MACHINE)
 
     def find_set(self, city):
-        for subset in self.sets:
-            if city in subset:
-                return subset
+        set_i = self.set_member_lookup[city]
+        return self.sets[set_i]
 
     def union(self, set_a, set_b):
-        self.sets.remove(set_a)
-        self.sets.remove(set_b)
-        self.sets.append(set_a.union(set_b))
+        set_a.update(set_b)
+        for city in set_b:
+            self.set_member_lookup[city] = self.sets.index(set_a)
 
     def min_time(self):
         """
