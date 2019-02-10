@@ -26,18 +26,47 @@ import sys
 
 class Matrix:
 
+    MACHINE = "MACHINE"
+
     def __init__(self, roads, num_cities, machines):
         self.roads = roads
         self.num_cities = num_cities
         self.machines = machines
+
+        self.sets = [set([city]) for city in range(num_cities)]
+        self.initialize_machines(machines)
+
+    def initialize_machines(self, machines):
+        for machine in machines:
+            city_with_machine = self.find_set(machine)
+            city_with_machine.add(self.MACHINE)
+
+    def find_set(self, city):
+        for subset in self.sets:
+            if city in subset:
+                return subset
+
+    def union(self, set_a, set_b):
+        self.sets.remove(set_a)
+        self.sets.remove(set_b)
+        self.sets.append(set_a.union(set_b))
 
     def min_time(self):
         """
         Return an integer representing the minimum time required to disrupt the
         connections among all machines.
         """
-        pass
-
+        total_time = 0
+        descending_roads = list(reversed(sorted(self.roads, key=lambda tuple: tuple[2])))
+        for road in descending_roads:
+            city_a, city_b, time_to_destroy = road
+            set_a = self.find_set(city_a)
+            set_b = self.find_set(city_b)
+            if self.MACHINE in set_a and self.MACHINE in set_b:
+                total_time += time_to_destroy
+            else:
+                self.union(set_a, set_b)
+        return total_time
 
 
 if __name__ == '__main__':
