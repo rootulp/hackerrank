@@ -11,7 +11,7 @@ class FriendCircle:
     POPULATION = 10 ** 9
 
     def __init__(self):
-        self.circles = [set([i]) for i in range(self.POPULATION)]
+        self.circles = []
 
     def make_friendship(self, friend_a, friend_b):
         friends_of_a = self.find_set(friend_a)
@@ -26,6 +26,10 @@ class FriendCircle:
         for subset in self.circles:
             if person in subset:
                 return subset
+        # create a new set if not found
+        circle = set([person])
+        self.circles.append(circle)
+        return circle
 
     def largest_friend_circle(self):
         return max([len(circle) for circle in self.circles])
@@ -37,4 +41,4 @@ if __name__ == '__main__':
     for _ in range(num_queries):
         friend_a, friend_b = tuple(map(int, input().rstrip().split()))
         friend_circle.make_friendship(friend_a, friend_b)
-        print(friend_circle.largest_circle_size())
+        print(friend_circle.largest_friend_circle())
