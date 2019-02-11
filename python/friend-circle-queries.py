@@ -7,10 +7,13 @@ import re
 import sys
 
 class FriendCircle:
+    """
+    Roughly a disjoint set.
+    """
 
     def __init__(self):
-        self.circles = {}
-        self.circle_sizes = {}
+        self.circles = {} # person => parent
+        self.circle_sizes = {} # person => size of the circle they belong to
         self.largest_circle_size = 1
 
     def befriend(self, friend_a, friend_b):
@@ -32,7 +35,7 @@ class FriendCircle:
 
     def find_circle(self, person):
         if self.circles[person] == person:
-            return person # person's parent is itself so it is the head of the circle.
+            return person # person is their own parent so they are the head of the circle.
         else:
             self.circles[person] = self.find_circle(self.circles[person]) # path compression.
             return self.circles[person]
