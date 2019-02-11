@@ -11,28 +11,36 @@ class FriendCircle:
     POPULATION = 10 ** 9
 
     def __init__(self):
-        self.circles = []
+        self.circles = {}
+        self.circle_sizes = {}
+        self.largest_friend_circle = 1
 
     def make_friendship(self, friend_a, friend_b):
-        friends_of_a = self.find_set(friend_a)
-        friends_of_b = self.find_set(friend_b)
+        self.maybe_initialize_circle(friend_a)
+        self.maybe_initialize_circle(friend_b)
 
-        new_circle = friends_of_a.union(friends_of_b)
-        self.circles.remove(friends_of_a)
-        self.circles.remove(friends_of_b)
-        self.circles.append(new_circle)
+        circle_a = self.find_set(friend_a)
+        circle_b = self.find_set(friend_b)
+
+        if circle_a != circle_b:
+            self.circles[circle_b] = circle_a
+            new_circle_size = self.circle_sizes[circle_a] + self.circle_sizes[circle_b]
+            self.circle_sizes[circle_a] = new_circle_size
+            self.circle_sizes[circle_b] = new_circle_size
+
+        if new_circle_size > self.largest_friend_circle:
+            self.largest_friend_circle = self.circle_sizes[circle_a]
 
     def find_set(self, person):
-        for subset in self.circles:
-            if person in subset:
-                return subset
-        # create a new set if not found
-        circle = set([person])
-        self.circles.append(circle)
-        return circle
+        while self.circles[person] != person:
+            person = self.circles[person]
+        return person
 
-    def largest_friend_circle(self):
-        return max([len(circle) for circle in self.circles])
+    def maybe_initialize_circle(self, person):
+        if person not in self.circles:
+            self.circles[person] = person
+            self.circle_sizes[person] = 1
+
 
 if __name__ == '__main__':
 
@@ -41,4 +49,4 @@ if __name__ == '__main__':
     for _ in range(num_queries):
         friend_a, friend_b = tuple(map(int, input().rstrip().split()))
         friend_circle.make_friendship(friend_a, friend_b)
-        print(friend_circle.largest_friend_circle())
+        print(friend_circle.largest_friend_circle)
