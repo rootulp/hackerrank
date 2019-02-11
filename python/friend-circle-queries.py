@@ -32,9 +32,11 @@ class FriendCircle:
                 self.largest_friend_circle = self.circle_sizes[circle_a]
 
     def find_circle(self, person):
-        while self.circles[person] != person:
-            person = self.circles[person]
-        return person
+        if self.circles[person] == person:
+            return person # person's parent is itself so it is the head of the circle.
+        else:
+            self.circles[person] = self.find_circle(self.circles[person]) # path compression.
+            return self.circles[person]
 
     def maybe_init_circle(self, person):
         if person not in self.circles:
