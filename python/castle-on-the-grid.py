@@ -1,13 +1,10 @@
 #!/bin/python3
 
-import math
-import os
-import random
-import re
-import sys
 from collections import deque
 
 class CastleOnGrid:
+
+    CELL_BLOCKED_TOKEN = 'X'
 
     def __init__(self, grid, grid_size, start, goal):
         self.grid = grid
@@ -37,25 +34,25 @@ class CastleOnGrid:
 
         row, col = coords
         for row_i in range(row + 1, self.grid_size):
-            if self.grid[row_i][col] == 'X':
+            if self.grid[row_i][col] == self.CELL_BLOCKED_TOKEN:
                 break
             else:
                 possible.append((row_i, col))
 
         for row_i in range(row - 1, -1, -1):
-            if self.grid[row_i][col] == 'X':
+            if self.grid[row_i][col] == self.CELL_BLOCKED_TOKEN:
                 break
             else:
                 possible.append((row_i, col))
 
         for col_i in range(col + 1, self.grid_size):
-            if self.grid[row][col_i] == 'X':
+            if self.grid[row][col_i] == self.CELL_BLOCKED_TOKEN:
                 break
             else:
                 possible.append((row, col_i))
 
         for col_i in range(col - 1, -1, -1):
-            if self.grid[row][col_i] == 'X':
+            if self.grid[row][col_i] == self.CELL_BLOCKED_TOKEN:
                 break
             else:
                 possible.append((row, col_i))
