@@ -1,5 +1,8 @@
 #!/bin/python3
 
+# Note this solution times out on test case 9 with Python3.
+# However, this solution passes test case 9 with Pypy3.
+
 from collections import deque
 
 class CastleOnGrid:
