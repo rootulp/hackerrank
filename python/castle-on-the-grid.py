@@ -30,35 +30,30 @@ class CastleOnGrid:
         return current_depth
 
     def possible_moves(self, coords):
-        possible = []
-
         row, col = coords
         for row_i in range(row + 1, self.grid_size):
             if self.grid[row_i][col] == self.CELL_BLOCKED_TOKEN:
                 break
             else:
-                possible.append((row_i, col))
+                yield (row_i, col)
 
         for row_i in range(row - 1, -1, -1):
             if self.grid[row_i][col] == self.CELL_BLOCKED_TOKEN:
                 break
             else:
-                possible.append((row_i, col))
+                yield (row_i, col)
 
         for col_i in range(col + 1, self.grid_size):
             if self.grid[row][col_i] == self.CELL_BLOCKED_TOKEN:
                 break
             else:
-                possible.append((row, col_i))
+                yield (row, col_i)
 
         for col_i in range(col - 1, -1, -1):
             if self.grid[row][col_i] == self.CELL_BLOCKED_TOKEN:
                 break
             else:
-                possible.append((row, col_i))
-
-        return possible
-
+                yield (row, col_i)
 
 
 if __name__ == '__main__':
