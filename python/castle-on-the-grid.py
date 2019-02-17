@@ -6,32 +6,27 @@ import random
 import re
 import sys
 
-# Complete the minimumMoves function below.
-def minimumMoves(grid, startX, startY, goalX, goalY):
+class CastleOnGrid:
+
+    def __init__(self, grid, start, goal):
+        self.grid = grid
+        self.start = start
+        self.goal = goal
+
+    def min_moves(self):
+        pass
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
-    n = int(input())
-
+    grid_size = int(input())
     grid = []
 
-    for _ in range(n):
-        grid_item = input()
-        grid.append(grid_item)
+    for _ in range(grid_size):
+        grid.append(list(input()))
 
-    startXStartY = input().split()
+    coords = list(map(int, input().split()))
+    start = (coords[0], coords[1])
+    goal = (coords[2], coords[3])
 
-    startX = int(startXStartY[0])
-
-    startY = int(startXStartY[1])
-
-    goalX = int(startXStartY[2])
-
-    goalY = int(startXStartY[3])
-
-    result = minimumMoves(grid, startX, startY, goalX, goalY)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+    castle_on_grid = CastleOnGrid(grid, start, goal)
+    min_moves = castle_on_grid.min_moves()
+    print(min_moves)
