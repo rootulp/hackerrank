@@ -6,24 +6,49 @@ import random
 import re
 import sys
 
-# Complete the crosswordPuzzle function below.
-def crosswordPuzzle(crossword, words):
-    pass
+class Crossword():
+
+    EMPTY = "-"
+    BLOCKED = "+"
+
+    def __init__(self, grid, words):
+        self.grid = grid
+        self.words = words
+
+    def solve(self):
+        while self.is_unsolved():
+            word = self.words.pop()
+            positions = self.get_potential_positions(word)
+            for position in positions:
+                self.fill_word(word, position)
+                self.solve()
+
+                # if we get here, we need to revert this word
+                self.revert_fill_word(word, position)
+            self.words.append(word)
+        return self.grid
+
+    def get_potential_positions(self, word):
+        pass
+
+    def fill_word(self, word, position):
+        pass
+
+    def revert_fill_word(self, word, position):
+        pass
+
+    def is_unsolved(self):
+        for row in self.grid:
+            for token in row:
+                if token == self.EMPTY:
+                    return True
+        return False
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
-    crossword = []
-
+    grid = []
     for _ in range(10):
-        crossword_item = input()
-        crossword.append(crossword_item)
+        grid.append(list(input()))
+    words = input().split(";")
 
-    words = input()
-
-    result = crosswordPuzzle(crossword, words)
-
-    fptr.write('\n'.join(result))
-    fptr.write('\n')
-
-    fptr.close()
+    puzzle = Crossword(grid, words)
+    print(puzzle.solve())
