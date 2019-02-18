@@ -33,7 +33,7 @@ class Matrix:
         self.num_cities = num_cities
         self.machines = machines
 
-        self.sets = [set([city]) for city in range(num_cities)]
+        self.sets = [[city] for city in range(num_cities)]
         self.set_member_lookup = {city: city for city in range(num_cities)}
 
         self.mark_cities_with_machines(machines)
@@ -41,16 +41,19 @@ class Matrix:
     def mark_cities_with_machines(self, machines):
         for machine in machines:
             city_with_machine = self.find_set(machine)
-            city_with_machine.add(self.MACHINE)
+            city_with_machine.append(self.MACHINE)
 
     def find_set(self, city):
         set_i = self.set_member_lookup[city]
         return self.sets[set_i]
 
-    def union(self, set_a, set_b):
-        set_a.update(set_b)
-        for city in set_b:
-            self.set_member_lookup[city] = self.sets.index(set_a)
+    def union(self, set_a, set_b, city_a):
+        if set_a is not None and set_b is not None:
+            set_a.extend(set_b)
+            set_a_index = self.set_member_lookup[city_a]
+            for city in set_b:
+                self.set_member_lookup[city] = set_a_index
+            set_b = None
 
     def min_time(self):
         """
@@ -66,7 +69,7 @@ class Matrix:
             if self.MACHINE in set_a and self.MACHINE in set_b:
                 total_time += time_to_destroy
             else:
-                self.union(set_a, set_b)
+                self.union(set_a, set_b, city_a)
         return total_time
 
 
