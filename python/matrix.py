@@ -49,12 +49,15 @@ class Matrix:
     def find_set(self, city):
         return self.set_member_lookup[city]
 
-    def union(self, set_a, set_b, city_a):
+    def build_road(self, city_a, city_b):
+        set_a = self.get_set_for_city(city_a)
+        set_b = self.get_set_for_city(city_b)
+
         if set_a is not None and set_b is not None:
             set_a.extend(set_b)
-            set_a_index = self.set_member_lookup[city_a]
+            set_a_lookup = self.find_set(city_a)
             for city in set_b:
-                self.set_member_lookup[city] = set_a_index
+                self.set_member_lookup[city] = set_a_lookup
             set_b = None
 
     def min_time(self):
@@ -71,7 +74,7 @@ class Matrix:
             if self.MACHINE in set_a and self.MACHINE in set_b:
                 total_time += time_to_destroy
             else:
-                self.union(set_a, set_b, city_a)
+                self.build_road(city_a, city_b)
         return total_time
 
 
