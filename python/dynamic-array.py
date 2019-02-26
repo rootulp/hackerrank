@@ -6,6 +6,7 @@ import random
 import re
 import sys
 
+
 def dynamic_array(num_sequences, queries):
     sequence_list = [[] for i in range(num_sequences)]
     last_answer = 0
@@ -20,8 +21,10 @@ def dynamic_array(num_sequences, queries):
             last_answer = get_new_answer(sequence, y)
             print(last_answer)
 
+
 def get_sequence_index(num_sequences, x, last_answer):
     return (x ^ last_answer) % num_sequences
+
 
 def get_new_answer(sequence, y):
     index = y % len(sequence)

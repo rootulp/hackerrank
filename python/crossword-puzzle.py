@@ -6,6 +6,7 @@ import random
 import re
 import sys
 
+
 class Crossword():
 
     EMPTY = "-"
@@ -43,6 +44,7 @@ class Crossword():
                 if token == self.EMPTY:
                     return True
         return False
+
 
 if __name__ == '__main__':
     grid = []

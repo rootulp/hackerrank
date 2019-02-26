@@ -24,6 +24,7 @@ import sys
 #       UNION(u, v)
 # return A
 
+
 class Matrix:
 
     MACHINE = "MACHINE"
@@ -66,7 +67,11 @@ class Matrix:
         connections among all machines.
         """
         total_time = 0
-        descending_roads = list(reversed(sorted(self.roads, key=lambda tuple: tuple[2])))
+        descending_roads = list(
+            reversed(
+                sorted(
+                    self.roads,
+                    key=lambda tuple: tuple[2])))
         for road in descending_roads:
             city_a, city_b, time_to_destroy = road
             set_a = self.get_set_for_city(city_a)
@@ -85,7 +90,7 @@ if __name__ == '__main__':
     for _ in range(num_cities - 1):
         roads.append(tuple(map(int, input().rstrip().split())))
 
-    machines = [] # these are cities machines are in
+    machines = []  # these are cities machines are in
     for _ in range(num_machines):
         machines.append(int(input()))
 

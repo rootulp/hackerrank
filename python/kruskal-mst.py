@@ -17,6 +17,7 @@ import sys
 #       UNION(u, v)
 # return A
 
+
 class Kruskal:
 
     def __init__(self, num_nodes, edges):
@@ -46,7 +47,7 @@ class Kruskal:
         total_weight = 0
         edges_ascending = sorted(edges, key=lambda tup: tup[2])
         for edge in edges_ascending:
-            node_a, node_b, weight = edge # unpack tuple
+            node_a, node_b, weight = edge  # unpack tuple
             set_a = self.find_set(node_a)
             set_b = self.find_set(node_b)
             if set_a != set_b:

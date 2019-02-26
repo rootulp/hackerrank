@@ -6,6 +6,7 @@ import random
 import re
 import sys
 
+
 def max_luck_balance(contests, num_can_lose):
     """
     Returns a single integer denoting the maximum amount of luck Lena can have
@@ -19,7 +20,8 @@ def max_luck_balance(contests, num_can_lose):
         balance += contest_luck
 
     # Sort the important contests in descending order of luck balance.
-    important_contests = sorted([contest for contest in contests if contest[1] == 1], reverse=True)
+    important_contests = sorted(
+        [contest for contest in contests if contest[1] == 1], reverse=True)
 
     # We want to lose as many of the high balance contests as possible.
     contests_to_lose = (important_contests)[:num_can_lose]

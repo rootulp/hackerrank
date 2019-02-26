@@ -6,10 +6,12 @@ import random
 import re
 import sys
 
+
 class SinglyLinkedListNode:
     def __init__(self, node_data):
         self.data = node_data
         self.next = None
+
 
 class SinglyLinkedList:
     def __init__(self):
@@ -24,8 +26,8 @@ class SinglyLinkedList:
         else:
             self.tail.next = node
 
-
         self.tail = node
+
 
 def print_singly_linked_list(node, sep, fptr):
     while node:
@@ -46,8 +48,11 @@ def print_singly_linked_list(node, sep, fptr):
 #     SinglyLinkedListNode next
 #
 #
+
+
 def reverse(head):
     return reverse_node(head)
+
 
 def reverse_node(node, prev=None):
     if node is None:

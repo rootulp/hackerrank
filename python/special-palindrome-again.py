@@ -14,6 +14,7 @@ from itertools import groupby
 # 3. The number of substrings that satisfy condition 2 above can be found
 #    by searching through the list of tuples.
 
+
 def count_of_special_palindrome_substrings(string):
     count = 0
 
@@ -25,7 +26,7 @@ def count_of_special_palindrome_substrings(string):
         count += triangle_number(run_length)
 
     # Step 3
-    for i in range (1, len(encoded) - 1):
+    for i in range(1, len(encoded) - 1):
         char, run_length = encoded[i]
         only_one_middle_character = run_length == 1
         surrounded_by_same_character = encoded[i - 1][0] == encoded[i + 1][0]
@@ -34,11 +35,14 @@ def count_of_special_palindrome_substrings(string):
 
     return count
 
+
 def run_length_encode(string):
     return [(char, len(list(group))) for char, group in groupby(string)]
 
+
 def triangle_number(n):
     return n * (n + 1) // 2
+
 
 if __name__ == '__main__':
     _ = int(input())

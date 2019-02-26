@@ -5,6 +5,7 @@
 
 from collections import deque
 
+
 class CastleOnGrid:
 
     CELL_BLOCKED_TOKEN = 'X'

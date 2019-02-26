@@ -22,6 +22,7 @@ class Node:
     def __repr__(self):
         return "Node({}, {})".format(self.node_id, self.color)
 
+
 class Graph:
 
     def __init__(self, num_nodes, num_edges, edges, colors):
@@ -48,8 +49,12 @@ class Graph:
             node_b.add_neighbor(node_a)
 
     def smallest_path_length(self, color_to_find):
-        nodes_with_color = list(filter(lambda node: node.color == color_to_find, self.nodes))
-        paths = list(map(lambda node: self.smallest_path_length_for_node(node), nodes_with_color))
+        nodes_with_color = list(
+            filter(
+                lambda node: node.color == color_to_find,
+                self.nodes))
+        paths = list(
+            map(lambda node: self.smallest_path_length_for_node(node), nodes_with_color))
 
         if paths:
             return min(paths)
@@ -68,16 +73,16 @@ class Graph:
                 return depth + 1
             else:
                 for neighbor in current.neighbors:
-                    if neighbor.marked_to_visit == False:
+                    if not neighbor.marked_to_visit:
                         to_visit.append((neighbor, depth + 1))
                         neighbor.marked_to_visit = True
 
         return -1
 
-
     def mark_all_nodes_unvisited(self):
         for node in self.nodes:
             node.marked_to_visit = False
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
