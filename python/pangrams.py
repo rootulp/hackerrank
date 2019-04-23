@@ -1,4 +1,4 @@
-test_string = raw_input()
+test_string = input()
 test_arr = []
 
 alphabet = list(map(chr, range(ord('a'), ord('z') + 1)))

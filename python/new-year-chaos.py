@@ -9,33 +9,33 @@ import sys
 # Complete the minimumBribes function below.
 
 
-def minimumBribes(finalLine):
-    if invalid(finalLine):
+def minimum_bribes(final_line):
+    if invalid(final_line):
         return "Too chaotic"
-    return bubbleSort(finalLine)
+    return bubble_sort(final_line)
 
 
-def invalid(finalLine):
-    return any(didBribeMoreThanTwoPeople(person, index)
-               for index, person in enumerate(finalLine))
+def invalid(final_line):
+    return any(did_bribe_more_than_two_people(person, index)
+               for index, person in enumerate(final_line))
 
 
-def didBribeMoreThanTwoPeople(person, index):
+def did_bribe_more_than_two_people(person, index):
     return index + 2 < person - 1
 
 
-def bubbleSort(line):
+def bubble_sort(line):
     swaps = 0
-    swappedInCurrentPass = False
+    swapped_in_current_pass = False
 
     for person in range(len(line)):
         for i in range(0, len(line) - 1):
             if line[i] > line[i + 1]:
                 line[i], line[i + 1] = line[i + 1], line[i]
                 swaps += 1
-                swappedInCurrentPass = True
-        if swappedInCurrentPass:
-            swappedInCurrentPass = False
+                swapped_in_current_pass = True
+        if swapped_in_current_pass:
+            swapped_in_current_pass = False
         else:
             break
 
@@ -44,10 +44,7 @@ def bubbleSort(line):
 
 if __name__ == '__main__':
     t = int(input())
-
-    for t_itr in range(t):
+    for _t_index in range(t):
         n = int(input())
-
         q = list(map(int, input().rstrip().split()))
-
-        print(minimumBribes(q))
+        print(minimum_bribes(q))
