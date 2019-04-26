@@ -3,10 +3,6 @@
 # A special triplet is defined as: a <= b <= c for
 # a in list_a, b in list_b, and c in list_c
 def get_num_special_triplets(list_a, list_b, list_c):
-    list_a.sort()
-    list_b.sort()
-    list_c.sort()
-
     num_special_triplets = 0
 
     for b in list_b:
