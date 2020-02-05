@@ -20,8 +20,8 @@ class DoorMat:
         self.M = M
         self.middle_line_number = (self.N - 1) // 2
 
-    def print_door_mat(self):
-        [print(self.line(line_number)) for line_number in range(0, N)]
+    def __str__(self):
+        return "\n".join([self.line(line_number) for line_number in range(0, N)])
 
     def line(self, line_number):
         if(line_number == self.middle_line_number):
@@ -29,10 +29,10 @@ class DoorMat:
         return self.design_line(line_number)
 
     def welcome_line(self):
-        return '{:{fill}^{line_length}}'.format(self.WELCOME, fill=self.DASH, line_length=self.M)
+        return self.center_text(self.WELCOME)
 
     def design_line(self, line_number):
-        return '{:{fill}^{line_length}}'.format(self.design_for_line(line_number), fill=self.DASH, line_length=self.M)
+        return self.center_text(self.design_for_line(line_number))
 
     def design_for_line(self, line_number):
         return self.DOT + self.middle_design(line_number) + self.DOT
@@ -47,11 +47,12 @@ class DoorMat:
     def pattern_repeat_for_line(self, line_number):
         if line_number < self.middle_line_number:
             return line_number * 2
-        pattern_repeat = (self.N - 1 - line_number) * 2
-        # print("pattern repeat: {} for line number: {}".format(pattern_repeat, line_number))
-        return pattern_repeat
+        return (self.N - 1 - line_number) * 2
+
+    def center_text(self, text):
+        return '{:{fill}^{line_length}}'.format(text, fill=self.DASH, line_length=self.M)
 
 
 N, M = map(int, input().strip().split(" "))
 doormat = DoorMat(N, M)
-doormat.print_door_mat()
+print(doormat)
