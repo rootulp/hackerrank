@@ -17,22 +17,12 @@ import sys
 #
 
 def getMinCost(employee_id, job_id):
+    employees = sorted(employee_id)
+    jobs = sorted(job_id)
     total_distance = 0
-    while (job_id != [] or employee_id != []):
-        employee_id, job_id, distance = perform_repair(employee_id, job_id)
-        total_distance += distance
+    for index in range(len(employees)):
+        total_distance += abs(employees[index] - jobs[index])
     return total_distance
-
-def perform_repair(employee_id, job_id):
-    job = job_id.pop()
-    min_index = 0
-    min_distance = abs(employee_id[0] - job)
-    for index, employee in enumerate(employee_id):
-        if abs(employee - job) < min_distance:
-            min_index = index
-            min_distance = abs(employee - job)
-    employee_id.pop(min_index)
-    return employee_id, job_id, min_distance
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
