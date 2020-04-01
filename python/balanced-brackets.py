@@ -1,28 +1,44 @@
-class BracketChecker:
+#!/bin/python3
 
-    def __init__(self, string_of_brackets):
-        self.string_of_brackets = string_of_brackets
+import math
+import os
+import random
+import re
+import sys
 
-    def balanced_brackets(self):
-        self.stack = []
-        for bracket in string_of_brackets:
-            if self.stack and self.matching_brackets(self.stack[-1], bracket):
-                self.stack.pop()
-            else:
-                self.stack.append(bracket)
-        return not self.stack
+BRACKETS_MAP = {
+    '[': ']',
+    '{': '}',
+    '(': ')',
+}
+def isOpen(bracket):
+    return bracket in BRACKETS_MAP.keys()
 
-    @classmethod
-    def matching_brackets(cls, bracket_1, bracket_2):
-        return ((bracket_1 == '(' and bracket_2 == ')') or
-                (bracket_1 == '[' and bracket_2 == ']') or
-                (bracket_1 == '{' and bracket_2 == '}'))
+def isClose(bracket):
+    return bracket in BRACKETS_MAP.values()
 
+def isBalanced(s):
+    stack = []
+    for bracket in s:
+        if(isOpen(bracket)):
+            stack.append(bracket)
+        elif(isClose(bracket)):
+            if(stack == [] or bracket != BRACKETS_MAP.get(stack.pop())):
+                return ("NO")
+    if(stack != []):
+        return ("NO")
+    return ("YES")
 
-n = int(input().strip())
-for _ in range(n):
-    string_of_brackets = input().strip()
-    if (BracketChecker(string_of_brackets).balanced_brackets()):
-        print('YES')
-    else:
-        print('NO')
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        s = input()
+
+        result = isBalanced(s)
+
+        fptr.write(result + '\n')
+
+    fptr.close()
