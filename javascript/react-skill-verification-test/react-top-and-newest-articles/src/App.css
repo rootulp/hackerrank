@@ -1,0 +1,17 @@
+html, body {
+  font-family: 'Open Sans';
+}
+
+.App {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.navigation {
+  margin-bottom: 2rem;
+}
+
+.navigation button {
+  margin-right: 1rem;
+}
