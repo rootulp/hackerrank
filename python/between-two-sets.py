@@ -1,35 +1,34 @@
 #!/bin/python3
 
+import math
+import os
+import random
+import re
 import sys
+from collections import Counter
 from functools import reduce
+from fractions import gcd
+#
+# Complete the 'getTotalX' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. INTEGER_ARRAY a
+#  2. INTEGER_ARRAY b
+#
 
+def getTotalX(a, b):
+    # Write your code here
+    lcm_a = reduce(lambda x,y: x*y//gcd(x,y), a)
+    gcd_b = reduce(gcd, b)
+    print(sum(1 for x in range(lcm_a,gcd_b+1,lcm_a) if gcd_b%x==0))
 
-def multiples_of_a_divisors_of_b(lcm, gcd):
-    result = []
-    multiplyer = 1
-    while (lcm * multiplyer <= gcd):
-        if (gcd % (lcm * multiplyer) == 0):
-            result.append(lcm * multiplyer)
-        multiplyer += 1
-    return result
+if __name__ == '__main__':
 
+    first_multiple_input = input().rstrip().split()
+    n = int(first_multiple_input[0])
+    m = int(first_multiple_input[1])
+    arr = list(map(int, input().rstrip().split()))
+    brr = list(map(int, input().rstrip().split()))
+    total = getTotalX(arr, brr)
 
-# Import gcd and lcm from https://gist.github.com/endolith/114336
-def gcd(*numbers):
-    """Return the greatest common divisor of the given integers"""
-    from fractions import gcd
-    return reduce(gcd, numbers)
-
-
-def lcm(*numbers):
-    """Return lowest common multiple."""
-    def lcm(a, b):
-        return (a * b) // gcd(a, b)
-    return reduce(lcm, numbers, 1)
-
-
-if __name__ == "__main__":
-    n, m = map(int, input().strip().split(' '))
-    a = list(map(int, input().strip().split(' ')))
-    b = list(map(int, input().strip().split(' ')))
-    print(len(multiples_of_a_divisors_of_b(lcm(*a), gcd(*b))))
