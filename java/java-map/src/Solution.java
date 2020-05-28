@@ -1,7 +1,7 @@
 import java.io.*;
-import java.util.*;
-import java.text.*;
 import java.math.*;
+import java.text.*;
+import java.util.*;
 import java.util.regex.*;
 
 public class Solution {
@@ -12,7 +12,7 @@ public class Solution {
 
     int n = Integer.parseInt(sc.nextLine()); // number of contacts
 
-    for (int i = 0; i < n; i ++) {
+    for (int i = 0; i < n; i++) {
       String name = sc.nextLine();
       Integer number = Integer.parseInt(sc.nextLine());
       contacts.put(name, number);
@@ -27,5 +27,4 @@ public class Solution {
       }
     }
   }
-
 }
