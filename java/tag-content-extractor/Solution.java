@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Solution{
 	public static void main(String[] args){
@@ -12,8 +14,17 @@ public class Solution{
 	}
 
     public static void printContentEnclosedWithinTags(String line) {
-        System.out.println("Foo");
-        // Regex
-        // <([\w\d\s]+)>([\w\d\s]+)(<\/\1>)
+        Pattern pattern = Pattern.compile("<(.+)>([^<]+)</\\1>");
+        Matcher matcher = pattern.matcher(line);
+        boolean matchFound = false;
+
+        while (matcher.find()) {
+            System.out.println(matcher.group(2));
+            matchFound = true;
+        }
+
+        if (!matchFound) {
+            System.out.println("None");
+        }
     }
 }
