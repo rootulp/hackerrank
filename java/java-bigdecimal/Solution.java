@@ -20,6 +20,7 @@ class Solution {
                     BigDecimal d2 = new BigDecimal(o2);
                     return d1.compareTo(d2);
                 }
+                return 0;
             }
         }));
 
