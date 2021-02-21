@@ -1,29 +1,36 @@
-import java.io.*;
-import java.math.*;
-import java.text.*;
 import java.util.*;
-import java.util.regex.*;
 
 public class Solution {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
 
-    int size = sc.nextInt();
-    int[] arr = new int[size];
-    for (int i = 0; i < size; i++) {
-      arr[i] = sc.nextInt();
-    }
-
-    int count = 0;
-    for (int i = 0; i < size; i++) {
-      int sum = 0;
-      for (int j = i; j < size; j++) {
-        sum += arr[j];
-        if (sum < 0) {
-          count++;
-        }
+    public static boolean canWin(int leap, int[] array, int currentLocation) {
+      if (currentLocation >= array.length) {
+        return true;
       }
+      if (currentLocation < 0 || array[currentLocation] == 1) {
+        return false;
+      }
+
+      // mark current location as visited
+      array[currentLocation] = 1;
+      return canWin(leap, array, currentLocation - 1) ||
+             canWin(leap, array, currentLocation + 1) ||
+             canWin(leap, array, currentLocation + leap);
     }
-    System.out.println(count);
-  }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int q = scan.nextInt();
+        while (q-- > 0) {
+            int n = scan.nextInt();
+            int leap = scan.nextInt();
+
+            int[] game = new int[n];
+            for (int i = 0; i < n; i++) {
+                game[i] = scan.nextInt();
+            }
+
+            System.out.println(canWin(leap, game, 0) ? "YES" : "NO");
+        }
+        scan.close();
+    }
 }
